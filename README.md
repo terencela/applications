@@ -1,26 +1,41 @@
 # applications
 
-Role-specific application dossiers for Terence La.
+Role-specific application dossiers. One Vercel project per company.
 
-## Live
+## Vercel setup (per dossier)
 
-- [openai.terencela.com](https://openai.terencela.com)
-- [google.terencela.com](https://google.terencela.com)
-- [anthropic.terencela.com](https://anthropic.terencela.com)
-- [salesforce.terencela.com](https://salesforce.terencela.com)
+Import this repo into Vercel **four times** (or once per company you need). Each project:
 
-## Dev
+| Vercel project | `DOSSIER_COMPANY` | Domain |
+|---|---|---|
+| openai-application | `openai` | `openai.terencela.com` |
+| google-application | `google` | `google.terencela.com` |
+| anthropic-application | `anthropic` | `anthropic.terencela.com` |
+| salesforce-application | `salesforce` | `salesforce.terencela.com` |
+
+1. New Project → import `terencela/applications`
+2. Environment variable: `DOSSIER_COMPANY` = company key (e.g. `openai`)
+3. Add custom domain
+4. Deploy
+
+The dossier renders at `/`. No subdomain middleware.
+
+## Local dev
 
 ```bash
-npm run install:ci
+npm install
 npm run dev
 ```
 
-Routes: `/openai`, `/google`, `/anthropic`, `/salesforce`
+- `http://localhost:3000` — index with links
+- `http://localhost:3000/openai` — direct route (still works)
 
-Subdomain routing is handled in `middleware.ts` for production deploys.
+Or single dossier at root:
 
-## Repo split
+```bash
+DOSSIER_COMPANY=google npm run dev
+```
 
-Personal portfolio and labs live in [terencela/terencela](https://github.com/terencela/terencela).
-This repo is dossiers only.
+## Portfolio repo
+
+Personal site and labs: [terencela/terencela](https://github.com/terencela/terencela)
