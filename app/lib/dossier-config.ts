@@ -15,7 +15,7 @@ export function isExternalDossier(): boolean {
   return getDossierMode() === "external";
 }
 
-export type DossierCompany = "openai" | "anthropic" | "google" | "salesforce";
+export type DossierCompany = "openai" | "anthropic" | "google" | "salesforce" | "elevenlabs";
 
 export type CareerProofItem = {
   stat: string;
@@ -487,5 +487,96 @@ export const companyDossierSupport: Record<DossierCompany, CompanyDossierSupport
     ],
     linkedInCtaBody:
       "For the Forward Deployed Engineer role, I would welcome a working session on your toughest Agentforce account in DACH. I can show workflow embedding, data boundary design, and how I get ops teams to trust autonomous actions.",
+  },
+
+  elevenlabs: {
+    careerProofIntro:
+      "I deployed a Voice AI Agent at Zurich Airport handling ~85K annual calls in a regulated environment. That is the exact challenge your Swiss enterprise customers face when deploying ElevenAgents.",
+    careerProofItems: [
+      {
+        stat: "~85K",
+        label: "Voice AI calls/year",
+        sub: "Production discovery through formal tender at Zurich Airport",
+      },
+      {
+        stat: "2 weeks",
+        label: "PoC to live validation",
+        sub: "Rapid prototyping on real operational call traffic",
+      },
+      {
+        stat: "8 FTE",
+        label: "Call center operational scope",
+        sub: "Human handoff and escalation architecture",
+      },
+      {
+        stat: "5 languages",
+        label: "Regional fluency",
+        sub: "English, German, Swiss German, Cantonese, French",
+      },
+      {
+        stat: "Since 2020",
+        label: "Production AI systems",
+        sub: "15+ AI products built, eval loops, voice synthesis",
+      },
+    ],
+    interviewPitch:
+      "Swiss enterprise customers do not doubt ElevenLabs' voice quality. They stall on telephony integration, multilingual edge cases, and compliance sign-off. I have navigated that exact path from the inside.",
+    interviewPitchSub:
+      "In a first conversation I would walk through how I de-risked the Zurich Airport voice agent, the evaluation criteria for DE/FR/IT dialect handling, and how I structure commercial pilots that close in weeks.",
+    interviewBlueprintLabel: "First 90 days with Swiss enterprise accounts",
+    toolkitTitle: "How I deploy ElevenAgents in Swiss enterprise environments",
+    toolkitSubtitle:
+      "Discovery, agent orchestration, and commercial structure for Swiss enterprise accounts deploying voice and chat agents.",
+    adoptionPillars: [
+      {
+        title: "Workload discovery & high-impact scoping",
+        desc: "Isolate the highest-volume, highest-friction customer touchpoints before proposing agent architectures.",
+        howTerenceSolves:
+          "Scoped and prioritized the voice AI use case at Zurich Airport across 85K calls and 8 FTEs.",
+      },
+      {
+        title: "Multilingual & Swiss dialect evaluation",
+        desc: "Test German, Swiss German, French, and Italian edge cases under operational conditions before go-live.",
+        howTerenceSolves:
+          "Built eval loops for multilingual passenger inquiries where misunderstandings have public visibility.",
+      },
+      {
+        title: "Deterministic fallback & human escalation",
+        desc: "Design seamless routing to human agents when confidence falls or regulated queries arise.",
+        howTerenceSolves:
+          "Architected live call center handoff protocols ensuring zero dropped calls or false assurances.",
+      },
+      {
+        title: "Commercial & outcome-based deal structuring",
+        desc: "Structure pilots with clear KPI milestones, licensing tiers, and implementation paths that procurement can sign quickly.",
+        howTerenceSolves:
+          "Consulting and founder background navigating enterprise procurement, formal tenders, and ROI sign-offs.",
+      },
+    ],
+    useCases: [
+      {
+        industry: "Travel and Infrastructure (Aviation)",
+        friction: "85K calls, peak disruption load, and public visibility demand zero hallucination on flight or gate info.",
+        solution:
+          "Voice AI agent with low-latency tool-calling to operational databases and instant transfer to human call center staff.",
+        adoptionImpact: "Live validation in two weeks, procurement tender launched.",
+      },
+      {
+        industry: "Swiss Financial Services and Insurance",
+        friction: "Inbound triage requires natural voice interaction but strict privacy prevents recording or unmasked PII storage.",
+        solution:
+          "Browser and edge-side PII filtering with session-bound audio streaming and zero server-side voice retention.",
+        adoptionImpact: "Compliance team approves pilot rollout without six-month audit stall.",
+      },
+      {
+        industry: "Enterprise Telecom and B2B Support",
+        friction: "Multilingual customer base struggles with rigid IVR trees while enterprise SLAs require 99.9% reliability.",
+        solution:
+          "ElevenAgents orchestration layer dynamically switching between German, French, Italian, and English with sentiment monitoring.",
+        adoptionImpact: "First-call resolution increases while operational agent fatigue decreases.",
+      },
+    ],
+    linkedInCtaBody:
+      "For the Deployment Strategist role, I would welcome a session on your enterprise expansion in Switzerland. I can walk through voice agent architecture, Swiss procurement dynamics, and how I close flagship deals.",
   },
 };
