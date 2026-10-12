@@ -7,6 +7,7 @@ import {
   ArrowUpRight,
   Bot,
   Building2,
+  Clock3,
   Cpu,
   Database,
   FileText,
@@ -487,6 +488,9 @@ export function GoogleApplicationPage() {
                     <ArrowUpRight className="h-3 w-3" />
                   </a>
                 </div>
+                <div className="mt-4 max-w-[540px]">
+                  <TerenceAIAskBar />
+                </div>
               </div>
             </div>
           </div>
@@ -593,6 +597,57 @@ export function GoogleApplicationPage() {
                   </svg>
                 </div>
               </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="dossier-section relative z-[2] pt-6">
+          <div className="mx-auto max-w-[1200px] px-4 md:px-8">
+            <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
+              Ask TerenceAI
+            </h2>
+            <p className="mt-1 text-sm text-[var(--dossier-muted)]">
+              Have a question about my agent architecture, code, or enterprise deployments? Ask here.
+            </p>
+            <div className="mt-4">
+              <div className="dossier-loom-panel dossier-loom-panel-compact overflow-hidden">
+                <div className="relative flex w-full min-h-[210px] items-stretch text-left sm:min-h-[230px] md:min-h-[270px]">
+                  <div className="dossier-loom-pattern absolute inset-0" aria-hidden="true" />
+                  <div className="relative z-10 flex flex-1 flex-col justify-between p-5 md:p-7">
+                    <div
+                      className="inline-flex w-fit items-center gap-1.5 text-xs font-medium md:text-[13px]"
+                      style={{ color: ACCENT }}
+                    >
+                      <Sparkles className="h-4 w-4" />
+                      Interactive Q&A
+                    </div>
+                    <div>
+                      <div className="min-w-0">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dossier-muted)]">
+                          Grounded in real experience
+                        </p>
+                        <h4 className="mt-1 text-lg font-semibold tracking-tight text-[var(--dossier-ink)] md:text-2xl">
+                          Ask me anything about my work
+                        </h4>
+                        <p className="mt-1 text-sm text-[var(--dossier-body)] md:text-[15px]">
+                          Trained on my actual deployments, architecture decisions, and code.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="relative w-[38%] max-w-[240px] min-w-[112px] shrink-0 border-l border-[var(--dossier-line-strong)] bg-[#101116] sm:min-w-[132px] md:min-w-[180px]">
+                    <Image
+                      src="/images/terence-la-profile.png"
+                      alt="Terence La"
+                      fill
+                      sizes="(max-width: 768px) 38vw, 240px"
+                      className="dossier-profile-photo object-cover object-top"
+                    />
+                    <div className="absolute inset-0 bg-black/20" aria-hidden="true" />
+                  </div>
+                </div>
+              </div>
+              <TerenceAIAskBar />
             </div>
           </div>
         </section>
