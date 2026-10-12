@@ -604,13 +604,19 @@ export function GoogleApplicationPage() {
         <section className="dossier-section relative z-[2] pt-6">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
-              Ask TerenceAI
+              Explore my work through AI
             </h2>
             <p className="mt-1 text-sm text-[var(--dossier-muted)]">
-              Have a question about my agent architecture, code, or enterprise deployments? Ask here.
+              No pre-recorded video pitch. Ask questions directly about my real production deployments, code, and systems.
             </p>
             <div className="mt-4">
-              <div className="dossier-loom-panel dossier-loom-panel-compact overflow-hidden">
+              <a
+                href={TERENCE_AI_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="dossier-loom-panel dossier-loom-panel-compact block overflow-hidden dossier-pressable"
+                aria-label="Ask TerenceAI anything about my work"
+              >
                 <div className="relative flex w-full min-h-[210px] items-stretch text-left sm:min-h-[230px] md:min-h-[270px]">
                   <div className="dossier-loom-pattern absolute inset-0" aria-hidden="true" />
                   <div className="relative z-10 flex flex-1 flex-col justify-between p-5 md:p-7">
@@ -619,19 +625,31 @@ export function GoogleApplicationPage() {
                       style={{ color: ACCENT }}
                     >
                       <Sparkles className="h-4 w-4" />
-                      Interactive Q&A
+                      Interactive Q&amp;A · Instant Answers
                     </div>
                     <div>
-                      <div className="min-w-0">
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dossier-muted)]">
-                          Grounded in real experience
-                        </p>
-                        <h4 className="mt-1 text-lg font-semibold tracking-tight text-[var(--dossier-ink)] md:text-2xl">
-                          Ask me anything about my work
-                        </h4>
-                        <p className="mt-1 text-sm text-[var(--dossier-body)] md:text-[15px]">
-                          Trained on my actual deployments, architecture decisions, and code.
-                        </p>
+                      <div className="flex items-center gap-4 md:gap-5">
+                        <span
+                          className="inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-full md:h-[4.5rem] md:w-[4.5rem]"
+                          style={{
+                            backgroundColor: ACCENT,
+                            color: "#ffffff",
+                            boxShadow: `0 14px 40px ${ACCENT}44`,
+                          }}
+                        >
+                          <Sparkles className="h-7 w-7 fill-white text-white md:h-8 md:w-8" />
+                        </span>
+                        <div className="min-w-0">
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dossier-muted)]">
+                            Interactive Introduction
+                          </p>
+                          <h4 className="mt-1 text-lg font-semibold tracking-tight text-[var(--dossier-ink)] md:text-2xl">
+                            Ask me anything about my work
+                          </h4>
+                          <p className="mt-1 text-sm text-[var(--dossier-body)] md:text-[15px]">
+                            Got questions about my engineering background, voice AI tender, or Swiss deployments? Prompt the AI below.
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -644,9 +662,19 @@ export function GoogleApplicationPage() {
                       className="dossier-profile-photo object-cover object-top"
                     />
                     <div className="absolute inset-0 bg-black/20" aria-hidden="true" />
+                    <div
+                      className="pointer-events-none absolute inset-0 flex items-center justify-center md:hidden"
+                      aria-hidden="true"
+                    >
+                      <span
+                        className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-black/45 text-white backdrop-blur-[2px]"
+                      >
+                        <Sparkles className="h-5 w-5 fill-current" />
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </a>
               <TerenceAIAskBar />
             </div>
           </div>
