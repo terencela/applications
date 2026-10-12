@@ -404,12 +404,12 @@ export function GoogleApplicationPage() {
         />
 
         {/* HERO SECTION */}
-        <section className="dossier-openai-hero relative z-[2] flex min-h-[calc(100dvh-57px)] flex-col justify-between">
-          <div className="dossier-openai-hero__main mx-auto flex w-full max-w-[1200px] flex-1 flex-col justify-start px-4 py-6 md:justify-center md:px-8 md:py-12">
-            <div className="flex flex-col gap-6 md:grid md:grid-cols-[minmax(0,1fr)_minmax(200px,260px)] md:items-start md:gap-x-12 lg:gap-x-16">
+        <section className="dossier-openai-hero relative z-[2] flex flex-col justify-between pt-2 pb-6 md:min-h-[calc(100dvh-57px)] md:py-10">
+          <div className="dossier-openai-hero__main mx-auto flex w-full max-w-[1200px] flex-1 flex-col justify-start px-4 py-2 md:justify-center md:px-8 md:py-6">
+            <div className="flex flex-col gap-4 md:grid md:grid-cols-[minmax(0,1fr)_minmax(200px,260px)] md:items-start md:gap-x-12 lg:gap-x-16">
               
               {/* Profile Card */}
-              <aside className="dossier-openai-hero__photo w-full max-w-[min(12rem,44vw)] shrink-0 md:col-start-2 md:row-start-1 md:mx-0 md:max-w-[220px] lg:max-w-[250px]">
+              <aside className="dossier-openai-hero__photo hidden md:block w-full max-w-[220px] lg:max-w-[250px] shrink-0 md:col-start-2 md:row-start-1 md:mx-0">
                 <div className="dossier-profile-frame aspect-[4/5] w-full rounded-2xl overflow-hidden border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] shadow-sm">
                   <Image
                     src="/images/terence-la-profile.png"
@@ -429,78 +429,96 @@ export function GoogleApplicationPage() {
 
               {/* Main Headline & Context */}
               <div className="max-w-[760px] md:col-start-1 md:row-start-1">
+                {/* Mobile Identity Badge */}
+                <div className="flex items-center gap-3 md:hidden mb-3">
+                  <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full border border-[var(--dossier-line-strong)]">
+                    <Image
+                      src="/images/terence-la-profile.png"
+                      alt="Terence La"
+                      fill
+                      sizes="44px"
+                      className="object-cover object-top"
+                      priority
+                    />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-[var(--dossier-ink)]">Terence La</p>
+                    <p className="text-xs text-[var(--dossier-muted)]">AI Lead @ Zurich Airport · Founder @ KI Unlocked</p>
+                  </div>
+                </div>
+
                 <div className="inline-flex items-center gap-2 rounded-full border border-[#4285f4]/30 bg-[#4285f4]/[0.08] px-3 py-1 text-xs font-medium text-[#4285f4]">
                   <span className="h-2 w-2 rounded-full bg-[#4285f4] animate-pulse" />
                   Google Applied AI · Forward Deployed Engineer III (Zurich)
                 </div>
 
-                <h1 className="dossier-hero-title mt-4 max-w-[18ch]" style={{ fontSize: "clamp(30px, 7vw, 58px)" }}>
+                <h1 className="dossier-hero-title mt-3 max-w-[18ch]" style={{ fontSize: "clamp(26px, 6.5vw, 56px)" }}>
                   I build AI agents and get them working in the real world.
                 </h1>
 
-                <p className="mt-4 max-w-[62ch] text-[15px] leading-relaxed text-[var(--dossier-body)] md:text-[16px] md:leading-[1.6]">
+                <p className="mt-3 max-w-[62ch] text-[14px] leading-relaxed text-[var(--dossier-body)] md:text-[16px] md:leading-[1.6]">
                   Forward Deployed Engineer candidate for Google Applied AI in Zurich. As AI Lead at Zurich Airport, I drove voice AI from concept through formal enterprise tender and consolidated fragmented platforms for ~35k staff. Through KI Unlocked, I architect, code, and ship agentic AI systems like Leistera that solve high-stakes document and workflow operations in regulated Swiss environments.
                 </p>
 
                 {/* Primary Action Buttons */}
-                <div className="mt-6 flex flex-wrap items-center gap-3 md:mt-7">
+                <div className="mt-4 flex flex-wrap items-center gap-2.5 md:mt-6">
                   <a
                     href="https://about.terencela.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="dossier-button-primary dossier-cta-accent dossier-pressable inline-flex items-center gap-2 text-sm"
+                    className="dossier-button-primary dossier-cta-accent dossier-pressable inline-flex items-center gap-2 text-xs md:text-sm px-4 py-2"
                   >
                     Chat with TerenceAI
-                    <ArrowRight className="h-4 w-4" />
+                    <ArrowRight className="h-3.5 w-3.5" />
                   </a>
                   <a
                     href="#video-walkthrough"
-                    className="inline-flex items-center gap-2 rounded-xl border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] px-4 py-2.5 text-sm font-medium text-[var(--dossier-ink)] transition-colors hover:border-[#4285f4] hover:text-[#4285f4]"
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] px-3.5 py-2 text-xs md:text-sm font-medium text-[var(--dossier-ink)] transition-colors hover:border-[#4285f4] hover:text-[#4285f4]"
                   >
-                    <Play className="h-3.5 w-3.5 text-[#4285f4] fill-[#4285f4]" />
+                    <Play className="h-3 w-3 text-[#4285f4] fill-[#4285f4]" />
                     Watch 90s intro
                   </a>
                   <a
                     href="https://xp.terencela.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-[13px] text-[var(--dossier-muted)] transition-colors hover:text-[var(--dossier-ink)]"
+                    className="inline-flex items-center gap-1 text-[12px] md:text-[13px] text-[var(--dossier-muted)] transition-colors hover:text-[var(--dossier-ink)]"
                   >
                     Discover TerenceXP
-                    <ArrowUpRight className="h-3.5 w-3.5" />
+                    <ArrowUpRight className="h-3 w-3" />
                   </a>
                 </div>
 
                 {/* Above-the-Fold Strongest Proof Strip */}
-                <div className="mt-8 grid gap-3 sm:grid-cols-3 border-t border-[var(--dossier-line)] pt-5">
-                  <div className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-3.5">
+                <div className="mt-5 grid gap-2.5 sm:grid-cols-3 border-t border-[var(--dossier-line)] pt-4">
+                  <div className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-3">
                     <div className="flex items-center justify-between gap-1">
                       <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--dossier-muted)]">Aviation Voice AI</span>
                       <span className="rounded bg-amber-500/10 px-1.5 py-0.5 text-[9px] font-semibold text-amber-700 dark:text-amber-400">PoC → Tender</span>
                     </div>
-                    <p className="mt-1 text-lg font-bold text-[var(--dossier-ink)]">~85K calls/yr</p>
+                    <p className="mt-1 text-base font-bold text-[var(--dossier-ink)]">~85K calls/yr</p>
                     <p className="mt-0.5 text-[11px] leading-snug text-[var(--dossier-body)]">
                       8 FTE call center. Concept to PoC in 2 weeks; progressed to formal tender.
                     </p>
                   </div>
 
-                  <div className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-3.5">
+                  <div className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-3">
                     <div className="flex items-center justify-between gap-1">
                       <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--dossier-muted)]">ZRH Insider</span>
                       <span className="rounded bg-emerald-500/10 px-1.5 py-0.5 text-[9px] font-semibold text-emerald-700 dark:text-emerald-400">Shipped Rebuild</span>
                     </div>
-                    <p className="mt-1 text-lg font-bold text-[var(--dossier-ink)]">~35K staff</p>
+                    <p className="mt-1 text-base font-bold text-[var(--dossier-ink)]">~35K staff</p>
                     <p className="mt-0.5 text-[11px] leading-snug text-[var(--dossier-body)]">
                       Merged 2 native apps into 1 Capacitor foundation. Agency-quoted CHF 300K–350K.
                     </p>
                   </div>
 
-                  <div className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-3.5">
+                  <div className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-3">
                     <div className="flex items-center justify-between gap-1">
                       <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--dossier-muted)]">Leistera Flagship</span>
                       <span className="rounded bg-blue-500/10 px-1.5 py-0.5 text-[9px] font-semibold text-blue-700 dark:text-blue-400">Active Delivery</span>
                     </div>
-                    <p className="mt-1 text-lg font-bold text-[var(--dossier-ink)]">Agentic RAG</p>
+                    <p className="mt-1 text-base font-bold text-[var(--dossier-ink)]">Agentic RAG</p>
                     <p className="mt-0.5 text-[11px] leading-snug text-[var(--dossier-body)]">
                       SIA/ASTRA norm intelligence. Exact PDF bounding-box source grounding.
                     </p>
