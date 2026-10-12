@@ -6,20 +6,26 @@ import {
   ArrowRight,
   ArrowUpRight,
   Bot,
-  CheckCircle2,
-  Code2,
+  Building2,
+  Cpu,
   Database,
-  Play,
+  FileText,
+  MessageSquareText,
+  Mic,
   Search,
   ShieldCheck,
   Sparkles,
-  Terminal,
+  Users,
   Workflow,
 } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { DossierBackground } from "@/app/components/shared/DossierBackground";
 import { SubpageHeader } from "@/app/components/shared/SubpageHeader";
-import { LoomVideoFrame } from "@/app/components/shared/LoomVideoFrame";
+import { ProductVisual } from "@/app/components/shared/ProductVisual";
 import { DossierThemeProvider } from "@/app/lib/dossier-theme";
+
+const EASE_OUT_STRONG = [0.23, 1, 0.32, 1] as const;
+const ACCENT = "#4285f4";
 
 const TERENCE_AI_URL = "https://about.terencela.com";
 
@@ -38,7 +44,7 @@ function TerenceAIAskBar() {
         <input
           type="text"
           name="terenceai-ask"
-          placeholder="Ask TerenceAI anything about my agent architecture or experience"
+          placeholder="Ask TerenceAI anything"
           autoComplete="off"
           onInput={(event) => {
             if (event.currentTarget.value.trim().length > 0) handleAsk();
@@ -50,345 +56,376 @@ function TerenceAIAskBar() {
   );
 }
 
-type TechnicalCase = {
-  id: string;
-  badge: string;
-  badgeTone: "amber" | "emerald" | "blue";
-  statusText: string;
-  title: string;
-  subtitle: string;
-  problem: string;
-  architecture: {
-    title: string;
-    items: string[];
-  };
-  directContribution: string[];
-  verifiedOutcome: string;
-  currentStatus: string;
-  link?: {
-    label: string;
-    url: string;
-  };
-  stats: {
-    value: string;
-    label: string;
-  }[];
+type DeploymentStat = {
+  value: string;
+  label: string;
+  sub?: string;
 };
 
-const technicalCases: TechnicalCase[] = [
+type DeploymentExample = {
+  title: string;
+  subtitle: string;
+  challenge: string;
+  stats: DeploymentStat[];
+  role: string[];
+  outcome: string;
+  outcomeHighlight: string;
+};
+
+type SelectedProject = {
+  name: string;
+  category: string;
+  stage: string;
+  accent: string;
+  visual: string;
+  description: string;
+  evidence: string;
+  url?: string;
+};
+
+const credibilityLogos = [
+  "Zurich Airport",
+  "UBS",
+  "PwC",
+  "World Economic Forum",
+  "SAP",
+  "Forbes",
+  "TEDx",
+  "HSG",
+] as const;
+
+const deployments: DeploymentExample[] = [
   {
-    id: "zrh-voice-ai",
-    badge: "Enterprise Voice Agent · Regulated Aviation",
-    badgeTone: "amber",
-    statusText: "PoC Completed → Enterprise Tender",
-    title: "Zurich Airport — Voice AI Call Center Agent",
-    subtitle: "High-volume voice intelligence for airport operations under strict Swiss data and aviation constraints.",
+    title: "Zurich Airport - Voice AI Agent",
+    subtitle: "Voice AI for 85K annual calls. Discovery through formal tender.",
+    challenge: "Regulated environment, multi-stakeholder, trust constraints.",
     stats: [
-      { value: "~85K", label: "annual call volume" },
-      { value: "8 FTE", label: "call center capacity" },
-      { value: "2 Weeks", label: "concept to working PoC" },
+      { value: "~85K", label: "calls/year" },
+      { value: "8 FTE", label: "call center" },
+      { value: "Regulated", label: "environment" },
     ],
-    problem:
-      "Zurich Airport operations handle ~85,000 annual passenger calls across 8 FTEs with high seasonality. Inquiries span flight status, gate changes, parking, baggage rules, and airport services. Standard off-the-shelf bots fail because hallucinating operational facts carries direct aviation liability, while high peak volumes require sub-second latency.",
-    architecture: {
-      title: "Architecture & Technical Decisions",
-      items: [
-        "Real-time voice pipeline with streaming speech-to-text (STT) and text-to-speech (TTS) integrated into an event-driven conversational loop.",
-        "Deterministic pre-LLM policy router: client-side regex and hard-fact classifications gate speculative answers, enforcing official flight API verification.",
-        "Strict latency budget: multi-tier intent classification prior to speech synthesis to maintain natural turn-taking latency without conversational drift.",
-        "Aviation-compliant governance: detailed data boundary isolation preventing passenger PII leakage into third-party foundation models.",
-      ],
-    },
-    directContribution: [
-      "Solely led use-case discovery, technical scoping, and conversational state machine design.",
-      "Engineered the working proof-of-concept in two weeks to validate voice latency and intent accuracy with operational leaders.",
-      "Co-authored the formal RFP and technical tender specifications for enterprise vendor evaluation and security review.",
+    role: [
+      "Discovery",
+      "Use-case prioritisation",
+      "Architecture and prototype",
+      "Vendor evaluation",
+      "Governance",
     ],
-    verifiedOutcome:
-      "Delivered a functional, stakeholder-tested PoC in 14 days that proved operational feasibility, gained cross-functional consensus (Operations, IT, Legal), and advanced into Zurich Airport's formal procurement tender.",
-    currentStatus:
-      "Proof of Concept completed and validated. Progressed to formal enterprise tender and procurement governance (NOT in live production).",
+    outcomeHighlight: "PoC in two weeks.",
+    outcome: "Formal tender initiated. Procurement ongoing.",
   },
   {
-    id: "zrh-insider",
-    badge: "Mobile & Web Cross-Platform · Enterprise Scale",
-    badgeTone: "emerald",
-    statusText: "Shipped Production Rebuild (Internal Rollout)",
-    title: "ZRH Insider — Platform Rebuild & Internal AI Integration",
-    subtitle: "Consolidated dual native mobile apps into one unified modern foundation for ~35,000 badged airport staff.",
+    title: "ZRH Insider - Employee App Rebuild",
+    subtitle: "Three codebases merged into one foundation for 35K employees.",
+    challenge: "Fragmented Android/iOS slowed delivery.",
     stats: [
-      { value: "~35K", label: "airport staff & badge holders" },
-      { value: "2 to 1", label: "native codebases consolidated" },
-      { value: "1 Month", label: "foundation rebuild to shipping" },
+      { value: "35K", label: "employees" },
+      { value: "3 to 1", label: "codebases merged" },
     ],
-    problem:
-      "Zurich Airport's workforce platform serves ~35,000 badged staff across terminal operations, ground handling, retail, and security. Delivery was paralyzed by two fragmented legacy native codebases (iOS in Swift, Android in Kotlin) duplicating business logic, with high maintenance costs and zero room for rapid AI experimentation.",
-    architecture: {
-      title: "Architecture & Technical Decisions",
-      items: [
-        "Consolidated dual native apps into a single Capacitor 8 + React 19 + TypeScript cross-platform codebase, preserving native device capabilities (camera, secure storage, push notifications) while unifying 100% of business logic.",
-        "Built serverless `/api/insider-chat` proxy with `gpt-5-nano` primary and `gpt-4.1-nano` fallback, decoupling secrets from client bundles with strict rate-limiting, token quotas, and role-based access.",
-        "Implemented deterministic pre-LLM regex classification (`isHardFactQuery`) that blocks model generation on unverified operational facts (fees, flight gates, hours) and routes to verified sources until live RAG feeds connect.",
-        "Integrated client-side Tesseract OCR pipeline for receipt verification, warming local language models in the background without external CDN dependencies.",
-      ],
-    },
-    directContribution: [
-      "Directly architected and wrote the unified React/TypeScript codebase rebuild in one month.",
-      "Engineered the edge API proxy, message router, gamification unlock state machine, and client-side OCR flow.",
-      "Authored comprehensive architectural handoff documentation, security reviews, and operational runbooks for internal engineering teams.",
+    role: [
+      "Rebuilt app foundation in one month",
+      "Consolidated architecture for faster rollout",
+      "Designed engagement loops",
     ],
-    verifiedOutcome:
-      "Consolidated two native codebases into one shared cross-platform foundation (driving an estimated ~50% reduction in ongoing engineering duplication), delivering an internal system externally quoted by an agency at CHF 300K–350K.",
-    currentStatus:
-      "Production-ready rebuild shipped and in active internal deployment for ~35,000 airport staff. AI assistant integrated behind operational feature flags.",
+    outcomeHighlight: "Shipped.",
+    outcome: "Externally quoted at CHF 350K. Scalable base for future features.",
   },
   {
-    id: "leistera-ai",
-    badge: "Agentic AI System · Regulated Swiss AEC",
-    badgeTone: "blue",
-    statusText: "Active Flagship Product & Client Delivery",
-    title: "Leistera (KI Unlocked) — Agentic Document & Norm Intelligence",
-    subtitle: "Grounded AI workspace for Swiss engineering and planning offices with audit-proof norm citations.",
+    title: "Leistera - Swiss AEC Agentic Operations",
+    subtitle: "Agentic workspace for Swiss planning firms with cited norm grounding.",
+    challenge: "Manual proposals and norm checks across fragmented office archives.",
     stats: [
-      { value: "SIA/ASTRA", label: "norm compliance verification" },
-      { value: "Bounding Box", label: "exact PDF page citation" },
-      { value: "Active", label: "eval harness on real corpora" },
+      { value: "Agentic RAG", label: "retrieval stack" },
+      { value: "Exact PDF", label: "citations" },
     ],
-    problem:
-      "In Swiss engineering and architecture firms, assembling fee proposals (Honorarofferte) and verifying compliance against complex regulatory standards (SIA 102/103/118, ASTRA) consumes up to 30 senior billable hours per tender. Standard LLMs hallucinate clauses, cite superseded norm editions, and fail to provide auditable source grounding required for legal sign-off.",
-    architecture: {
-      title: "Architecture & Technical Decisions",
-      items: [
-        "Multi-step agent workflow: Document layout analysis and text extraction -> hybrid retrieval (BM25 + dense vector embeddings) -> Cohere cross-encoder reranking -> deterministic norm edition verification -> grounded document generation.",
-        "Exact Source Grounding: Every synthesized sentence is bound to an immutable document ID, verified edition date, and exact PDF bounding box coordinates, allowing partners to inspect original sources with one click.",
-        "Deterministic Safety Gates: Hard verification on valid standards editions (rejects superseded norm years), human-in-the-loop review before DOCX/Word export, and tenant isolation with strict zero-training privacy guarantees.",
-        "Continuous Evaluation Harness: Systematic eval suite measuring context recall@k, citation precision, and hallucination rates across 160+ verified Swiss engineering test fixtures.",
-      ],
-    },
-    directContribution: [
-      "Founded KI Unlocked and architected Leistera as its flagship agentic AI product, personally writing and debugging the Next.js, TypeScript, and retrieval pipelines.",
-      "Engineered the hybrid retrieval engine and the evaluation framework that tests retrieval and generation fidelity independently.",
-      "Led customer discovery, onboarded pilot engineering offices, and ran paid workshops with Swiss engineering partners.",
+    role: [
+      "Founded KI Unlocked and built Leistera end to end",
+      "Hybrid retrieval and eval on real corpora",
+      "Pilot delivery with Swiss engineering offices",
     ],
-    verifiedOutcome:
-      "Built and launched a live commercial product at leistera.com, actively deployed in pilot engagements with Swiss engineering offices, transforming 30-hour manual proposal and norm verification workflows into verifiable, grounded drafts.",
-    currentStatus:
-      "Live flagship product at leistera.com. Active client discovery and pilot delivery in Swiss planning firms.",
-    link: {
-      label: "Inspect Live Product (leistera.com)",
-      url: "https://leistera.com",
-    },
+    outcomeHighlight: "Active delivery.",
+    outcome: "Live product for Swiss planning firms.",
   },
 ];
 
-type CuratedProject = {
-  name: string;
-  category: string;
-  statusBadge: string;
-  badgeTone: "blue" | "emerald" | "amber" | "violet";
-  description: string;
-  technicalHighlight: string;
-  url?: string;
-  visual: string;
-};
-
-const curatedProjects: CuratedProject[] = [
-  {
-    name: "Leistera",
-    category: "Agentic AI Workspace",
-    statusBadge: "Live Product",
-    badgeTone: "blue",
-    description: "AI-native workspace for Swiss engineering and architecture offices with auditable SIA/ASTRA citations.",
-    technicalHighlight: "Hybrid retrieval (BM25 + vector + Cohere rerank) with exact PDF bounding-box source grounding.",
-    url: "https://leistera.com",
-    visual: "knowledge",
-  },
+const selectedProjects: SelectedProject[] = [
   {
     name: "PrivacyLayer",
-    category: "AI Security & Compliance",
-    statusBadge: "Live Extension",
-    badgeTone: "emerald",
-    description: "Browser-side PII stripping and context sanitization before prompts reach external model providers.",
-    technicalHighlight: "Zero-latency client-side regex + NER sanitization; zero raw PII transmitted to external servers.",
-    url: "https://privacy.terencela.com",
+    category: "AI infrastructure",
+    stage: "Live",
+    accent: "green",
     visual: "privacy",
+    description: "Browser-side PII stripping before prompts reach any model. Zero bytes to any server.",
+    evidence: "Live product with Chrome extension",
+    url: "https://privacy.terencela.com",
   },
   {
-    name: "Rehearse AI",
-    category: "Conversational Simulation",
-    statusBadge: "Live Prototype",
-    badgeTone: "amber",
-    description: "Real-time AI role-play simulation for difficult negotiations, sales conversations, and stakeholder handling.",
-    technicalHighlight: "Real-time turn evaluation, sentiment analysis, and dynamic persona steering with sub-second feedback.",
-    url: "https://rehearse-roleplay.vercel.app",
-    visual: "rehearse",
+    name: "Engineering Office OS",
+    category: "Enterprise AI",
+    stage: "In delivery",
+    accent: "blue",
+    visual: "knowledge",
+    description: "RAG + OCR pipeline connecting project history, decisions and expertise across offices.",
+    evidence: "Vertical system designed",
+  },
+  {
+    name: "Vibe Translator",
+    category: "Human intelligence",
+    stage: "Building",
+    accent: "violet",
+    visual: "messages",
+    description: "Context layer decoding tone, personality and culture before generating responses.",
+    evidence: "Interactive product prototype",
+    url: "https://vibes.terencela.com",
   },
   {
     name: "AirCompanion",
-    category: "Autonomous Travel Agent",
-    statusBadge: "System Architecture",
-    badgeTone: "violet",
-    description: "Contextual AI companion architecture covering the end-to-end airport passenger journey.",
-    technicalHighlight: "Event-driven architecture with geospatial awareness, flight telemetry feeds, and localized operational context.",
-    url: "https://app.aircompanion.app",
+    category: "Travel",
+    stage: "Venture",
+    accent: "cyan",
     visual: "travel",
-  },
-];
-
-const agentArchitecturePillars = [
-  {
-    id: "intake",
-    step: "01",
-    title: "Intake & Intent Gateway",
-    role: "Deterministic Hard-Fact Guardrail",
-    summary: "Pre-model regex and schema classification stops ungrounded queries before expensive model calls.",
-    details: [
-      "Fast deterministic regex scanning for time-sensitive, operational, or legal keywords (prices, gates, legal clauses).",
-      "Client-side refusal and redirect to authoritative live endpoints for unverified live facts.",
-      "Structured schema validation enforcing strict token limits, message bounds, and tenant identity.",
-    ],
-    codeSnippet: `// Deterministic pre-LLM gate
-if (isHardFactQuery(userQuery)) {
-  return unverifiedReply({
-    fallbackAction: "QUERY_OFFICIAL_FEED",
-    sourceRequired: true
-  });
-}`,
+    description: "Contextual AI companion for the full airport journey. Real-time, location-aware.",
+    evidence: "Product system designed",
+    url: "https://app.aircompanion.app",
   },
   {
-    id: "retrieval",
-    step: "02",
-    title: "Hybrid Retrieval & Isolation",
-    role: "Context Assembly & Tenant Boundaries",
-    summary: "Dense vector search combined with BM25 keyword matching and cross-encoder reranking.",
-    details: [
-      "Contextual chunking that preserves document hierarchy, section numbers, and edition metadata.",
-      "Two-phase retrieval: BM25 for exact regulatory codes + dense embeddings for semantic matching.",
-      "Cohere cross-encoder reranking to prune retrieved candidates down to top-k high-signal passages.",
-      "Strict tenant boundary isolation enforcing Swiss data residency (nDSG) without cross-tenant bleed.",
-    ],
-    codeSnippet: `// Two-phase hybrid search + rerank
-const candidates = await Promise.all([
-  bm25Search(query, { tenantId, limit: 20 }),
-  vectorSearch(embedding, { tenantId, limit: 20 })
-]);
-const topChunks = await cohereRerank(query, candidates, { topK: 5 });`,
+    name: "Asia Bridge",
+    category: "Cultural intelligence",
+    stage: "Concept",
+    accent: "red",
+    visual: "culture",
+    description: "Communication rules and social nuances of Asian cultures. Duolingo meets Grammarly.",
+    evidence: "Product thesis developed",
+    url: "https://asia.terencela.com",
   },
   {
-    id: "tools",
-    step: "03",
-    title: "Tool Execution & Fallbacks",
-    role: "Schema-Enforced Function Calling",
-    summary: "Strict JSON-schema tool calling with retry boundaries and graceful fallback recovery.",
-    details: [
-      "Zero-shot tool routing backed by typed JSON schema definitions.",
-      "Execution boundaries with timeout limits, retry backoff, and graceful fallback handling.",
-      "Deterministic post-execution validator checking that returned tool data conforms to the expected contract.",
-    ],
-    codeSnippet: `// Schema-constrained execution
-const toolResult = await executeWithBoundary({
-  tool: "verify_norm_edition",
-  params: { norm: "SIA 102", edition: 2024 },
-  timeoutMs: 1200,
-  fallback: () => ({ valid: false, error: "TIMEOUT" })
-});`,
+    name: "Rehearse",
+    category: "Simulation",
+    stage: "Live",
+    accent: "coral",
+    visual: "rehearse",
+    description: "AI role-play for sales, negotiations and difficult conversations. Real-time feedback.",
+    evidence: "Interactive rehearsal flow",
+    url: "https://rehearse-roleplay.vercel.app",
   },
   {
-    id: "grounding",
-    step: "04",
-    title: "Grounded Synthesis & Bounding Boxes",
-    role: "Traceable Document Synthesis",
-    summary: "Every synthesized claim links to an exact document ID, verified edition date, and page bounding box.",
-    details: [
-      "Constraint-prompted synthesis strictly restricting model assertions to supplied retrieved context.",
-      "Inline citation injection: `[DocID:Edition:Page:BoundingBox]` generated alongside text.",
-      "Human-in-the-loop review interface allowing partners to click any claim and highlight the original PDF bounding box.",
-    ],
-    codeSnippet: `// Citation-anchored assertion
-return {
-  text: "Honorar calculation adheres to SIA 102 Art. 4.2.",
-  citation: {
-    docId: "sia-102-v2024",
-    page: 18,
-    bbox: [120, 340, 480, 395]
-  }
-};`,
-  },
-  {
-    id: "eval",
-    step: "05",
-    title: "Safety Gates & Systematic Eval",
-    role: "Continuous Regression Testing",
-    summary: "Evaluation harnesses measuring context recall, answer faithfulness, and hallucination rates on real corpora.",
-    details: [
-      "Post-generation faithfulness validation: checks whether generated facts exist in retrieved source chunks.",
-      "Automated evaluation harness running 160+ real test queries across diverse regulatory corpora.",
-      "Regression test gates: failure-set replay running in CI to prevent regression on critical edge cases.",
-    ],
-    codeSnippet: `// Offline & inline evaluation gate
-const evalMetrics = await runEvalHarness({
-  contextRecall: measureRecallAtK(retrievedChunks, groundTruth),
-  faithfulness: verifyClaimOverlap(draft, retrievedChunks),
-  hallucinationThreshold: 0.02
-});`,
-  },
-];
-
-type TraceStep = {
-  step: number;
-  label: string;
-  type: "input" | "gate" | "tool" | "retrieval" | "output";
-  detail: string;
-  data: string;
-};
-
-const illustrativeTraceSteps: TraceStep[] = [
-  {
-    step: 1,
-    label: "User Query Received",
-    type: "input",
-    detail: "Partner requests proposal verification against building norms.",
-    data: 'Query: "Verify proposal compliance against SIA 102 and draft Section 4 (Fee Calculation) with valid edition."',
-  },
-  {
-    step: 2,
-    label: "Pre-LLM Intent & Guardrail Gate",
-    type: "gate",
-    detail: "System verifies query is not speculative, identifies norm compliance requirement, and validates tenant auth.",
-    data: "Intent: NORM_VERIFICATION_AND_DRAFT | Tenant: CH_PLAN_08 | Guardrail: PASSED (No PII leak, auth verified)",
-  },
-  {
-    step: 3,
-    label: "Deterministic Tool Execution",
-    type: "tool",
-    detail: "Executes `verify_norm_edition` to ensure the newest active SIA standard is enforced (rejects superseded 2014 edition).",
-    data: "Call: verify_norm_edition({ norm: 'SIA 102', required_year: 2024 }) -> Result: { valid: true, active_edition: '2024-05' }",
-  },
-  {
-    step: 4,
-    label: "Hybrid Retrieval & Reranking",
-    type: "retrieval",
-    detail: "BM25 keyword search + dense vector retrieval across tenant proposal archive and official SIA corpus.",
-    data: "Retrieved 20 chunks -> Cohere Cross-Encoder Rerank -> Top 3 selected (Scores: 0.96, 0.93, 0.89) | Tenant Isolation: STRICT",
-  },
-  {
-    step: 5,
-    label: "Grounded Synthesis & Bounding Box Injection",
-    type: "output",
-    detail: "Model synthesizes draft with strict source grounding, binding every calculation to document page and bounding coordinates.",
-    data: "Draft generated with citation: [SIA 102:2024, Art. 4.2, p. 18, bbox: [120, 340, 480, 395]] | Eval Faithfulness: 1.0 (Zero ungrounded claims)",
+    name: "Treasure",
+    category: "Voice AI",
+    stage: "Testing",
+    accent: "amber",
+    visual: "voice",
+    description: "Voice AI that captures family stories and preserves them across generations.",
+    evidence: "Voice-first experience built",
+    url: "https://treasures-bowl.vercel.app",
   },
 ];
 
 const accentStyles = {
-  "--hero-accent": "#4285f4",
+  "--hero-accent": ACCENT,
 } as CSSProperties;
 
-export function GoogleApplicationPage() {
-  const [activePillarIdx, setActivePillarIdx] = useState(0);
-  const [activeTab, setActiveTab] = useState<"architecture" | "trace">("architecture");
+const deploymentStages = [
+  {
+    label: "Discover",
+    layer: "Intake",
+    desc: "Map stakeholders, data boundaries and who can say yes.",
+    runs: "Call arrives, language detect, intent classify",
+    blocker: "Procurement cycles and too many stakeholders, no single owner.",
+  },
+  {
+    label: "Decide",
+    layer: "Governance",
+    desc: "Align legal, IT and the business on what shipped means.",
+    runs: "Eval criteria, audit trail, sign-off path",
+    blocker: "Legal and IT want different guarantees than the business.",
+  },
+  {
+    label: "Build",
+    layer: "Orchestration",
+    desc: "Prototype on real traffic, not sandbox demos.",
+    runs: "Routing, context load, knowledge retrieval",
+    blocker: "Edge cases in DE, FR and IT break trust before go-live.",
+  },
+  {
+    label: "Deploy",
+    layer: "Execution",
+    desc: "Eval gates, rollback plans, production sign-off.",
+    runs: "Generate, safety filter, voice synthesis",
+    blocker: "Fear of passenger-facing voice AI in a regulated airport.",
+  },
+  {
+    label: "Scale",
+    layer: "Governance",
+    desc: "Handoff, monitoring and ownership inside the org.",
+    runs: "Eval gate, audit log, rollback trigger",
+    blocker: "Adoption fades without an internal owner after launch.",
+  },
+] as const;
 
-  const currentPillar = agentArchitecturePillars[activePillarIdx];
+function DeploymentSystem({
+  reduceMotion,
+  activeStageIdx,
+  onStageSelect,
+}: {
+  reduceMotion: boolean | null;
+  activeStageIdx: number;
+  onStageSelect: (idx: number) => void;
+}) {
+  const stages = deploymentStages;
+  const active = stages[activeStageIdx] ?? stages[0];
+  const R = 140;
+  const cx = 200;
+  const cy = 200;
+  const startAngle = -90;
+  const nodeR = 38;
+
+  const positions = stages.map((_, i) => {
+    const angle = startAngle + (i * 360) / stages.length;
+    const rad = (angle * Math.PI) / 180;
+    return { x: cx + R * Math.cos(rad), y: cy + R * Math.sin(rad) };
+  });
+
+  return (
+    <section className="dossier-section-tight relative z-[2] !pt-0 !pb-6">
+      <div className="mx-auto max-w-[1200px] px-4 md:px-8">
+        <h2 className="text-[clamp(24px,3vw,34px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
+          How I move from zero to deployed
+        </h2>
+        <p className="mt-2 max-w-[52ch] text-sm text-[var(--dossier-body)]">
+          Five stages. Pick one to see the layer, what runs, and what blocks it.
+        </p>
+
+        <div className="mt-4 flex flex-wrap gap-2 lg:hidden" role="tablist" aria-label="Deployment stages">
+          {stages.map((stage, i) => {
+            const isActive = i === activeStageIdx;
+            return (
+              <button
+                key={stage.label}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => onStageSelect(i)}
+                className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+                  isActive
+                    ? "border border-[#4285f4] bg-[#4285f4] text-white"
+                    : "border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] text-[var(--dossier-ink)]"
+                }`}
+              >
+                {stage.label}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mt-4 grid items-center gap-4 lg:mt-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] lg:items-start lg:gap-8">
+          <motion.div
+            className="relative mx-auto w-full max-w-[380px] lg:mx-0 lg:max-w-none"
+            initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: EASE_OUT_STRONG }}
+          >
+            <svg viewBox="0 0 400 400" className="w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx={cx} cy={cy} r={R} stroke="var(--dossier-line)" strokeWidth="1" />
+
+              {positions.map((p, i) => {
+                const next = positions[(i + 1) % positions.length];
+                const mx = (p.x + next.x) / 2;
+                const my = (p.y + next.y) / 2;
+                const dx = next.x - p.x;
+                const dy = next.y - p.y;
+                const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
+                return (
+                  <polygon
+                    key={`arrow-${stages[i].label}`}
+                    points="0,-2.5 5,0 0,2.5"
+                    fill="var(--dossier-subtle)"
+                    transform={`translate(${mx},${my}) rotate(${angle})`}
+                  />
+                );
+              })}
+
+              {stages.map((stage, i) => {
+                const p = positions[i];
+                const isActive = activeStageIdx === i;
+                return (
+                  <g
+                    key={stage.label}
+                    onClick={() => onStageSelect(i)}
+                    className="cursor-pointer"
+                    role="button"
+                    tabIndex={0}
+                    aria-pressed={isActive}
+                    aria-label={`${stage.label}: ${stage.desc}`}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") onStageSelect(i);
+                    }}
+                  >
+                    <circle
+                      cx={p.x}
+                      cy={p.y}
+                      r={nodeR}
+                      fill={isActive ? ACCENT : "var(--dossier-panel)"}
+                      stroke={isActive ? ACCENT : "var(--dossier-line-strong)"}
+                      strokeWidth={isActive ? "2" : "1"}
+                    />
+                    <text
+                      x={p.x}
+                      y={p.y + 1}
+                      textAnchor="middle"
+                      dominantBaseline="central"
+                      fill={isActive ? "#ffffff" : "var(--dossier-ink)"}
+                      fontSize="12"
+                      fontWeight="600"
+                    >
+                      {stage.label}
+                    </text>
+                  </g>
+                );
+              })}
+            </svg>
+          </motion.div>
+
+          <div
+            className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-4 lg:rounded-none lg:border-0 lg:border-l lg:border-[var(--dossier-line)] lg:bg-transparent lg:p-0 lg:pl-8"
+            role="tabpanel"
+            aria-live="polite"
+          >
+            <p className="text-lg font-semibold tracking-tight text-[var(--dossier-ink)]">
+              {active.label}
+            </p>
+            <p className="mt-1 text-sm font-medium text-[#4285f4]">
+              Layer: {active.layer}
+            </p>
+            <p className="mt-1.5 text-sm leading-snug text-[var(--dossier-body)]">
+              {active.desc}
+            </p>
+            <div className="mt-4 space-y-3">
+              <div>
+                <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-muted)]">
+                  What runs
+                </p>
+                <p className="mt-1 text-sm leading-snug text-[var(--dossier-ink)]">{active.runs}</p>
+              </div>
+              <div>
+                <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-muted)]">
+                  What blocks it
+                </p>
+                <p className="mt-1 text-sm leading-snug text-[var(--dossier-body)]">
+                  {active.blocker}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function GoogleApplicationPage() {
+  const reduceMotion = useReducedMotion();
+  const [activeStageIdx, setActiveStageIdx] = useState(0);
 
   return (
     <DossierThemeProvider>
@@ -396,650 +433,379 @@ export function GoogleApplicationPage() {
         className="dossier-page relative min-h-[100dvh] overflow-x-hidden"
         style={accentStyles}
       >
-        <DossierBackground accentColor="#4285f4" />
+        <DossierBackground accentColor={ACCENT} />
         <SubpageHeader
           companyName="Google"
           roleTitle="Forward Deployed Engineer III (Zurich)"
-          accentColor="#4285f4"
+          accentColor={ACCENT}
         />
 
-        {/* HERO SECTION */}
-        <section className="dossier-openai-hero relative z-[2] flex flex-col justify-between pt-2 pb-6 md:min-h-[calc(100dvh-57px)] md:py-10">
-          <div className="dossier-openai-hero__main mx-auto flex w-full max-w-[1200px] flex-1 flex-col justify-start px-4 py-2 md:justify-center md:px-8 md:py-6">
-            <div className="flex flex-col gap-4 md:grid md:grid-cols-[minmax(0,1fr)_minmax(200px,260px)] md:items-start md:gap-x-12 lg:gap-x-16">
-              
-              {/* Profile Card */}
-              <aside className="dossier-openai-hero__photo hidden md:block w-full max-w-[220px] lg:max-w-[250px] shrink-0 md:col-start-2 md:row-start-1 md:mx-0">
-                <div className="dossier-profile-frame aspect-[4/5] w-full rounded-2xl overflow-hidden border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] shadow-sm">
+        <section className="dossier-openai-hero relative z-[2] flex min-h-[calc(100dvh-57px)] flex-col md:min-h-[calc(100dvh-57px)]">
+          <div className="dossier-openai-hero__main mx-auto flex w-full max-w-[1200px] flex-1 flex-col justify-start px-4 py-5 md:justify-center md:px-8 md:py-14 lg:py-16">
+            <div className="flex flex-col gap-6 md:grid md:grid-cols-[minmax(0,1fr)_minmax(200px,260px)] md:items-center md:gap-x-14 md:gap-y-0 lg:gap-x-20">
+              <aside className="dossier-openai-hero__photo w-full max-w-[min(11.5rem,42vw)] shrink-0 md:col-start-2 md:row-start-1 md:mx-0 md:max-w-[220px] lg:max-w-[260px]">
+                <div className="dossier-profile-frame aspect-[4/5] w-full">
                   <Image
                     src="/images/terence-la-profile.png"
-                    alt="Terence La"
+                    alt="Terence La profile"
                     fill
-                    sizes="(max-width: 768px) 180px, 250px"
+                    sizes="(max-width: 768px) 172px, 260px"
                     className="dossier-profile-photo object-cover object-top"
                     priority
                   />
-                  <div className="dossier-profile-caption absolute inset-x-0 bottom-0 z-[2] px-4 pb-4 pt-14 bg-gradient-to-t from-black/85 via-black/40 to-transparent">
-                    <p className="text-sm font-semibold text-white">Terence La</p>
-                    <p className="text-xs text-white/90">AI Lead @ Zurich Airport</p>
-                    <p className="text-[11px] text-white/75">Founder @ KI Unlocked</p>
+                  <div className="dossier-profile-caption absolute inset-x-0 bottom-0 z-[2] px-5 pb-5 pt-16">
+                    <p className="text-sm font-medium text-white">Terence La</p>
+                    <p className="text-xs text-white/80">AI Lead · Zurich Airport</p>
                   </div>
                 </div>
               </aside>
 
-              {/* Main Headline & Context */}
               <div className="max-w-[760px] md:col-start-1 md:row-start-1">
-                {/* Mobile Identity Badge */}
-                <div className="flex items-center gap-3 md:hidden mb-3">
-                  <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full border border-[var(--dossier-line-strong)]">
-                    <Image
-                      src="/images/terence-la-profile.png"
-                      alt="Terence La"
-                      fill
-                      sizes="44px"
-                      className="object-cover object-top"
-                      priority
-                    />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-[var(--dossier-ink)]">Terence La</p>
-                    <p className="text-xs text-[var(--dossier-muted)]">AI Lead @ Zurich Airport · Founder @ KI Unlocked</p>
-                  </div>
-                </div>
-
-                <div className="inline-flex items-center gap-2 rounded-full border border-[#4285f4]/30 bg-[#4285f4]/[0.08] px-3 py-1 text-xs font-medium text-[#4285f4]">
-                  <span className="h-2 w-2 rounded-full bg-[#4285f4] animate-pulse" />
-                  Google Applied AI · Forward Deployed Engineer III (Zurich)
-                </div>
-
-                <h1 className="dossier-hero-title mt-3 max-w-[18ch]" style={{ fontSize: "clamp(26px, 6.5vw, 56px)" }}>
+                <h1 className="dossier-hero-title max-w-[18ch]" style={{ fontSize: "clamp(30px, 8.2vw, 64px)" }}>
                   I build AI agents and get them working in the real world.
                 </h1>
-
-                <p className="mt-3 max-w-[62ch] text-[14px] leading-relaxed text-[var(--dossier-body)] md:text-[16px] md:leading-[1.6]">
+                <p className="mt-5 max-w-[56ch] text-[15px] leading-relaxed text-[var(--dossier-body)] md:mt-10 md:text-[17px] md:leading-[1.65]">
                   Forward Deployed Engineer candidate for Google Applied AI in Zurich. As AI Lead at Zurich Airport, I drove voice AI from concept through formal enterprise tender and consolidated fragmented platforms for ~35k staff. Through KI Unlocked, I architect, code, and ship agentic AI systems like Leistera that solve high-stakes document and workflow operations in regulated Swiss environments.
                 </p>
-
-                {/* Primary Action Buttons */}
-                <div className="mt-4 flex flex-wrap items-center gap-2.5 md:mt-6">
+                <div className="mt-6 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 md:mt-10">
                   <a
                     href="https://about.terencela.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="dossier-button-primary dossier-cta-accent dossier-pressable inline-flex items-center gap-2 text-xs md:text-sm px-4 py-2"
+                    className="dossier-button-primary dossier-cta-accent dossier-pressable inline-flex"
                   >
                     Chat with TerenceAI
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </a>
-                  <a
-                    href="#video-walkthrough"
-                    className="inline-flex items-center gap-1.5 rounded-xl border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] px-3.5 py-2 text-xs md:text-sm font-medium text-[var(--dossier-ink)] transition-colors hover:border-[#4285f4] hover:text-[#4285f4]"
-                  >
-                    <Play className="h-3 w-3 text-[#4285f4] fill-[#4285f4]" />
-                    Watch 90s intro
+                    <ArrowRight className="h-4 w-4" />
                   </a>
                   <a
                     href="https://xp.terencela.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-[12px] md:text-[13px] text-[var(--dossier-muted)] transition-colors hover:text-[var(--dossier-ink)]"
+                    className="inline-flex items-center gap-1.5 text-[13px] text-[var(--dossier-muted)] transition-colors duration-200 hover:text-[var(--dossier-ink)]"
                   >
                     Discover TerenceXP
                     <ArrowUpRight className="h-3 w-3" />
                   </a>
                 </div>
-
-                {/* Above-the-Fold Strongest Proof Strip */}
-                <div className="mt-5 grid gap-2.5 sm:grid-cols-3 border-t border-[var(--dossier-line)] pt-4">
-                  <div className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-3">
-                    <div className="flex items-center justify-between gap-1">
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--dossier-muted)]">Aviation Voice AI</span>
-                      <span className="rounded bg-amber-500/10 px-1.5 py-0.5 text-[9px] font-semibold text-amber-700 dark:text-amber-400">PoC → Tender</span>
-                    </div>
-                    <p className="mt-1 text-base font-bold text-[var(--dossier-ink)]">~85K calls/yr</p>
-                    <p className="mt-0.5 text-[11px] leading-snug text-[var(--dossier-body)]">
-                      8 FTE call center. Concept to PoC in 2 weeks; progressed to formal tender.
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-3">
-                    <div className="flex items-center justify-between gap-1">
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--dossier-muted)]">ZRH Insider</span>
-                      <span className="rounded bg-emerald-500/10 px-1.5 py-0.5 text-[9px] font-semibold text-emerald-700 dark:text-emerald-400">Shipped Rebuild</span>
-                    </div>
-                    <p className="mt-1 text-base font-bold text-[var(--dossier-ink)]">~35K staff</p>
-                    <p className="mt-0.5 text-[11px] leading-snug text-[var(--dossier-body)]">
-                      Merged 2 native apps into 1 Capacitor foundation. Agency-quoted CHF 300K–350K.
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-3">
-                    <div className="flex items-center justify-between gap-1">
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--dossier-muted)]">Leistera Flagship</span>
-                      <span className="rounded bg-blue-500/10 px-1.5 py-0.5 text-[9px] font-semibold text-blue-700 dark:text-blue-400">Active Delivery</span>
-                    </div>
-                    <p className="mt-1 text-base font-bold text-[var(--dossier-ink)]">Agentic RAG</p>
-                    <p className="mt-0.5 text-[11px] leading-snug text-[var(--dossier-body)]">
-                      SIA/ASTRA norm intelligence. Exact PDF bounding-box source grounding.
-                    </p>
-                  </div>
-                </div>
-
               </div>
             </div>
           </div>
 
-          {/* Focused Credibility Strip */}
-          <div className="dossier-openai-hero__logos mt-6 border-t border-[var(--dossier-line)] bg-[var(--dossier-panel)]/40 backdrop-blur-sm">
-            <div className="mx-auto max-w-[1200px] px-4 py-3.5 md:px-8">
-              <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 text-[12px] text-[var(--dossier-body)]">
-                <span className="font-semibold text-[var(--dossier-ink)]">Track Record:</span>
-                <span className="rounded-md border border-[var(--dossier-line)] px-2.5 py-1 font-medium text-[var(--dossier-ink)]">Zurich Airport (AI Lead)</span>
-                <span className="rounded-md border border-[var(--dossier-line)] px-2.5 py-1 font-medium text-[var(--dossier-ink)]">KI Unlocked (Founder & Builder)</span>
-                <span className="rounded-md border border-[var(--dossier-line)] px-2.5 py-1 font-medium text-[var(--dossier-ink)]">M.A. HSG (University of St. Gallen)</span>
-                <span className="rounded-md border border-[var(--dossier-line)] px-2.5 py-1 text-[var(--dossier-muted)]">Forbes 30 Under 30</span>
-                <span className="rounded-md border border-[var(--dossier-line)] px-2.5 py-1 text-[var(--dossier-muted)]">2x TEDx Speaker</span>
-                <span className="rounded-md border border-[var(--dossier-line)] px-2.5 py-1 text-[var(--dossier-muted)]">PwC & Credit Suisse Alumni</span>
+          <div className="dossier-openai-hero__logos mt-auto shrink-0 border-t border-[var(--dossier-line)]">
+            <div className="mx-auto max-w-[1200px] px-4 py-4 md:px-8 md:py-8">
+              <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3">
+                {credibilityLogos.map((logo) => (
+                  <div
+                    key={logo}
+                    className="rounded-full border border-[var(--dossier-line)] px-3.5 py-1.5 text-[13px] font-normal tracking-[-0.005em] text-[var(--dossier-subtle)]"
+                  >
+                    {logo}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        {/* HANDS-ON ENGINEERING & AGENT ORCHESTRATION */}
-        <section className="dossier-section relative z-[2] border-t border-[var(--dossier-line)] bg-[var(--dossier-panel)]/30 pt-10 pb-12">
+        <section className="dossier-section relative z-[2] pt-9">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#4285f4]">
-                  Hands-On Engineering
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#4285f4]">
+              Why me
+            </p>
+            <h2 className="mt-2 text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
+              What I bring to Google on day one.
+            </h2>
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              <article className="flex flex-col rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-6 pb-7">
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#4285f4]/[0.08]">
+                  <Workflow className="h-6 w-6 text-[#4285f4]" />
+                </div>
+                <h3 className="text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
+                  Enterprise deployment
+                </h3>
+                <p className="mt-2 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
+                  Discovery to production to governance. Full path.
                 </p>
-                <h2 className="mt-1.5 text-[clamp(26px,3.2vw,38px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
-                  How I build, orchestrate, and debug agents
-                </h2>
-              </div>
-              <p className="max-w-[48ch] text-xs text-[var(--dossier-body)] md:text-sm">
-                Engineering reality over buzzwords. Terence writes, reviews, and debugs code daily, using coordinated AI coding harnesses to ship reliable systems.
-              </p>
-            </div>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-5">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#4285f4]/[0.08] text-[#4285f4] mb-4">
-                  <Terminal className="h-5 w-5" />
-                </div>
-                <h3 className="text-sm font-semibold text-[var(--dossier-ink)]">Multi-Agent Coding Harness</h3>
-                <p className="mt-1.5 text-xs leading-relaxed text-[var(--dossier-body)]">
-                  Writes and debugs code daily using <strong>Cursor, Claude Code, Codex, and ChatGPT</strong>. Orchestrates parallel agent workflows with strict &ldquo;Plan &rarr; Build &rarr; Verify &rarr; Check&rdquo; automated loops.
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-5">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#4285f4]/[0.08] text-[#4285f4] mb-4">
-                  <Workflow className="h-5 w-5" />
-                </div>
-                <h3 className="text-sm font-semibold text-[var(--dossier-ink)]">Schema-Strict Tool Execution</h3>
-                <p className="mt-1.5 text-xs leading-relaxed text-[var(--dossier-body)]">
-                  Deterministic intent gating, JSON-schema tool contracts, execution boundaries, and fallback recovery. Keeps agent actions bounded and inspectable.
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-5">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#4285f4]/[0.08] text-[#4285f4] mb-4">
-                  <Database className="h-5 w-5" />
-                </div>
-                <h3 className="text-sm font-semibold text-[var(--dossier-ink)]">Retrieval & Exact Grounding</h3>
-                <p className="mt-1.5 text-xs leading-relaxed text-[var(--dossier-body)]">
-                  Contextual chunking, hybrid BM25 + dense vector embeddings, Cohere cross-encoder reranking, and PDF bounding-box citation down to the exact edition and page.
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-5">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#4285f4]/[0.08] text-[#4285f4] mb-4">
-                  <ShieldCheck className="h-5 w-5" />
-                </div>
-                <h3 className="text-sm font-semibold text-[var(--dossier-ink)]">Eval Suites & Compliance Gates</h3>
-                <p className="mt-1.5 text-xs leading-relaxed text-[var(--dossier-body)]">
-                  Pre-model regex guardrails, nDSG/GDPR privacy boundaries, and offline evaluation harnesses testing context recall@k, faithfulness, and refusal rates on real corpora.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* INTERACTIVE AGENT ARCHITECTURE & EXECUTION TRACE */}
-        <section className="dossier-section relative z-[2] pt-8 pb-12">
-          <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#4285f4]">
-                  Technical Deep-Dive
-                </p>
-                <h2 className="mt-1 text-[clamp(26px,3.2vw,38px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
-                  Architecture & Verified Workflows
-                </h2>
-              </div>
-
-              {/* View Switcher */}
-              <div className="inline-flex rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-1">
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("architecture")}
-                  className={`rounded-lg px-3.5 py-1.5 text-xs font-semibold transition-all ${
-                    activeTab === "architecture"
-                      ? "bg-[#4285f4] text-white shadow-sm"
-                      : "text-[var(--dossier-muted)] hover:text-[var(--dossier-ink)]"
-                  }`}
-                >
-                  5-Stage Architecture
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("trace")}
-                  className={`rounded-lg px-3.5 py-1.5 text-xs font-semibold transition-all ${
-                    activeTab === "trace"
-                      ? "bg-[#4285f4] text-white shadow-sm"
-                      : "text-[var(--dossier-muted)] hover:text-[var(--dossier-ink)]"
-                  }`}
-                >
-                  Illustrative Execution Trace
-                </button>
-              </div>
-            </div>
-
-            {activeTab === "architecture" ? (
-              <div className="mt-6 grid gap-6 lg:grid-cols-12">
-                {/* Stage Navigator (5 cols) */}
-                <div className="lg:col-span-5 space-y-2">
-                  {agentArchitecturePillars.map((pillar, idx) => {
-                    const isActive = activePillarIdx === idx;
-                    return (
-                      <button
-                        key={pillar.id}
-                        type="button"
-                        onClick={() => setActivePillarIdx(idx)}
-                        className={`w-full rounded-xl border p-4 text-left transition-all ${
-                          isActive
-                            ? "border-[#4285f4] bg-[#4285f4]/[0.06] shadow-sm"
-                            : "border-[var(--dossier-line)] bg-[var(--dossier-panel)] hover:border-[var(--dossier-line-strong)]"
-                        }`}
-                      >
-                        <div className="flex items-center justify-between">
-                          <span className={`text-[10px] font-mono font-bold ${isActive ? "text-[#4285f4]" : "text-[var(--dossier-subtle)]"}`}>
-                            STAGE {pillar.step}
-                          </span>
-                          <span className="text-[11px] font-medium text-[var(--dossier-muted)]">
-                            {pillar.role}
-                          </span>
-                        </div>
-                        <p className="mt-1 font-semibold text-sm text-[var(--dossier-ink)]">
-                          {pillar.title}
-                        </p>
-                        <p className="mt-0.5 text-xs text-[var(--dossier-body)] line-clamp-1">
-                          {pillar.summary}
-                        </p>
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {/* Stage Detail Panel (7 cols) */}
-                <div className="lg:col-span-7 rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-6">
-                  <div className="flex items-center justify-between border-b border-[var(--dossier-line)] pb-3">
-                    <div>
-                      <span className="text-xs font-mono font-bold text-[#4285f4]">
-                        STAGE {currentPillar.step} SPECIFICATION
-                      </span>
-                      <h3 className="text-lg font-bold text-[var(--dossier-ink)]">
-                        {currentPillar.title}
-                      </h3>
-                    </div>
-                    <span className="rounded-full bg-[#4285f4]/10 px-2.5 py-1 text-xs font-medium text-[#4285f4]">
-                      {currentPillar.role}
-                    </span>
-                  </div>
-
-                  <div className="mt-4">
-                    <p className="text-sm font-medium text-[var(--dossier-ink)]">
-                      {currentPillar.summary}
-                    </p>
-                    <ul className="mt-3 space-y-2">
-                      {currentPillar.details.map((detail, i) => (
-                        <li key={i} className="flex items-start gap-2 text-xs text-[var(--dossier-body)] leading-relaxed">
-                          <CheckCircle2 className="h-3.5 w-3.5 text-[#4285f4] shrink-0 mt-0.5" />
-                          <span>{detail}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="mt-5 rounded-lg border border-[var(--dossier-line-strong)] bg-[var(--dossier-dark)] p-3 text-zinc-100">
-                    <div className="flex items-center justify-between text-[11px] font-mono text-zinc-400 pb-2 border-b border-zinc-800">
-                      <span>VERIFIED IMPLEMENTATION PATTERN</span>
-                      <Code2 className="h-3.5 w-3.5 text-zinc-400" />
-                    </div>
-                    <pre className="mt-2 text-[11px] font-mono overflow-x-auto text-blue-300">
-                      <code>{currentPillar.codeSnippet}</code>
-                    </pre>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="mt-6 rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-6">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-[var(--dossier-line)] pb-3 gap-2">
-                  <div>
-                    <span className="text-xs font-mono font-bold text-[#4285f4]">
-                      ILLUSTRATIVE EXECUTION TRACE
-                    </span>
-                    <h3 className="text-base font-bold text-[var(--dossier-ink)]">
-                      Swiss Planning Office: Proposal Norm Verification & Drafting
-                    </h3>
-                  </div>
-                  <span className="rounded bg-zinc-100 dark:bg-zinc-800 px-2 py-1 text-[11px] font-mono text-[var(--dossier-muted)]">
-                    Labeled Sample Workflow
-                  </span>
-                </div>
-
-                <div className="mt-5 space-y-4">
-                  {illustrativeTraceSteps.map((step) => (
-                    <div key={step.step} className="flex items-start gap-3.5 rounded-lg border border-[var(--dossier-line)] bg-[var(--dossier-panel)]/60 p-3.5">
-                      <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#4285f4] text-xs font-mono font-bold text-white">
-                        {step.step}
+                <div className="mt-auto flex flex-wrap items-center gap-x-1.5 gap-y-2 pt-6">
+                  {[
+                    { icon: Search, label: "Discover" },
+                    { icon: Building2, label: "Build" },
+                    { icon: ArrowUpRight, label: "Deploy" },
+                    { icon: Users, label: "Adopt" },
+                    { icon: ShieldCheck, label: "Govern" },
+                  ].map((step, i) => (
+                    <React.Fragment key={step.label}>
+                      <div className="flex flex-col items-center gap-1">
+                        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#4285f4]/[0.08]">
+                          <step.icon className="h-3.5 w-3.5 text-[#4285f4]" />
+                        </span>
+                        <span className="text-[8px] font-medium text-[var(--dossier-muted)]">{step.label}</span>
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex flex-wrap items-center justify-between gap-1">
-                          <p className="text-xs font-bold text-[var(--dossier-ink)]">{step.label}</p>
-                          <span className="text-[10px] uppercase font-mono font-semibold text-[#4285f4]">{step.type}</span>
-                        </div>
-                        <p className="mt-0.5 text-xs text-[var(--dossier-body)]">{step.detail}</p>
-                        <div className="mt-2 rounded bg-zinc-950 px-3 py-1.5 font-mono text-[11px] text-zinc-300 overflow-x-auto">
-                          {step.data}
-                        </div>
-                      </div>
-                    </div>
+                      {i < 4 && <ArrowRight className="mt-[-10px] h-2.5 w-2.5 shrink-0 text-[var(--dossier-subtle)]" />}
+                    </React.Fragment>
                   ))}
                 </div>
-              </div>
-            )}
-          </div>
-        </section>
+              </article>
 
-        {/* 90-SECOND VIDEO WALKTHROUGH */}
-        <section id="video-walkthrough" className="dossier-section relative z-[2] border-t border-[var(--dossier-line)] pt-8 pb-10">
-          <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#4285f4]">
-                  Personal Introduction
+              <article className="flex flex-col rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-6 pb-7">
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#4285f4]/[0.08]">
+                  <Cpu className="h-6 w-6 text-[#4285f4]" />
+                </div>
+                <h3 className="text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
+                  AI builder
+                </h3>
+                <p className="mt-2 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
+                  15+ products. Agents, RAG, voice AI, eval loops.
                 </p>
-                <h2 className="mt-1 text-[clamp(26px,3.2vw,38px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
-                  90-second technical introduction
-                </h2>
-              </div>
-            </div>
-            <div className="mt-4">
-              <LoomVideoFrame
-                companyName="Google"
-                roleTitle="Forward Deployed Engineer III (Zurich)"
-                loomUrl="https://www.loom.com/share/054ec870f2c448928570797160ccc6b0"
-                videoTitle="Quick Introduction"
-                videoSubtitle="Who I am in 90 seconds."
-                playInModal
-                accentColor="#4285f4"
-                showChapters={false}
-              />
-              <TerenceAIAskBar />
+                <div className="mt-auto flex items-center gap-3 pt-6">
+                  {[Bot, FileText, Mic, Database, MessageSquareText].map((Icon, i) => (
+                    <span
+                      key={i}
+                      className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#4285f4]/[0.08]"
+                    >
+                      <Icon className="h-4 w-4 text-[#4285f4]" />
+                    </span>
+                  ))}
+                </div>
+              </article>
+
+              <article className="flex flex-col rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-6 pb-7">
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#4285f4]/[0.08]">
+                  <Users className="h-6 w-6 text-[#4285f4]" />
+                </div>
+                <h3 className="text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
+                  Business x Engineering
+                </h3>
+                <p className="mt-2 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
+                  Translate between executives, engineers and end users to keep projects moving.
+                </p>
+                <div className="mt-auto pt-6">
+                  <svg viewBox="0 0 220 90" className="w-full max-w-[220px]" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="48" y1="22" x2="172" y2="22" stroke="#4285f4" strokeWidth="1" opacity="0.5" />
+                    <line x1="40" y1="24" x2="110" y2="76" stroke="#4285f4" strokeWidth="1" opacity="0.5" />
+                    <line x1="180" y1="24" x2="110" y2="76" stroke="#4285f4" strokeWidth="1" opacity="0.5" />
+                    <circle cx="40" cy="20" r="4" fill="#4285f4" opacity="0.8" />
+                    <circle cx="180" cy="20" r="4" fill="#4285f4" opacity="0.8" />
+                    <circle cx="110" cy="78" r="4" fill="#4285f4" opacity="0.8" />
+                    <text x="18" y="12" fontSize="9" fontWeight="500" className="fill-[var(--dossier-ink)]">Business</text>
+                    <text x="148" y="12" fontSize="9" fontWeight="500" className="fill-[var(--dossier-ink)]">Engineering</text>
+                    <text x="92" y="89" fontSize="9" fontWeight="500" className="fill-[var(--dossier-ink)]">User</text>
+                  </svg>
+                </div>
+              </article>
             </div>
           </div>
         </section>
 
-        {/* THREE TECHNICALLY PRIORITIZED CASE STUDIES */}
-        <section className="dossier-section relative z-[2] border-t border-[var(--dossier-line)] pt-8 pb-12">
+        <section className="dossier-section relative z-[2] !pb-5">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#4285f4]">
-                Production & Delivery Cases
-              </p>
-              <h2 className="mt-1 text-[clamp(26px,3.5vw,40px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
-                Three customer-facing AI deployments
-              </h2>
-              <p className="mt-1.5 max-w-[60ch] text-xs text-[var(--dossier-body)] md:text-sm">
-                Structured technical breakdown: Problem &gt; Architecture & Technical Decisions &gt; Terence&apos;s Direct Contribution &gt; Verified Outcome &gt; Current Status.
-              </p>
-            </div>
+            <motion.h2
+              className="text-[clamp(28px,3.7vw,44px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]"
+              initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: EASE_OUT_STRONG }}
+            >
+              Three recent deployments
+            </motion.h2>
 
-            <div className="mt-8 space-y-8">
-              {technicalCases.map((cs) => (
-                <article
-                  key={cs.id}
-                  className="rounded-2xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-5 md:p-7 shadow-sm transition-all"
+            <motion.article
+              initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.08 }}
+              transition={{ duration: 0.6, ease: EASE_OUT_STRONG }}
+              className="mt-4 rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)]"
+            >
+              <div className="p-4 md:p-5">
+                <h3 className="text-[clamp(18px,2.2vw,24px)] font-semibold tracking-[-0.02em] text-[var(--dossier-ink)]">
+                  {deployments[0].title}
+                </h3>
+                <p className="mt-0.5 max-w-[55ch] text-[12px] leading-snug text-[var(--dossier-muted)]">
+                  {deployments[0].subtitle}
+                </p>
+
+                <div className="mt-2.5 flex flex-wrap gap-x-5 gap-y-1">
+                  {deployments[0].stats.map((stat, i) => (
+                    <motion.div
+                      key={stat.label}
+                      initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.1 + i * 0.06, ease: EASE_OUT_STRONG }}
+                    >
+                      <p className="text-base font-semibold tracking-tight text-[var(--dossier-ink)]">
+                        {stat.value}
+                      </p>
+                      <p className="text-[10px] text-[var(--dossier-muted)]">
+                        {stat.label}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+
+                <div className="mt-3 grid gap-2.5 border-t border-[var(--dossier-line)] pt-3 sm:grid-cols-2 sm:gap-4">
+                  <div>
+                    <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-subtle)]">
+                      My role
+                    </p>
+                    <p className="mt-1 text-[12px] leading-snug text-[var(--dossier-body)]">
+                      {deployments[0].role.join(" · ")}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-subtle)]">
+                      Outcome
+                    </p>
+                    <p className="mt-1 text-[12px] leading-snug text-[var(--dossier-body)]">
+                      <span className="font-semibold text-[var(--dossier-ink)]">
+                        {deployments[0].outcomeHighlight}
+                      </span>{" "}
+                      {deployments[0].outcome}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.article>
+
+            <div className="mt-2.5 grid gap-2.5 md:grid-cols-2">
+              {deployments.slice(1).map((deployment, idx) => (
+                <motion.article
+                  key={deployment.title}
+                  initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.5, delay: idx * 0.08, ease: EASE_OUT_STRONG }}
+                  className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)]"
                 >
-                  {/* Top Bar with Status Badge */}
-                  <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[var(--dossier-line)] pb-4">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-xs font-semibold uppercase tracking-wider text-[var(--dossier-muted)]">
-                        {cs.badge}
-                      </span>
-                      <span
-                        className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${
-                          cs.badgeTone === "amber"
-                            ? "bg-amber-500/15 text-amber-700 dark:text-amber-300"
-                            : cs.badgeTone === "emerald"
-                            ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300"
-                            : "bg-blue-500/15 text-blue-700 dark:text-blue-300"
-                        }`}
-                      >
-                        {cs.statusText}
-                      </span>
+                  <div className="p-3.5">
+                    <h3 className="text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
+                      {deployment.title}
+                    </h3>
+                    <p className="mt-0.5 text-[12px] leading-snug text-[var(--dossier-muted)]">
+                      {deployment.subtitle}
+                    </p>
+
+                    <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+                      {deployment.stats.map((stat) => (
+                        <div key={stat.label}>
+                          <p className="text-sm font-semibold tracking-tight text-[var(--dossier-ink)]">
+                            {stat.value}
+                          </p>
+                          <p className="text-[10px] text-[var(--dossier-muted)]">{stat.label}</p>
+                        </div>
+                      ))}
                     </div>
 
-                    {cs.link && (
+                    <div className="mt-2.5 grid gap-2 border-t border-[var(--dossier-line)] pt-2.5 sm:grid-cols-2 sm:gap-3">
+                      <div>
+                        <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-subtle)]">
+                          My role
+                        </p>
+                        <p className="mt-0.5 text-[12px] leading-snug text-[var(--dossier-body)]">
+                          {deployment.role.join(" · ")}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-subtle)]">
+                          Outcome
+                        </p>
+                        <p className="mt-0.5 text-[12px] leading-snug text-[var(--dossier-body)]">
+                          <span className="font-semibold text-[var(--dossier-ink)]">
+                            {deployment.outcomeHighlight}
+                          </span>{" "}
+                          {deployment.outcome}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <DeploymentSystem
+          reduceMotion={reduceMotion}
+          activeStageIdx={activeStageIdx}
+          onStageSelect={setActiveStageIdx}
+        />
+
+        <section className="dossier-section-tight relative z-[2] !pt-0">
+          <div className="mx-auto max-w-[1200px] px-4 md:px-8">
+            <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
+              Selected projects I created from scratch this year
+            </h2>
+            <p className="mt-2 text-sm text-[var(--dossier-muted)]">
+              Personal products. AI infrastructure, voice, human intelligence.
+            </p>
+            <div className="project-grid mt-6">
+              {selectedProjects.map((project, index) => (
+                <div
+                  key={project.name}
+                  className={`project-card accent-${project.accent}`}
+                  style={{ cursor: "default" }}
+                >
+                  <div className="card-topline">
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <span className="stage-badge">{project.stage}</span>
+                  </div>
+                  <ProductVisual type={project.visual} />
+                  <div className="card-copy">
+                    <small>{project.category}</small>
+                    <h3>{project.name}</h3>
+                    <p>{project.description}</p>
+                    <div className="evidence">
+                      <span>Evidence</span>
+                      <b>{project.evidence}</b>
+                    </div>
+                    {project.url && (
                       <a
-                        href={cs.link.url}
+                        href={project.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#4285f4] hover:underline"
+                        className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-medium text-[var(--accent)] transition-opacity duration-150 hover:opacity-80"
                       >
-                        {cs.link.label}
-                        <ArrowUpRight className="h-3.5 w-3.5" />
+                        View project
+                        <ArrowUpRight className="h-3 w-3" />
                       </a>
                     )}
                   </div>
-
-                  {/* Title & Subtitle */}
-                  <div className="mt-4">
-                    <h3 className="text-xl md:text-2xl font-bold tracking-tight text-[var(--dossier-ink)]">
-                      {cs.title}
-                    </h3>
-                    <p className="mt-1 text-sm text-[var(--dossier-body)]">
-                      {cs.subtitle}
-                    </p>
-                  </div>
-
-                  {/* Metrics Strip */}
-                  <div className="mt-4 flex flex-wrap gap-4 rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)]/50 p-3">
-                    {cs.stats.map((stat) => (
-                      <div key={stat.label} className="min-w-[120px]">
-                        <p className="text-base md:text-lg font-bold text-[var(--dossier-ink)]">{stat.value}</p>
-                        <p className="text-[11px] text-[var(--dossier-muted)]">{stat.label}</p>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Technical Breakdown Grid */}
-                  <div className="mt-6 grid gap-6 md:grid-cols-2">
-                    {/* Problem & Contribution */}
-                    <div className="space-y-5">
-                      <div>
-                        <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#4285f4]">
-                          1. Problem & Customer Constraints
-                        </h4>
-                        <p className="mt-1.5 text-xs md:text-[13px] leading-relaxed text-[var(--dossier-body)]">
-                          {cs.problem}
-                        </p>
-                      </div>
-
-                      <div>
-                        <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#4285f4]">
-                          2. Terence&apos;s Direct Contribution
-                        </h4>
-                        <ul className="mt-1.5 space-y-1.5">
-                          {cs.directContribution.map((item, idx) => (
-                            <li key={idx} className="flex items-start gap-2 text-xs md:text-[13px] leading-relaxed text-[var(--dossier-body)]">
-                              <span className="text-[#4285f4] font-bold mt-0.5">•</span>
-                              <span>{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-
-                    {/* Architecture Decisions */}
-                    <div>
-                      <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#4285f4]">
-                        3. Architecture & Technical Decisions
-                      </h4>
-                      <ul className="mt-1.5 space-y-2 rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)]/40 p-4">
-                        {cs.architecture.items.map((item, idx) => (
-                          <li key={idx} className="flex items-start gap-2 text-xs md:text-[13px] leading-relaxed text-[var(--dossier-body)]">
-                            <span className="h-1.5 w-1.5 rounded-full bg-[#4285f4] shrink-0 mt-1.5" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  {/* Outcome & Current Status Banner */}
-                  <div className="mt-6 rounded-xl border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)]/80 p-4">
-                    <div className="grid gap-3 sm:grid-cols-2">
-                      <div>
-                        <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-[var(--dossier-muted)]">
-                          Verified Outcome
-                        </p>
-                        <p className="mt-1 text-xs md:text-[13px] font-medium leading-relaxed text-[var(--dossier-ink)]">
-                          {cs.verifiedOutcome}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-[var(--dossier-muted)]">
-                          Current Deployment Status
-                        </p>
-                        <p className="mt-1 text-xs md:text-[13px] leading-relaxed text-[var(--dossier-body)]">
-                          {cs.currentStatus}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CURATED WORKING APPLIED AI PROJECTS */}
-        <section className="dossier-section relative z-[2] border-t border-[var(--dossier-line)] pt-8 pb-12">
-          <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3">
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#4285f4]">
-                  Portfolio Range
-                </p>
-                <h2 className="mt-1 text-[clamp(26px,3.2vw,38px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
-                  Selected applied AI builds
-                </h2>
-              </div>
-              <p className="max-w-[44ch] text-xs text-[var(--dossier-muted)]">
-                Tested products, developer tools, and operational systems built to solve real workflows.
-              </p>
-            </div>
-
-            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {curatedProjects.map((proj) => (
-                <div
-                  key={proj.name}
-                  className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-5 flex flex-col justify-between transition-all hover:border-[var(--dossier-line-strong)]"
-                >
-                  <div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-medium text-[var(--dossier-muted)]">{proj.category}</span>
-                      <span className="rounded bg-[#4285f4]/10 px-2 py-0.5 text-[10px] font-semibold text-[#4285f4]">
-                        {proj.statusBadge}
-                      </span>
-                    </div>
-
-                    <h3 className="mt-3 text-base font-bold text-[var(--dossier-ink)]">{proj.name}</h3>
-                    <p className="mt-1.5 text-xs leading-relaxed text-[var(--dossier-body)]">{proj.description}</p>
-                    
-                    <div className="mt-3 rounded-lg bg-[var(--dossier-line)]/20 p-2.5 text-[11px] leading-snug text-[var(--dossier-body)]">
-                      <span className="font-semibold text-[var(--dossier-ink)]">Technical Core: </span>
-                      {proj.technicalHighlight}
-                    </div>
-                  </div>
-
-                  {proj.url && (
-                    <a
-                      href={proj.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-[#4285f4] transition-colors hover:underline"
-                    >
-                      View Live Build
-                      <ArrowUpRight className="h-3.5 w-3.5" />
-                    </a>
-                  )}
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* GOOGLE APPLIED AI FDE CLOSING CTA */}
-        <section className="dossier-section relative z-[2] border-t border-[var(--dossier-line)] pt-8 pb-16">
+        <section className="dossier-section relative z-[2] pb-20 pt-8">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <div className="rounded-2xl border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] p-6 md:p-10 shadow-sm">
-              <div className="inline-flex items-center gap-2 rounded-full border border-[#4285f4]/30 bg-[#4285f4]/[0.08] px-3 py-1 text-xs font-medium text-[#4285f4]">
-                Forward Deployed Engineer III · Applied AI (Zurich)
-              </div>
-
-              <h2 className="mt-4 text-[clamp(28px,3.8vw,46px)] font-bold tracking-[-0.03em] text-[var(--dossier-ink)]">
-                Ready to deploy with your Zurich Applied AI team.
+            <div className="border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] p-7 md:p-9">
+              <h2 className="text-[clamp(30px,4vw,48px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
+                I&apos;d rather show you than tell you.
               </h2>
-
-              <p className="mt-3 max-w-[58ch] text-sm md:text-base leading-relaxed text-[var(--dossier-body)]">
-                Let&apos;s spend 30 minutes walking through live agent architectures, real customer delivery tradeoffs in Swiss enterprises, debugging edge cases, and moving high-value accounts from initial PoC to production scale.
+              <p className="mt-3 max-w-[52ch] text-sm leading-relaxed text-[var(--dossier-muted)] md:text-[15px]">
+                30 minutes. I&apos;ll walk you through a live deployment, the decisions behind it, and where I think Google Applied AI should go next with enterprise customers in Switzerland.
               </p>
-
-              <div className="mt-8 flex flex-wrap items-center gap-3">
+              <div className="mt-6 flex flex-wrap items-center gap-4">
                 <a
                   href="https://www.linkedin.com/in/terencela"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="dossier-button-primary dossier-cta-accent dossier-pressable inline-flex items-center gap-2 text-sm"
+                  className="dossier-button-primary dossier-cta-accent dossier-pressable inline-flex"
                 >
-                  Connect on LinkedIn
+                  Get in touch
                   <ArrowRight className="h-4 w-4" />
                 </a>
-
-                <a
-                  href="https://about.terencela.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] px-4 py-2.5 text-sm font-medium text-[var(--dossier-ink)] transition-colors hover:border-[#4285f4] hover:text-[#4285f4]"
-                >
-                  <Bot className="h-4 w-4 text-[#4285f4]" />
-                  Chat with TerenceAI
-                </a>
-
                 <a
                   href="https://xp.terencela.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs md:text-[13px] text-[var(--dossier-muted)] transition-colors hover:text-[var(--dossier-ink)]"
+                  className="inline-flex items-center gap-1.5 text-[13px] text-[var(--dossier-muted)] transition-colors duration-200 hover:text-[var(--dossier-ink)]"
                 >
-                  Explore TerenceXP
-                  <ArrowUpRight className="h-3.5 w-3.5" />
+                  See TerenceXP
+                  <ArrowUpRight className="h-3 w-3" />
                 </a>
               </div>
+              <TerenceAIAskBar />
             </div>
           </div>
         </section>
