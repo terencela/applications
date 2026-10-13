@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, type CSSProperties } from "react";
+import React, { useEffect, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import {
   ArrowRight,
@@ -234,208 +234,29 @@ const accentStyles = {
   "--hero-accent": ACCENT,
 } as CSSProperties;
 
-const deploymentStages = [
-  {
-    label: "Discover",
-    layer: "Intake",
-    desc: "Map stakeholders, data boundaries and who can say yes.",
-    runs: "Call arrives, language detect, intent classify",
-    blocker: "Procurement cycles and too many stakeholders, no single owner.",
-  },
-  {
-    label: "Decide",
-    layer: "Governance",
-    desc: "Align legal, IT and the business on what shipped means.",
-    runs: "Eval criteria, audit trail, sign-off path",
-    blocker: "Legal and IT want different guarantees than the business.",
-  },
-  {
-    label: "Build",
-    layer: "Orchestration",
-    desc: "Prototype on real traffic, not sandbox demos.",
-    runs: "Routing, context load, knowledge retrieval",
-    blocker: "Edge cases in DE, FR and IT break trust before go-live.",
-  },
-  {
-    label: "Deploy",
-    layer: "Execution",
-    desc: "Eval gates, rollback plans, production sign-off.",
-    runs: "Generate, safety filter, voice synthesis",
-    blocker: "Fear of passenger-facing voice AI in a regulated airport.",
-  },
-  {
-    label: "Scale",
-    layer: "Governance",
-    desc: "Handoff, monitoring and ownership inside the org.",
-    runs: "Eval gate, audit log, rollback trigger",
-    blocker: "Adoption fades without an internal owner after launch.",
-  },
-] as const;
-
-function DeploymentSystem({
-  reduceMotion,
-  activeStageIdx,
-  onStageSelect,
-}: {
-  reduceMotion: boolean | null;
-  activeStageIdx: number;
-  onStageSelect: (idx: number) => void;
-}) {
-  const stages = deploymentStages;
-  const active = stages[activeStageIdx] ?? stages[0];
-  const R = 140;
-  const cx = 200;
-  const cy = 200;
-  const startAngle = -90;
-  const nodeR = 38;
-
-  const positions = stages.map((_, i) => {
-    const angle = startAngle + (i * 360) / stages.length;
-    const rad = (angle * Math.PI) / 180;
-    return { x: cx + R * Math.cos(rad), y: cy + R * Math.sin(rad) };
-  });
-
-  return (
-    <section className="dossier-section-tight relative z-[2] !pt-0 !pb-6">
-      <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-        <h2 className="text-[clamp(24px,3vw,34px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
-          How I move from zero to deployed
-        </h2>
-        <p className="mt-2 max-w-[52ch] text-sm text-[var(--dossier-body)]">
-          Five stages. Pick one to see the layer, what runs, and what blocks it.
-        </p>
-
-        <div className="mt-4 flex flex-wrap gap-2 lg:hidden" role="tablist" aria-label="Deployment stages">
-          {stages.map((stage, i) => {
-            const isActive = i === activeStageIdx;
-            return (
-              <button
-                key={stage.label}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                onClick={() => onStageSelect(i)}
-                className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
-                  isActive
-                    ? "border border-[#8ab4f8] bg-[#8ab4f8] text-[#0a0b0f]"
-                    : "border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] text-[var(--dossier-ink)]"
-                }`}
-              >
-                {stage.label}
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="mt-4 grid items-center gap-4 lg:mt-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] lg:items-start lg:gap-8">
-          <motion.div
-            className="relative mx-auto w-full max-w-[380px] lg:mx-0 lg:max-w-none"
-            initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: EASE_OUT_STRONG }}
-          >
-            <svg viewBox="0 0 400 400" className="w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx={cx} cy={cy} r={R} stroke="var(--dossier-line)" strokeWidth="1" />
-
-              {positions.map((p, i) => {
-                const next = positions[(i + 1) % positions.length];
-                const mx = (p.x + next.x) / 2;
-                const my = (p.y + next.y) / 2;
-                const dx = next.x - p.x;
-                const dy = next.y - p.y;
-                const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
-                return (
-                  <polygon
-                    key={`arrow-${stages[i].label}`}
-                    points="0,-2.5 5,0 0,2.5"
-                    fill="var(--dossier-subtle)"
-                    transform={`translate(${mx},${my}) rotate(${angle})`}
-                  />
-                );
-              })}
-
-              {stages.map((stage, i) => {
-                const p = positions[i];
-                const isActive = activeStageIdx === i;
-                return (
-                  <g
-                    key={stage.label}
-                    onClick={() => onStageSelect(i)}
-                    className="cursor-pointer"
-                    role="button"
-                    tabIndex={0}
-                    aria-pressed={isActive}
-                    aria-label={`${stage.label}: ${stage.desc}`}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") onStageSelect(i);
-                    }}
-                  >
-                    <circle
-                      cx={p.x}
-                      cy={p.y}
-                      r={nodeR}
-                      fill={isActive ? ACCENT : "var(--dossier-panel)"}
-                      stroke={isActive ? ACCENT : "var(--dossier-line-strong)"}
-                      strokeWidth={isActive ? "2" : "1"}
-                    />
-                    <text
-                      x={p.x}
-                      y={p.y + 1}
-                      textAnchor="middle"
-                      dominantBaseline="central"
-                      fill={isActive ? "#ffffff" : "var(--dossier-ink)"}
-                      fontSize="12"
-                      fontWeight="600"
-                    >
-                      {stage.label}
-                    </text>
-                  </g>
-                );
-              })}
-            </svg>
-          </motion.div>
-
-          <div
-            className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-4 lg:rounded-none lg:border-0 lg:border-l lg:border-[var(--dossier-line)] lg:bg-transparent lg:p-0 lg:pl-8"
-            role="tabpanel"
-            aria-live="polite"
-          >
-            <p className="text-lg font-semibold tracking-tight text-[var(--dossier-ink)]">
-              {active.label}
-            </p>
-            <p className="mt-1 text-sm font-medium text-[#8ab4f8]">
-              Layer: {active.layer}
-            </p>
-            <p className="mt-1.5 text-sm leading-snug text-[var(--dossier-body)]">
-              {active.desc}
-            </p>
-            <div className="mt-4 space-y-3">
-              <div>
-                <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-muted)]">
-                  What runs
-                </p>
-                <p className="mt-1 text-sm leading-snug text-[var(--dossier-ink)]">{active.runs}</p>
-              </div>
-              <div>
-                <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-muted)]">
-                  What blocks it
-                </p>
-                <p className="mt-1 text-sm leading-snug text-[var(--dossier-body)]">
-                  {active.blocker}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export function GoogleApplicationPage() {
   const reduceMotion = useReducedMotion();
-  const [activeStageIdx, setActiveStageIdx] = useState(0);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-dossier-theme", "dark");
+    document.documentElement.classList.add("dark");
+    try {
+      window.localStorage.setItem("dossier-theme", "dark");
+    } catch {}
+
+    // Track internal Google visitor
+    try {
+      fetch("/api/analytics/track", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          page: "/google",
+          referrer: document.referrer,
+          screen: `${window.innerWidth}x${window.innerHeight}`,
+        }),
+      }).catch(() => {});
+    } catch {}
+  }, []);
 
   return (
     <DossierThemeProvider>
@@ -799,12 +620,6 @@ export function GoogleApplicationPage() {
             </div>
           </div>
         </section>
-
-        <DeploymentSystem
-          reduceMotion={reduceMotion}
-          activeStageIdx={activeStageIdx}
-          onStageSelect={setActiveStageIdx}
-        />
 
         {/* Live Technical Demonstration: Interactive Agent Execution & Pipeline Architecture */}
         <section className="dossier-section-tight relative z-[2] !pt-2 !pb-10">

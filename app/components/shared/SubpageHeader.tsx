@@ -61,13 +61,8 @@ export function SubpageHeader({
     <motion.header
       key={theme}
       className="dossier-glass-header sticky top-0 z-[60]"
-      initial={reduceMotion ? false : { y: "-100%" }}
+      initial={false}
       animate={{ y: 0 }}
-      transition={{
-        duration: DOSSIER_LOAD_HEADER_DURATION,
-        delay: DOSSIER_LOAD_HEADER_DELAY,
-        ease: EASE_OUT,
-      }}
       style={{
         backgroundColor,
         backdropFilter,
