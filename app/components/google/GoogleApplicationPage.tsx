@@ -23,10 +23,12 @@ import { motion, useReducedMotion } from "framer-motion";
 import { DossierBackground } from "@/app/components/shared/DossierBackground";
 import { SubpageHeader } from "@/app/components/shared/SubpageHeader";
 import { ProductVisual } from "@/app/components/shared/ProductVisual";
+import { GoogleAgentDemo } from "@/app/components/google/GoogleAgentDemo";
+import { GoogleAgentArchitecture } from "@/app/components/google/GoogleAgentArchitecture";
 import { DossierThemeProvider } from "@/app/lib/dossier-theme";
 
 const EASE_OUT_STRONG = [0.23, 1, 0.32, 1] as const;
-const ACCENT = "#4285f4";
+const ACCENT = "#8ab4f8";
 
 const TERENCE_AI_URL = "https://about.terencela.com";
 
@@ -39,13 +41,12 @@ function TerenceAIAskBar() {
     <div className="dossier-terenceai-ask mt-4">
       <label className="dossier-terenceai-ask__field">
         <span className="dossier-terenceai-ask__icon" aria-hidden="true">
-          <Search className="h-5 w-5" strokeWidth={2.25} />
-          <Sparkles className="dossier-terenceai-ask__sparkle h-3.5 w-3.5" />
+          <Search className="h-4 w-4" strokeWidth={2} />
         </span>
         <input
           type="text"
           name="terenceai-ask"
-          placeholder="Ask TerenceAI anything"
+          placeholder="Ask TerenceAI anything about my work..."
           autoComplete="off"
           onInput={(event) => {
             if (event.currentTarget.value.trim().length > 0) handleAsk();
@@ -316,7 +317,7 @@ function DeploymentSystem({
                 onClick={() => onStageSelect(i)}
                 className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
                   isActive
-                    ? "border border-[#4285f4] bg-[#4285f4] text-white"
+                    ? "border border-[#8ab4f8] bg-[#8ab4f8] text-[#0a0b0f]"
                     : "border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] text-[var(--dossier-ink)]"
                 }`}
               >
@@ -403,7 +404,7 @@ function DeploymentSystem({
             <p className="text-lg font-semibold tracking-tight text-[var(--dossier-ink)]">
               {active.label}
             </p>
-            <p className="mt-1 text-sm font-medium text-[#4285f4]">
+            <p className="mt-1 text-sm font-medium text-[#8ab4f8]">
               Layer: {active.layer}
             </p>
             <p className="mt-1.5 text-sm leading-snug text-[var(--dossier-body)]">
@@ -521,7 +522,7 @@ export function GoogleApplicationPage() {
 
         <section className="dossier-section relative z-[2] pt-9">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#4285f4]">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#8ab4f8]">
               Why me
             </p>
             <h2 className="mt-2 text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
@@ -529,8 +530,8 @@ export function GoogleApplicationPage() {
             </h2>
             <div className="mt-6 grid gap-4 md:grid-cols-3">
               <article className="flex flex-col rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-6 pb-7">
-                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#4285f4]/[0.08]">
-                  <Workflow className="h-6 w-6 text-[#4285f4]" />
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#8ab4f8]/[0.08]">
+                  <Workflow className="h-6 w-6 text-[#8ab4f8]" />
                 </div>
                 <h3 className="text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
                   Enterprise deployment
@@ -548,8 +549,8 @@ export function GoogleApplicationPage() {
                   ].map((step, i) => (
                     <React.Fragment key={step.label}>
                       <div className="flex flex-col items-center gap-1">
-                        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#4285f4]/[0.08]">
-                          <step.icon className="h-3.5 w-3.5 text-[#4285f4]" />
+                        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#8ab4f8]/[0.08]">
+                          <step.icon className="h-3.5 w-3.5 text-[#8ab4f8]" />
                         </span>
                         <span className="text-[8px] font-medium text-[var(--dossier-muted)]">{step.label}</span>
                       </div>
@@ -560,8 +561,8 @@ export function GoogleApplicationPage() {
               </article>
 
               <article className="flex flex-col rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-6 pb-7">
-                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#4285f4]/[0.08]">
-                  <Cpu className="h-6 w-6 text-[#4285f4]" />
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#8ab4f8]/[0.08]">
+                  <Cpu className="h-6 w-6 text-[#8ab4f8]" />
                 </div>
                 <h3 className="text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
                   AI builder
@@ -573,17 +574,17 @@ export function GoogleApplicationPage() {
                   {[Bot, FileText, Mic, Database, MessageSquareText].map((Icon, i) => (
                     <span
                       key={i}
-                      className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#4285f4]/[0.08]"
+                      className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#8ab4f8]/[0.08]"
                     >
-                      <Icon className="h-4 w-4 text-[#4285f4]" />
+                      <Icon className="h-4 w-4 text-[#8ab4f8]" />
                     </span>
                   ))}
                 </div>
               </article>
 
               <article className="flex flex-col rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-6 pb-7">
-                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#4285f4]/[0.08]">
-                  <Users className="h-6 w-6 text-[#4285f4]" />
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#8ab4f8]/[0.08]">
+                  <Users className="h-6 w-6 text-[#8ab4f8]" />
                 </div>
                 <h3 className="text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
                   Business x Engineering
@@ -593,12 +594,12 @@ export function GoogleApplicationPage() {
                 </p>
                 <div className="mt-auto pt-6">
                   <svg viewBox="0 0 220 90" className="w-full max-w-[220px]" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="48" y1="22" x2="172" y2="22" stroke="#4285f4" strokeWidth="1" opacity="0.5" />
-                    <line x1="40" y1="24" x2="110" y2="76" stroke="#4285f4" strokeWidth="1" opacity="0.5" />
-                    <line x1="180" y1="24" x2="110" y2="76" stroke="#4285f4" strokeWidth="1" opacity="0.5" />
-                    <circle cx="40" cy="20" r="4" fill="#4285f4" opacity="0.8" />
-                    <circle cx="180" cy="20" r="4" fill="#4285f4" opacity="0.8" />
-                    <circle cx="110" cy="78" r="4" fill="#4285f4" opacity="0.8" />
+                    <line x1="48" y1="22" x2="172" y2="22" stroke="#8ab4f8" strokeWidth="1" opacity="0.4" />
+                    <line x1="40" y1="24" x2="110" y2="76" stroke="#8ab4f8" strokeWidth="1" opacity="0.4" />
+                    <line x1="180" y1="24" x2="110" y2="76" stroke="#8ab4f8" strokeWidth="1" opacity="0.4" />
+                    <circle cx="40" cy="20" r="4" fill="#8ab4f8" opacity="0.8" />
+                    <circle cx="180" cy="20" r="4" fill="#8ab4f8" opacity="0.8" />
+                    <circle cx="110" cy="78" r="4" fill="#8ab4f8" opacity="0.8" />
                     <text x="18" y="12" fontSize="9" fontWeight="500" className="fill-[var(--dossier-ink)]">Business</text>
                     <text x="148" y="12" fontSize="9" fontWeight="500" className="fill-[var(--dossier-ink)]">Engineering</text>
                     <text x="92" y="89" fontSize="9" fontWeight="500" className="fill-[var(--dossier-ink)]">User</text>
@@ -629,23 +630,18 @@ export function GoogleApplicationPage() {
                   <div className="dossier-loom-pattern absolute inset-0" aria-hidden="true" />
                   <div className="relative z-10 flex flex-1 flex-col justify-between p-5 md:p-7">
                     <div
-                      className="inline-flex w-fit items-center gap-1.5 text-xs font-medium md:text-[13px]"
+                      className="inline-flex w-fit items-center gap-1.5 text-xs font-medium"
                       style={{ color: ACCENT }}
                     >
-                      <Sparkles className="h-4 w-4" />
-                      Interactive Q&amp;A · Instant Answers
+                      <MessageSquareText className="h-4 w-4" />
+                      Interactive Q&amp;A
                     </div>
                     <div>
                       <div className="flex items-center gap-4 md:gap-5">
                         <span
-                          className="inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-full md:h-[4.5rem] md:w-[4.5rem]"
-                          style={{
-                            backgroundColor: ACCENT,
-                            color: "#ffffff",
-                            boxShadow: `0 14px 40px ${ACCENT}44`,
-                          }}
+                          className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[var(--dossier-line-strong)] bg-[var(--dossier-dark)] text-[#8ab4f8]"
                         >
-                          <Sparkles className="h-7 w-7 fill-white text-white md:h-8 md:w-8" />
+                          <MessageSquareText className="h-5 w-5" />
                         </span>
                         <div className="min-w-0">
                           <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dossier-muted)]">
@@ -655,7 +651,7 @@ export function GoogleApplicationPage() {
                             Ask me anything about my work
                           </h4>
                           <p className="mt-1 text-sm text-[var(--dossier-body)] md:text-[15px]">
-                            Got questions about my engineering background, voice AI tender, or Swiss deployments? Prompt the AI below.
+                            Questions about my engineering background, voice AI tender, or Swiss deployments? Prompt the AI below.
                           </p>
                         </div>
                       </div>
@@ -669,17 +665,6 @@ export function GoogleApplicationPage() {
                       sizes="(max-width: 768px) 38vw, 240px"
                       className="dossier-profile-photo object-cover object-top"
                     />
-                    <div className="absolute inset-0 bg-black/20" aria-hidden="true" />
-                    <div
-                      className="pointer-events-none absolute inset-0 flex items-center justify-center md:hidden"
-                      aria-hidden="true"
-                    >
-                      <span
-                        className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-black/45 text-white backdrop-blur-[2px]"
-                      >
-                        <Sparkles className="h-5 w-5 fill-current" />
-                      </span>
-                    </div>
                   </div>
                 </div>
               </a>
@@ -820,6 +805,22 @@ export function GoogleApplicationPage() {
           activeStageIdx={activeStageIdx}
           onStageSelect={setActiveStageIdx}
         />
+
+        {/* Live Technical Demonstration: Interactive Agent Execution & Pipeline Architecture */}
+        <section className="dossier-section-tight relative z-[2] !pt-2 !pb-10">
+          <div className="mx-auto max-w-[1200px] px-4 md:px-8 space-y-6">
+            <div>
+              <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
+                Live Systems &amp; Pipeline Architecture
+              </h2>
+              <p className="mt-2 text-sm text-[var(--dossier-muted)] max-w-[65ch]">
+                Deterministic execution over Swiss regulatory corpora (SIA 102, ZRH Operations, nDSG) and the 7-stage guarded agent pipeline.
+              </p>
+            </div>
+            <GoogleAgentDemo />
+            <GoogleAgentArchitecture />
+          </div>
+        </section>
 
         <section className="dossier-section-tight relative z-[2] !pt-0">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
