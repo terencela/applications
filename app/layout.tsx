@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -31,7 +32,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-dossier-theme="dark" className="dark">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <Script
+          id="dossier-theme-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("dossier-theme");var theme=t==="light"?"light":"dark";var r=document.documentElement;r.setAttribute("data-dossier-theme",theme);r.dataset.dossier="true";r.classList.toggle("dark",theme==="dark");}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

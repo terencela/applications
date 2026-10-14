@@ -5,13 +5,13 @@ import { Moon, Sun } from "lucide-react";
 import { useDossierTheme } from "@/app/lib/dossier-theme";
 
 export function DossierThemeToggle() {
-  const { theme, toggleTheme } = useDossierTheme();
+  const { theme, setTheme } = useDossierTheme();
   const isDark = theme === "dark";
 
   return (
     <button
       type="button"
-      onClick={toggleTheme}
+      onClick={() => setTheme(isDark ? "light" : "dark")}
       className="dossier-glass-pill dossier-pressable inline-flex items-center gap-1.5"
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       title={isDark ? "Light mode" : "Dark mode"}

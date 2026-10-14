@@ -5,6 +5,7 @@ import React, {
   useCallback,
   useContext,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useState,
 } from "react";
@@ -32,22 +33,31 @@ function getInitialTheme(): DossierTheme {
   return "dark";
 }
 
-function applyThemeToDocument(theme: DossierTheme) {
+export function applyDossierThemeToDocument(theme: DossierTheme) {
   const root = document.documentElement;
-  root.dataset.dossierTheme = theme;
+  root.setAttribute("data-dossier-theme", theme);
   root.dataset.dossier = "true";
+  root.classList.toggle("dark", theme === "dark");
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta) {
     meta.setAttribute("content", theme === "dark" ? "#0a0b0f" : "#fafaf8");
   }
 }
 
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
 export function DossierThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<DossierTheme>(getInitialTheme);
+  const [theme, setThemeState] = useState<DossierTheme>(() => {
+    if (typeof window === "undefined") return "dark";
+    return getInitialTheme();
+  });
+
+  useIsomorphicLayoutEffect(() => {
+    applyDossierThemeToDocument(theme);
+  }, [theme]);
 
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEY, theme);
-    applyThemeToDocument(theme);
   }, [theme]);
 
   const setTheme = useCallback((next: DossierTheme) => {

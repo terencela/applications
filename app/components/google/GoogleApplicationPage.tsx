@@ -23,8 +23,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import { DossierBackground } from "@/app/components/shared/DossierBackground";
 import { SubpageHeader } from "@/app/components/shared/SubpageHeader";
 import { ProductVisual } from "@/app/components/shared/ProductVisual";
-import { GoogleAgentDemo } from "@/app/components/google/GoogleAgentDemo";
-import { GoogleAgentArchitecture } from "@/app/components/google/GoogleAgentArchitecture";
 import { DossierThemeProvider } from "@/app/lib/dossier-theme";
 
 const EASE_OUT_STRONG = [0.23, 1, 0.32, 1] as const;
@@ -238,12 +236,6 @@ export function GoogleApplicationPage() {
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-dossier-theme", "dark");
-    document.documentElement.classList.add("dark");
-    try {
-      window.localStorage.setItem("dossier-theme", "dark");
-    } catch {}
-
     // Track internal Google visitor
     try {
       fetch("/api/analytics/track", {
@@ -431,7 +423,7 @@ export function GoogleApplicationPage() {
           </div>
         </section>
 
-        <section className="dossier-section relative z-[2] pt-6">
+        <section className="dossier-section-tight relative z-[2] !pb-2 !pt-3">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
               Explore my work through AI
@@ -494,7 +486,7 @@ export function GoogleApplicationPage() {
           </div>
         </section>
 
-        <section className="dossier-section relative z-[2] !pb-5">
+        <section className="dossier-section-tight relative z-[2] !pb-2 !pt-2">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <motion.h2
               className="text-[clamp(28px,3.7vw,44px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]"
@@ -621,31 +613,15 @@ export function GoogleApplicationPage() {
           </div>
         </section>
 
-        {/* Live Technical Demonstration: Interactive Agent Execution & Pipeline Architecture */}
-        <section className="dossier-section-tight relative z-[2] !pt-2 !pb-10">
-          <div className="mx-auto max-w-[1200px] px-4 md:px-8 space-y-6">
-            <div>
-              <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
-                Live Systems &amp; Pipeline Architecture
-              </h2>
-              <p className="mt-2 text-sm text-[var(--dossier-muted)] max-w-[65ch]">
-                Deterministic execution over Swiss regulatory corpora (SIA 102, ZRH Operations, nDSG) and the 7-stage guarded agent pipeline.
-              </p>
-            </div>
-            <GoogleAgentDemo />
-            <GoogleAgentArchitecture />
-          </div>
-        </section>
-
-        <section className="dossier-section-tight relative z-[2] !pt-0">
+        <section className="dossier-section-tight relative z-[2] !pt-2 !pb-6">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
               Selected projects I created from scratch this year
             </h2>
-            <p className="mt-2 text-sm text-[var(--dossier-muted)]">
+            <p className="mt-1 text-sm text-[var(--dossier-muted)]">
               Personal products. AI infrastructure, voice, human intelligence.
             </p>
-            <div className="project-grid mt-6">
+            <div className="project-grid mt-4">
               {selectedProjects.map((project, index) => (
                 <div
                   key={project.name}
@@ -662,7 +638,7 @@ export function GoogleApplicationPage() {
                     <h3>{project.name}</h3>
                     <p>{project.description}</p>
                     {project.remark && (
-                      <p className="mt-1.5 text-[11px] text-[var(--dossier-subtle)] leading-normal">
+                      <p className="mt-1.5 text-[11px] leading-snug text-[var(--dossier-subtle)]">
                         {project.remark}
                       </p>
                     )}
