@@ -97,7 +97,7 @@ const credibilityLogos = [
 const deployments: DeploymentExample[] = [
   {
     title: "Zurich Airport - Voice AI Agent",
-    subtitle: "Voice AI for 85K annual calls. Discovery through formal tender.",
+    subtitle: "Voice-agent proof of concept for an operation handling ~85K annual calls; progressed into formal tender.",
     challenge:
       "Regulated environment, multi-stakeholder, trust constraints.",
     stats: [
@@ -113,15 +113,15 @@ const deployments: DeploymentExample[] = [
       "Governance",
     ],
     outcomeHighlight: "PoC in two weeks.",
-    outcome: "Formal tender initiated. Procurement ongoing.",
+    outcome: "Proof of concept completed; formal tender and vendor assessment followed. Not represented as a production voice deployment.",
   },
   {
     title: "ZRH Insider - Employee App Rebuild",
-    subtitle: "Three codebases merged into one foundation for 35K employees.",
+    subtitle: "Rebuilt the employee-app foundation for a workforce of ~35K, consolidating fragmented code.",
     challenge: "Fragmented Android/iOS slowed delivery.",
     stats: [
       { value: "35K", label: "employees" },
-      { value: "3 to 1", label: "codebases merged" },
+      { value: "Rebuild", label: "app foundation" },
     ],
     role: [
       "Rebuilt app foundation in one month",
@@ -129,23 +129,23 @@ const deployments: DeploymentExample[] = [
       "Designed engagement loops",
     ],
     outcomeHighlight: "Shipped.",
-    outcome: "Externally quoted at CHF 350K. Scalable base for future features.",
+    outcome: "Rebuilt app foundation for faster iteration; estimated external replacement cost, not measured realized savings.",
   },
   {
-    title: "Engineering Office LAJO - AI-Native Operations",
-    subtitle: "Company knowledge base powering proposals and project intelligence.",
+    title: "Engineering Client - Knowledge AI Pilot",
+    subtitle: "Customer-specific knowledge retrieval and document-governance pilot.",
     challenge: "Scattered data, manual proposal work, zero prep time.",
     stats: [
-      { value: "98%", label: "accuracy rate" },
-      { value: "60%", label: "time saved per proposal" },
+      { value: "~260", label: "documents reviewed" },
+      { value: "~10K", label: "source documents in scope" },
     ],
     role: [
       "PoC ready before first sales meeting",
       "OCR + model routing + RAG pipeline",
-      "Secured paid workshop, now in delivery",
+      "Defined knowledge-AI pilot with client stakeholders",
     ],
-    outcomeHighlight: "Won trust before the first meeting.",
-    outcome: "Knowledge base live. Proposal automation next.",
+    outcomeHighlight: "Prototype before the first meeting.",
+    outcome: "Pilot and knowledge governance work; no unverified production accuracy or time-saving claims.",
   },
 ];
 
@@ -463,10 +463,10 @@ export function OpenAIApplicationPage() {
 
               <div className="max-w-[760px] md:col-start-1 md:row-start-1">
                 <h1 className="dossier-hero-title max-w-[18ch]" style={{ fontSize: "clamp(30px, 8.2vw, 64px)" }}>
-                  Enterprise AI leader, builder and founder.
+                  I build AI systems with customers and get them working.
                 </h1>
                 <p className="mt-5 max-w-[56ch] text-[15px] leading-relaxed text-[var(--dossier-body)] md:mt-10 md:text-[17px] md:leading-[1.65]">
-                  Turning frontier AI into production across startups and large organisations. AI Lead at Zurich Airport, founder of KI-Unlocked, helping 10+ companies become AI-native. GPT-3 since 2020, with 15+ AI applications built.
+                  From customer discovery to working code, evaluations and adoption. AI Lead at Zurich Airport; founder and hands-on builder of 15+ AI applications spanning agents, enterprise knowledge and voice AI. Building with GPT models since 2020.
                 </p>
                 <div className="mt-6 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 md:mt-10">
                   <a
@@ -525,7 +525,7 @@ export function OpenAIApplicationPage() {
                   Enterprise deployment
                 </h3>
                 <p className="mt-2 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
-                  Discovery to production to governance. Full path.
+                  Customer discovery, working prototypes, enterprise rollout and governance.
                 </p>
                 <div className="mt-auto flex flex-wrap items-center gap-x-1.5 gap-y-2 pt-6">
                   {[
@@ -556,7 +556,7 @@ export function OpenAIApplicationPage() {
                   AI builder
                 </h3>
                 <p className="mt-2 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
-                  15+ products. Agents, RAG, voice AI, eval loops.
+                  15+ AI applications. Full-stack interfaces, APIs, agents, RAG and voice AI.
                 </p>
                 <div className="mt-auto flex items-center gap-3 pt-6">
                   {[Bot, FileText, Mic, Database, MessageSquareText].map((Icon, i) => (
@@ -578,7 +578,7 @@ export function OpenAIApplicationPage() {
                   Business x Engineering
                 </h3>
                 <p className="mt-2 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
-                  Translate between executives, engineers and end users to keep projects moving.
+                  Work directly with engineers, business owners and end users to scope, build, evaluate and unblock delivery.
                 </p>
                 <div className="mt-auto pt-6">
                   <svg viewBox="0 0 220 90" className="w-full max-w-[220px]" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -628,7 +628,7 @@ export function OpenAIApplicationPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: EASE_OUT_STRONG }}
             >
-              Three recent deployments
+              Three hands-on engineering engagements
             </motion.h2>
 
             <motion.article
@@ -755,7 +755,7 @@ export function OpenAIApplicationPage() {
         <section className="dossier-section-tight relative z-[2] !pt-0">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
-              Selected projects I created from scratch this year
+              Selected AI applications and working prototypes
             </h2>
             <p className="mt-2 text-sm text-[var(--dossier-muted)]">
               Personal products. AI infrastructure, voice, human intelligence.
@@ -805,7 +805,7 @@ export function OpenAIApplicationPage() {
                 I&apos;d rather show you than tell you.
               </h2>
               <p className="mt-3 max-w-[52ch] text-sm leading-relaxed text-[var(--dossier-muted)] md:text-[15px]">
-                30 minutes. I&apos;ll walk you through a live deployment, the decisions behind it, and where I think OpenAI&apos;s enterprise play should go next.
+                30 minutes. I&apos;ll show you the code, the prototypes, delivery decisions and failure modes—and discuss how field feedback can improve OpenAI products.
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-4">
                 <a
