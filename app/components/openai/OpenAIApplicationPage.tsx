@@ -967,34 +967,89 @@ export function OpenAIApplicationPage() {
           </div>
         </section>
 
-        <section className="dossier-section relative z-[2] pb-20 pt-8">
+        <section className="dossier-section relative z-[2] pb-24 pt-8" id="full-circle">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <div className="border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] p-7 md:p-9">
-              <h2 className="text-[clamp(30px,4vw,48px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
-                I&apos;d rather show you than tell you.
-              </h2>
-              <p className="mt-3 max-w-[52ch] text-sm leading-relaxed text-[var(--dossier-muted)] md:text-[15px]">
-                30 minutes. I&apos;ll show you the code, the prototypes, delivery decisions and failure modes—and discuss how field feedback can improve OpenAI products.
-              </p>
-              <div className="mt-6 flex flex-wrap items-center gap-4">
-                <a
-                  href="https://www.linkedin.com/in/terencela"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="dossier-button-primary dossier-cta-accent dossier-pressable inline-flex"
-                >
-                  Get in touch
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-                <a
-                  href="https://xp.terencela.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-[13px] text-[var(--dossier-muted)] transition-colors duration-200 hover:text-[var(--dossier-ink)]"
-                >
-                  See TerenceXP
-                  <ArrowUpRight className="h-3 w-3" />
-                </a>
+            <div className="rounded-2xl border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] p-6 md:p-10">
+              <div className="grid gap-8 md:grid-cols-12 md:items-center lg:gap-12">
+                <div className="flex flex-col items-center md:col-span-5">
+                  <div className="group relative w-full max-w-[320px] overflow-hidden rounded-xl border border-[var(--dossier-line-strong)] bg-[var(--dossier-surface)] shadow-md transition-all duration-300 hover:shadow-xl sm:max-w-[340px]">
+                    <div className="relative aspect-[640/922] w-full overflow-hidden bg-black/5">
+                      <Image
+                        src="/images/sam-altman-davos-wef.jpg"
+                        alt="Terence La speaking with Sam Altman, CEO of OpenAI, at the World Economic Forum in Davos"
+                        fill
+                        className="object-cover object-center"
+                        sizes="(max-width: 768px) 320px, 340px"
+                      />
+                    </div>
+                    <div className="border-t border-[var(--dossier-line)] bg-[var(--dossier-panel)] px-4 py-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[12px] font-semibold text-[var(--dossier-ink)]">
+                          World Economic Forum · Davos
+                        </span>
+                        <span className="rounded-full bg-[#10a37f]/10 px-2 py-0.5 text-[10px] font-medium text-[#10a37f]">
+                          WEF
+                        </span>
+                      </div>
+                      <p className="mt-1 text-[11px] leading-snug text-[var(--dossier-muted)]">
+                        Speaking with Sam Altman on frontier models and Swiss enterprise deployment.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-col md:col-span-7">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#10a37f]">
+                    Full circle · 2020 to 2026
+                  </p>
+                  <h2 className="mt-2 text-[clamp(28px,3.6vw,44px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)] leading-[1.12]">
+                    From Davos to Zurich. Ready to deploy.
+                  </h2>
+                  <p className="mt-4 text-[14px] leading-relaxed text-[var(--dossier-body)] md:text-[15px]">
+                    I started building on the OpenAI API with GPT-3 in 2020 while supporting executive communications for high-level delegations at the World Economic Forum in Davos. Speaking directly with Sam Altman about enterprise deployment cemented what I wanted to dedicate the next decade to.
+                  </p>
+                  <p className="mt-3 text-[14px] leading-relaxed text-[var(--dossier-body)] md:text-[15px]">
+                    As OpenAI expands its Forward Deployed Engineering presence in Zurich, I want to bring that full circle: turning frontier research into production reality across Switzerland&apos;s most critical enterprises.
+                  </p>
+
+                  <div className="mt-6 rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-surface)] p-4 md:p-5">
+                    <h3 className="text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
+                      I&apos;d rather show you than tell you.
+                    </h3>
+                    <p className="mt-1.5 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
+                      30 minutes. I&apos;ll walk through live code, production architectures, enterprise failure modes—and discuss how Swiss field feedback can shape OpenAI products.
+                    </p>
+                    <div className="mt-4 flex flex-wrap items-center gap-3">
+                      <a
+                        href="https://www.linkedin.com/in/terencela"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="dossier-button-primary dossier-cta-accent dossier-pressable inline-flex"
+                      >
+                        Get in touch
+                        <ArrowRight className="h-4 w-4" />
+                      </a>
+                      <a
+                        href="https://about.terencela.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-[13px] text-[var(--dossier-muted)] transition-colors duration-200 hover:text-[var(--dossier-ink)]"
+                      >
+                        Chat with TerenceAI
+                        <ArrowUpRight className="h-3 w-3" />
+                      </a>
+                      <a
+                        href="https://xp.terencela.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-[13px] text-[var(--dossier-muted)] transition-colors duration-200 hover:text-[var(--dossier-ink)]"
+                      >
+                        Discover TerenceXP
+                        <ArrowUpRight className="h-3 w-3" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

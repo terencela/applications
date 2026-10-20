@@ -1,5 +1,23 @@
 # Application Dossiers — Handoff
 
+## 2026-10-20: OpenAI FDE Dossier — Davos WEF Artifact with Sam Altman & Closing Reframe
+
+### Current State
+- The OpenAI Forward Deployed Engineer (Zurich) dossier is live on `https://openai.terencela.com`.
+- **Added Full Circle (Davos to Zurich) artifact block** (`#full-circle`):
+  - Framed editorial artifact showing Terence speaking with Sam Altman (CEO of OpenAI) at the World Economic Forum in Davos (`/images/sam-altman-davos-wef.jpg`), labeled with caption and WEF badge.
+  - Authentic narrative connecting his Credit Suisse / UBS Chairman's Office background at WEF, building with GPT-3 since 2020, speaking directly with Sam Altman on enterprise deployment, and bringing that full circle to OpenAI's Zurich FDE team.
+  - Integrated 30-minute meeting CTA and direct channels (LinkedIn, Chat with TerenceAI, Discover TerenceXP).
+  - Verified responsive design and dark/light theme contrast at 1440px desktop, 768px tablet, and 390px mobile.
+- **Animated Business × Tech Venn diagram**:
+  - Interactive two-circle intersection with spring physics and breakdown cards (Chairman's Office, HSG, Zurich Airport AI Lead, GPT-3 since 2020, 8× hackathon winner, 1 exit).
+- **Verified Deployments & Proof**:
+  - Zurich Airport Voice AI (~85K calls/yr).
+  - ZRH Insider App Rebuild (35K employees, 2 weeks solo execution).
+  - Leistera Swiss AEC Agentic Operations (~98% citation accuracy).
+
+---
+
 ## 2026-10-20: OpenAI FDE Dossier Overhauled with Animated Business × Tech Venn & Real CV Facts
 
 ### Current State
