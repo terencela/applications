@@ -1,20 +1,29 @@
 # Application Dossiers — Handoff
 
-## 2026-10-20: OpenAI FDE Dossier — Davos WEF Artifact with Sam Altman & Closing Reframe
+## 2026-10-20: OpenAI FDE Dossier Refinement — Single Portrait, Reordered Sections & Tailored Copy
 
 ### Current State
 - The OpenAI Forward Deployed Engineer (Zurich) dossier is live on `https://openai.terencela.com`.
-- **Added Full Circle (Davos to Zurich) artifact block** (`#full-circle`):
-  - Framed editorial artifact showing Terence speaking with Sam Altman (CEO of OpenAI) at the World Economic Forum in Davos (`/images/sam-altman-davos-wef.jpg`), labeled with caption and WEF badge.
-  - Authentic narrative connecting his Credit Suisse / UBS Chairman's Office background at WEF, building with GPT-3 since 2020, speaking directly with Sam Altman on enterprise deployment, and bringing that full circle to OpenAI's Zurich FDE team.
-  - Integrated 30-minute meeting CTA and direct channels (LinkedIn, Chat with TerenceAI, Discover TerenceXP).
-  - Verified responsive design and dark/light theme contrast at 1440px desktop, 768px tablet, and 390px mobile.
-- **Animated Business × Tech Venn diagram**:
-  - Interactive two-circle intersection with spring physics and breakdown cards (Chairman's Office, HSG, Zurich Airport AI Lead, GPT-3 since 2020, 8× hackathon winner, 1 exit).
-- **Verified Deployments & Proof**:
-  - Zurich Airport Voice AI (~85K calls/yr).
-  - ZRH Insider App Rebuild (35K employees, 2 weeks solo execution).
-  - Leistera Swiss AEC Agentic Operations (~98% citation accuracy).
+- **Eliminated duplicate profile photo**:
+  - The hero displays Terence's official portrait (`/images/terence-la-profile.png`).
+  - Added `showCoverPhoto={false}` to `LoomVideoFrame.tsx` so the video player does not repeat the portrait on the page.
+- **Hero Title & Headline Copy**:
+  - Tailored H1 specifically for the role: `"Forward deployed engineer for enterprise AI."`
+  - Subhead cleaned up: `"1 exit"` instead of mentioning a startup name, keeping focus on enterprise-grade impact.
+- **Section Order Realigned**:
+  1. **Hero**: Title, value proposition, CTA, credibility logos.
+  2. **Business Leader. Hands-on Engineer (Venn Diagram)**: Positioned directly under hero logos, establishing the dual profile before deep-diving into individual deployments. Graphic scaled down cleanly (540×280 SVG viewBox, r=108) with compact cards.
+  3. **Three Hands-On Engineering Engagements**: Deep technical proof (Zurich Airport Voice AI, ZRH Insider 2-week rebuild, Leistera AEC agentic ops).
+  4. **Selected AI Applications**: Compact grid displaying live tools (Leistera, PrivacyLayer, Rehearse, Treasure, etc.).
+  5. **90-Second Candidate Walkthrough**: Positioned gracefully below projects, providing a direct human intro without interrupting technical proof.
+  6. **From Davos to Zurich (`#full-circle`)**: Sam Altman / WEF artifact and 30-minute meeting CTA.
+- **Copy & Pillar Refinements**:
+  - **Business Pillars**: Emphasizes C-suite / Chairman's Office at UBS/CS, Davos delegate briefings, Zurich Airport scale, agency $1M+ client revenue generated, and 1 acquisition exit. Removed obsolete startup names.
+  - **Tech Pillars**: Moved 8× Hackathon Winner to #2, explicitly emphasizing **solo wins** and reverse-engineering rubrics; directly references real portfolio projects (Leistera, PrivacyLayer, Rehearse).
+- **Verified Build & Deployment**:
+  - Tested locally at 1440px desktop, 768px tablet, and 390px mobile via Playwright.
+  - Pushed to `origin main` (commit `9d68b3e`) and deployed to Vercel production.
+  - Verified live endpoint `https://openai.terencela.com` serves the updated content.
 
 ---
 
