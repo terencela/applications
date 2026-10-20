@@ -5,18 +5,8 @@ import Image from "next/image";
 import {
   ArrowRight,
   ArrowUpRight,
-  Bot,
-  Building2,
-  Cpu,
-  Database,
-  FileText,
-  MessageSquareText,
-  Mic,
   Search,
-  ShieldCheck,
   Sparkles,
-  Users,
-  Workflow,
 } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { DossierBackground } from "@/app/components/shared/DossierBackground";
@@ -121,31 +111,32 @@ const deployments: DeploymentExample[] = [
     challenge: "Fragmented Android/iOS slowed delivery.",
     stats: [
       { value: "35K", label: "employees" },
-      { value: "Rebuild", label: "app foundation" },
+      { value: "2 weeks", label: "solo rebuild" },
+      { value: "CHF 200K", label: "external quote saved" },
     ],
     role: [
-      "Rebuilt app foundation in one month",
-      "Consolidated architecture for faster rollout",
-      "Designed engagement loops",
+      "Rebuilt 35K-user app foundation in two weeks",
+      "Consolidated 3 codebases into 1 scalable architecture",
+      "Transformed into a gamified retention and revenue channel",
     ],
-    outcomeHighlight: "Shipped.",
-    outcome: "Rebuilt app foundation for faster iteration; estimated external replacement cost, not measured realized savings.",
+    outcomeHighlight: "Shipped in 2 weeks.",
+    outcome: "Replaced a CHF 200K external quote. Now scaling across airport staff.",
   },
   {
-    title: "Engineering Client - Knowledge AI Pilot",
-    subtitle: "Customer-specific knowledge retrieval and document-governance pilot.",
-    challenge: "Scattered data, manual proposal work, zero prep time.",
+    title: "Leistera - AI Operating System for Engineering Firms",
+    subtitle: "Custom agent harness and autonomous workflows for Swiss AEC offices.",
+    challenge: "Scattered project archives, manual proposal drafting, strict norm citations.",
     stats: [
-      { value: "~260", label: "documents reviewed" },
-      { value: "~10K", label: "source documents in scope" },
+      { value: "~98%", label: "benchmark accuracy" },
+      { value: "30h to 3h", label: "per proposal" },
     ],
     role: [
-      "PoC ready before first sales meeting",
-      "OCR + model routing + RAG pipeline",
-      "Defined knowledge-AI pilot with client stakeholders",
+      "Built custom agent harness, OCR + hybrid RAG pipeline",
+      "Optimized latency, cost, and page-level citation grounding",
+      "Live client pilot and production rollout via leistera.com",
     ],
-    outcomeHighlight: "Prototype before the first meeting.",
-    outcome: "Pilot and knowledge governance work; no unverified production accuracy or time-saving claims.",
+    outcomeHighlight: "Live in production.",
+    outcome: "98% benchmark accuracy on real engineering corpora.",
   },
 ];
 
@@ -168,6 +159,7 @@ const selectedProjects: SelectedProject[] = [
     visual: "knowledge",
     description: "RAG + OCR pipeline connecting project history, decisions and expertise across offices.",
     evidence: "Vertical system designed",
+    url: "https://leistera.com",
   },
   {
     name: "Vibe Translator",
@@ -177,7 +169,7 @@ const selectedProjects: SelectedProject[] = [
     visual: "messages",
     description: "Context layer decoding tone, personality and culture before generating responses.",
     evidence: "Interactive product prototype",
-    url: "https://vibes.terencela.com",
+    url: "https://vibes.terencela.com/v3",
   },
   {
     name: "AirCompanion",
@@ -225,197 +217,469 @@ const accentStyles = {
   "--hero-accent": "#10a37f",
 } as CSSProperties;
 
-const deploymentStages = [
+const businessPillars = [
   {
-    label: "Discover",
-    layer: "Intake",
-    desc: "Map stakeholders, data boundaries and who can say yes.",
-    runs: "Call arrives, language detect, intent classify",
-    blocker: "Procurement cycles and too many stakeholders, no single owner.",
+    title: "Executive & Board Alignment",
+    detail: "Management Support at Chairman's Office (UBS/Credit Suisse), WEF delegate briefing, Interim CAIO.",
   },
   {
-    label: "Decide",
-    layer: "Governance",
-    desc: "Align legal, IT and the business on what shipped means.",
-    runs: "Eval criteria, audit trail, sign-off path",
-    blocker: "Legal and IT want different guarantees than the business.",
+    title: "Governance & Swiss Compliance",
+    detail: "Leading AI deployment at Zurich Airport (32M+ passengers/yr). Navigating nDSG, works councils & enterprise tenders.",
   },
   {
-    label: "Build",
-    layer: "Orchestration",
-    desc: "Prototype on real traffic, not sandbox demos.",
-    runs: "Routing, context load, knowledge retrieval",
-    blocker: "Edge cases in DE, FR and IT break trust before go-live.",
+    title: "Commercial & Founder Track Record",
+    detail: "1 startup exit (NeverAlone.ch), $1M+ client revenue generated, M.A. Business Innovation (HSG), Forbes 30u30.",
   },
-  {
-    label: "Deploy",
-    layer: "Execution",
-    desc: "Eval gates, rollback plans, production sign-off.",
-    runs: "Generate, safety filter, voice synthesis",
-    blocker: "Fear of passenger-facing voice AI in a regulated airport.",
-  },
-  {
-    label: "Scale",
-    layer: "Governance",
-    desc: "Handoff, monitoring and ownership inside the org.",
-    runs: "Eval gate, audit log, rollback trigger",
-    blocker: "Adoption fades without an internal owner after launch.",
-  },
-] as const;
+];
 
-function DeploymentSystem({
-  reduceMotion,
-  activeStageIdx,
-  onStageSelect,
-}: {
-  reduceMotion: boolean | null;
-  activeStageIdx: number;
-  onStageSelect: (idx: number) => void;
-}) {
-  const stages = deploymentStages;
-  const active = stages[activeStageIdx] ?? stages[0];
-  const R = 140;
-  const cx = 200;
-  const cy = 200;
-  const startAngle = -90;
-  const nodeR = 38;
+const techPillars = [
+  {
+    title: "Production Agent Harnesses",
+    detail: "Custom agent loops, hybrid RAG, eval pipelines, tool-calling & autonomous execution. GPT-3 since 2020.",
+  },
+  {
+    title: "Full-Stack Velocity",
+    detail: "Rebuilt 35K-user app (ZRH Insider) in 2 weeks (saved CHF 200K quote). Built & shipped 20+ functional AI products.",
+  },
+  {
+    title: "Competitive Engineering Rigor",
+    detail: "8× Hackathon Winner, including 3rd prize overall at HackZurich (1,600 engineers). Deep voice AI & low-latency streaming.",
+  },
+];
 
-  const positions = stages.map((_, i) => {
-    const angle = startAngle + (i * 360) / stages.length;
-    const rad = (angle * Math.PI) / 180;
-    return { x: cx + R * Math.cos(rad), y: cy + R * Math.sin(rad) };
-  });
+const intersectionPowers = [
+  {
+    title: "C-Suite to Codebase in 1 Step",
+    desc: "Sit in the steering committee meeting on Monday, architect and ship the production pilot by Friday.",
+  },
+  {
+    title: "Tenders That Actually Go Live",
+    desc: "Unblock enterprise legal, security, and procurement instead of watching frontier models stall in review.",
+  },
+  {
+    title: "Native Swiss/DACH Authority",
+    desc: "Native in German, Swiss German, English & Cantonese. Local cultural fluency with global technical standards.",
+  },
+];
+
+function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | null }) {
+  const [activeTab, setActiveTab] = useState<"overlap" | "business" | "tech">("overlap");
 
   return (
-    <section className="dossier-section-tight relative z-[2] !pt-0 !pb-6">
+    <section className="dossier-section relative z-[2] !pt-4 !pb-10" id="business-tech-overlap">
       <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-        <h2 className="text-[clamp(24px,3vw,34px)] font-semibold tracking-[-0.03em] text-[var(--dossier-ink)]">
-          How I move from zero to deployed
-        </h2>
-        <p className="mt-2 max-w-[52ch] text-sm text-[var(--dossier-body)]">
-          Five stages. Pick one to see the layer, what runs, and what blocks it.
-        </p>
+        <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#10a37f]">
+              The Rare Combination
+            </p>
+            <h2 className="mt-2 text-[clamp(28px,3.8vw,44px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
+              Business leader. Hands-on engineer.
+            </h2>
+            <p className="mt-2 max-w-[62ch] text-[14px] leading-relaxed text-[var(--dossier-body)] md:text-[15px]">
+              Most enterprise executives can&apos;t write production code. Most engineers freeze when procurement, works councils, or C-suite sponsors demand governance. Here is what I actually mean by both—and why the overlap unlocks OpenAI&apos;s biggest enterprise accounts.
+            </p>
+          </div>
 
-        <div className="mt-4 flex flex-wrap gap-2 lg:hidden" role="tablist" aria-label="Deployment stages">
-          {stages.map((stage, i) => {
-            const isActive = i === activeStageIdx;
-            return (
-              <button
-                key={stage.label}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                onClick={() => onStageSelect(i)}
-                className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
-                  isActive
-                    ? "border border-[#10a37f] bg-[#10a37f] text-white"
-                    : "border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] text-[var(--dossier-ink)]"
-                }`}
-              >
-                {stage.label}
-              </button>
-            );
-          })}
+          <div className="inline-flex rounded-full border border-[var(--dossier-line-strong)] bg-[var(--dossier-panel)] p-1 text-xs">
+            <button
+              type="button"
+              onClick={() => setActiveTab("overlap")}
+              className={`rounded-full px-3 py-1.5 font-medium transition-all duration-200 ${
+                activeTab === "overlap"
+                  ? "bg-[#10a37f] text-white shadow-sm"
+                  : "text-[var(--dossier-muted)] hover:text-[var(--dossier-ink)]"
+              }`}
+            >
+              The Overlap
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab("business")}
+              className={`rounded-full px-3 py-1.5 font-medium transition-all duration-200 ${
+                activeTab === "business"
+                  ? "bg-[#10a37f] text-white shadow-sm"
+                  : "text-[var(--dossier-muted)] hover:text-[var(--dossier-ink)]"
+              }`}
+            >
+              Business
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab("tech")}
+              className={`rounded-full px-3 py-1.5 font-medium transition-all duration-200 ${
+                activeTab === "tech"
+                  ? "bg-[#10a37f] text-white shadow-sm"
+                  : "text-[var(--dossier-muted)] hover:text-[var(--dossier-ink)]"
+              }`}
+            >
+              Tech
+            </button>
+          </div>
         </div>
 
-        <div className="mt-4 grid items-center gap-4 lg:mt-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] lg:items-start lg:gap-8">
-          <motion.div
-            className="relative mx-auto w-full max-w-[380px] lg:mx-0 lg:max-w-none"
-            initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: EASE_OUT_STRONG }}
-          >
-            <svg viewBox="0 0 400 400" className="w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx={cx} cy={cy} r={R} stroke="var(--dossier-line)" strokeWidth="1" />
+        {/* Visual Venn Graphic */}
+        <div className="mt-8 overflow-hidden rounded-2xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-6 md:p-10">
+          <div className="relative mx-auto flex w-full max-w-[880px] flex-col items-center justify-center py-6 md:py-10">
+            {/* SVG Interactive Animated Two-Circle Venn */}
+            <div className="relative aspect-[16/10] w-full max-w-[700px] select-none sm:aspect-[16/9]">
+              <svg
+                viewBox="0 0 600 360"
+                className="h-full w-full drop-shadow-sm"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <defs>
+                  {/* Left circle gradient (Business / ink / deep slate) */}
+                  <linearGradient id="businessGradient" x1="120" y1="60" x2="300" y2="300" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#1e222d" stopOpacity="0.95" />
+                    <stop offset="100%" stopColor="#0f1117" stopOpacity="0.98" />
+                  </linearGradient>
 
-              {positions.map((p, i) => {
-                const next = positions[(i + 1) % positions.length];
-                const mx = (p.x + next.x) / 2;
-                const my = (p.y + next.y) / 2;
-                const dx = next.x - p.x;
-                const dy = next.y - p.y;
-                const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
-                return (
-                  <polygon
-                    key={`arrow-${stages[i].label}`}
-                    points="0,-2.5 5,0 0,2.5"
-                    fill="var(--dossier-subtle)"
-                    transform={`translate(${mx},${my}) rotate(${angle})`}
+                  {/* Right circle gradient (Tech / elevated contrast emerald / light) */}
+                  <linearGradient id="techGradient" x1="300" y1="60" x2="480" y2="300" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#15362a" stopOpacity="0.92" />
+                    <stop offset="100%" stopColor="#0b1e17" stopOpacity="0.96" />
+                  </linearGradient>
+
+                  {/* Center overlap glow */}
+                  <radialGradient id="overlapGlow" cx="300" cy="180" r="110" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#10a37f" stopOpacity="0.35" />
+                    <stop offset="85%" stopColor="#10a37f" stopOpacity="0.08" />
+                    <stop offset="100%" stopColor="#10a37f" stopOpacity="0" />
+                  </radialGradient>
+                </defs>
+
+                {/* Left Circle: Business */}
+                <motion.g
+                  animate={
+                    reduceMotion
+                      ? undefined
+                      : {
+                          x: activeTab === "tech" ? -15 : activeTab === "business" ? 10 : 0,
+                          scale: activeTab === "business" ? 1.03 : activeTab === "tech" ? 0.97 : 1,
+                        }
+                  }
+                  transition={{ type: "spring", stiffness: 180, damping: 22 }}
+                  className="cursor-pointer"
+                  onClick={() => setActiveTab("business")}
+                >
+                  <circle
+                    cx="225"
+                    cy="180"
+                    r="135"
+                    fill="url(#businessGradient)"
+                    stroke={activeTab === "business" ? "#10a37f" : "rgba(255, 255, 255, 0.16)"}
+                    strokeWidth={activeTab === "business" ? "2.5" : "1.5"}
+                    className="transition-colors duration-300"
                   />
-                );
-              })}
+                  {/* Subtle inner ring */}
+                  <circle
+                    cx="225"
+                    cy="180"
+                    r="105"
+                    stroke="rgba(255, 255, 255, 0.05)"
+                    strokeDasharray="4 4"
+                    strokeWidth="1"
+                  />
+                </motion.g>
 
-              {stages.map((stage, i) => {
-                const p = positions[i];
-                const isActive = activeStageIdx === i;
-                return (
-                  <g
-                    key={stage.label}
-                    onClick={() => onStageSelect(i)}
-                    className="cursor-pointer"
-                    role="button"
-                    tabIndex={0}
-                    aria-pressed={isActive}
-                    aria-label={`${stage.label}: ${stage.desc}`}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") onStageSelect(i);
-                    }}
+                {/* Right Circle: Tech */}
+                <motion.g
+                  animate={
+                    reduceMotion
+                      ? undefined
+                      : {
+                          x: activeTab === "business" ? 15 : activeTab === "tech" ? -10 : 0,
+                          scale: activeTab === "tech" ? 1.03 : activeTab === "business" ? 0.97 : 1,
+                        }
+                  }
+                  transition={{ type: "spring", stiffness: 180, damping: 22 }}
+                  className="cursor-pointer"
+                  onClick={() => setActiveTab("tech")}
+                >
+                  <circle
+                    cx="375"
+                    cy="180"
+                    r="135"
+                    fill="url(#techGradient)"
+                    stroke={activeTab === "tech" ? "#10a37f" : "rgba(16, 163, 127, 0.35)"}
+                    strokeWidth={activeTab === "tech" ? "2.5" : "1.5"}
+                    className="transition-colors duration-300"
+                  />
+                  <circle
+                    cx="375"
+                    cy="180"
+                    r="105"
+                    stroke="rgba(16, 163, 127, 0.12)"
+                    strokeDasharray="4 4"
+                    strokeWidth="1"
+                  />
+                </motion.g>
+
+                {/* Overlap Intersection Zone */}
+                <motion.g
+                  animate={
+                    reduceMotion
+                      ? undefined
+                      : {
+                          scale: activeTab === "overlap" ? 1.04 : 1,
+                        }
+                  }
+                  transition={{ type: "spring", stiffness: 220, damping: 20 }}
+                  className="cursor-pointer"
+                  onClick={() => setActiveTab("overlap")}
+                >
+                  {/* Overlap ellipse glow */}
+                  <ellipse
+                    cx="300"
+                    cy="180"
+                    rx="60"
+                    ry="95"
+                    fill="url(#overlapGlow)"
+                  />
+                  <ellipse
+                    cx="300"
+                    cy="180"
+                    rx="58"
+                    ry="90"
+                    stroke="#10a37f"
+                    strokeWidth={activeTab === "overlap" ? "2" : "1"}
+                    strokeDasharray={activeTab === "overlap" ? "none" : "3 3"}
+                    opacity={activeTab === "overlap" ? "0.9" : "0.5"}
+                  />
+                </motion.g>
+
+                {/* Text and Labels rendered cleanly inside SVG */}
+                {/* Left Label */}
+                <g className="pointer-events-none select-none">
+                  <text
+                    x="165"
+                    y="142"
+                    textAnchor="middle"
+                    fill="#ffffff"
+                    fontSize="18"
+                    fontWeight="700"
+                    letterSpacing="-0.02em"
                   >
-                    <circle
-                      cx={p.x}
-                      cy={p.y}
-                      r={nodeR}
-                      fill={isActive ? "#10a37f" : "var(--dossier-panel)"}
-                      stroke={isActive ? "#10a37f" : "var(--dossier-line-strong)"}
-                      strokeWidth={isActive ? "2" : "1"}
-                    />
-                    <text
-                      x={p.x}
-                      y={p.y + 1}
-                      textAnchor="middle"
-                      dominantBaseline="central"
-                      fill={isActive ? "#ffffff" : "var(--dossier-ink)"}
-                      fontSize="12"
-                      fontWeight="600"
-                    >
-                      {stage.label}
-                    </text>
-                  </g>
-                );
-              })}
-            </svg>
-          </motion.div>
+                    BUSINESS
+                  </text>
+                  <text
+                    x="165"
+                    y="166"
+                    textAnchor="middle"
+                    fill="#cbd5e1"
+                    fontSize="11"
+                    fontWeight="500"
+                  >
+                    Chairman&apos;s Office · HSG
+                  </text>
+                  <text
+                    x="165"
+                    y="185"
+                    textAnchor="middle"
+                    fill="#cbd5e1"
+                    fontSize="11"
+                    fontWeight="500"
+                  >
+                    Zurich Airport AI Lead
+                  </text>
+                  <text
+                    x="165"
+                    y="204"
+                    textAnchor="middle"
+                    fill="#cbd5e1"
+                    fontSize="11"
+                    fontWeight="500"
+                  >
+                    $1M+ Client Rev · 1 Exit
+                  </text>
+                </g>
 
-          <div
-            className="rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-4 lg:rounded-none lg:border-0 lg:border-l lg:border-[var(--dossier-line)] lg:bg-transparent lg:p-0 lg:pl-8"
-            role="tabpanel"
-            aria-live="polite"
-          >
-            <p className="text-lg font-semibold tracking-tight text-[var(--dossier-ink)]">
-              {active.label}
+                {/* Right Label */}
+                <g className="pointer-events-none select-none">
+                  <text
+                    x="435"
+                    y="142"
+                    textAnchor="middle"
+                    fill="#ffffff"
+                    fontSize="18"
+                    fontWeight="700"
+                    letterSpacing="-0.02em"
+                  >
+                    TECH
+                  </text>
+                  <text
+                    x="435"
+                    y="166"
+                    textAnchor="middle"
+                    fill="#d1fae5"
+                    fontSize="11"
+                    fontWeight="500"
+                  >
+                    GPT-3 Since 2020
+                  </text>
+                  <text
+                    x="435"
+                    y="185"
+                    textAnchor="middle"
+                    fill="#d1fae5"
+                    fontSize="11"
+                    fontWeight="500"
+                  >
+                    20+ Shipped AI Apps
+                  </text>
+                  <text
+                    x="435"
+                    y="204"
+                    textAnchor="middle"
+                    fill="#d1fae5"
+                    fontSize="11"
+                    fontWeight="500"
+                  >
+                    8× Hackathon Winner
+                  </text>
+                </g>
+
+                {/* Overlap Center Label */}
+                <g className="pointer-events-none select-none">
+                  <rect
+                    x="245"
+                    y="160"
+                    width="110"
+                    height="40"
+                    rx="8"
+                    fill="#0a0b0f"
+                    fillOpacity="0.85"
+                    stroke="#10a37f"
+                    strokeWidth="1.2"
+                  />
+                  <text
+                    x="300"
+                    y="178"
+                    textAnchor="middle"
+                    fill="#10a37f"
+                    fontSize="10"
+                    fontWeight="700"
+                    letterSpacing="0.06em"
+                  >
+                    OPENAI FDE
+                  </text>
+                  <text
+                    x="300"
+                    y="192"
+                    textAnchor="middle"
+                    fill="#ffffff"
+                    fontSize="9.5"
+                    fontWeight="600"
+                  >
+                    Ships &amp; Aligns
+                  </text>
+                </g>
+              </svg>
+            </div>
+
+            <p className="mt-4 text-center text-xs text-[var(--dossier-muted)]">
+              Click any circle or toggle above to explore the detailed breakdown.
             </p>
-            <p className="mt-1 text-sm font-medium text-[#10a37f]">
-              Layer: {active.layer}
-            </p>
-            <p className="mt-1.5 text-sm leading-snug text-[var(--dossier-body)]">
-              {active.desc}
-            </p>
-            <div className="mt-4 space-y-3">
-              <div>
-                <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-muted)]">
-                  What runs
-                </p>
-                <p className="mt-1 text-sm leading-snug text-[var(--dossier-ink)]">{active.runs}</p>
+          </div>
+
+          {/* Cards Breakdown beneath the Circles */}
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {/* Business Column */}
+            <div
+              onClick={() => setActiveTab("business")}
+              className={`cursor-pointer rounded-xl border p-5 transition-all duration-200 ${
+                activeTab === "business"
+                  ? "border-[#10a37f] bg-[var(--dossier-dark)] ring-1 ring-[#10a37f]"
+                  : "border-[var(--dossier-line)] bg-[var(--dossier-panel)] hover:border-[var(--dossier-line-strong)]"
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dossier-subtle)]">
+                  Circle 1
+                </span>
+                <span className="rounded-full bg-white/5 px-2 py-0.5 text-[10px] font-medium text-[var(--dossier-muted)]">
+                  Enterprise Reality
+                </span>
               </div>
-              <div>
-                <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--dossier-muted)]">
-                  What blocks it
-                </p>
-                <p className="mt-1 text-sm leading-snug text-[var(--dossier-body)]">
-                  {active.blocker}
-                </p>
+              <h3 className="mt-2 text-base font-semibold tracking-tight text-[var(--dossier-ink)]">
+                What I mean by Business
+              </h3>
+              <p className="mt-1 text-xs text-[var(--dossier-muted)]">
+                Not slide deck decks or advisory slogans—real operating ownership.
+              </p>
+              <ul className="mt-4 space-y-3 border-t border-[var(--dossier-line)] pt-3 text-xs leading-relaxed text-[var(--dossier-body)]">
+                {businessPillars.map((p) => (
+                  <li key={p.title}>
+                    <strong className="text-[var(--dossier-ink)]">{p.title}:</strong> {p.detail}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Overlap Column */}
+            <div
+              onClick={() => setActiveTab("overlap")}
+              className={`cursor-pointer rounded-xl border p-5 transition-all duration-200 ${
+                activeTab === "overlap"
+                  ? "border-[#10a37f] bg-[var(--dossier-dark)] ring-1 ring-[#10a37f]"
+                  : "border-[var(--dossier-line)] bg-[var(--dossier-panel)] hover:border-[var(--dossier-line-strong)]"
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#10a37f]">
+                  Intersection
+                </span>
+                <span className="rounded-full bg-[#10a37f]/10 px-2 py-0.5 text-[10px] font-semibold text-[#10a37f]">
+                  Why It&apos;s Rare
+                </span>
               </div>
+              <h3 className="mt-2 text-base font-semibold tracking-tight text-[var(--dossier-ink)]">
+                The Forward Deployed Advantage
+              </h3>
+              <p className="mt-1 text-xs text-[var(--dossier-muted)]">
+                Why Swiss enterprise pilots stall without this exact combination.
+              </p>
+              <ul className="mt-4 space-y-3 border-t border-[var(--dossier-line)] pt-3 text-xs leading-relaxed text-[var(--dossier-body)]">
+                {intersectionPowers.map((p) => (
+                  <li key={p.title}>
+                    <strong className="text-[var(--dossier-ink)]">{p.title}:</strong> {p.desc}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Tech Column */}
+            <div
+              onClick={() => setActiveTab("tech")}
+              className={`cursor-pointer rounded-xl border p-5 transition-all duration-200 ${
+                activeTab === "tech"
+                  ? "border-[#10a37f] bg-[var(--dossier-dark)] ring-1 ring-[#10a37f]"
+                  : "border-[var(--dossier-line)] bg-[var(--dossier-panel)] hover:border-[var(--dossier-line-strong)]"
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dossier-subtle)]">
+                  Circle 2
+                </span>
+                <span className="rounded-full bg-white/5 px-2 py-0.5 text-[10px] font-medium text-[var(--dossier-muted)]">
+                  Production Depth
+                </span>
+              </div>
+              <h3 className="mt-2 text-base font-semibold tracking-tight text-[var(--dossier-ink)]">
+                What I mean by Tech
+              </h3>
+              <p className="mt-1 text-xs text-[var(--dossier-muted)]">
+                Not ChatGPT prompt wrappers—hard engineering that runs reliably.
+              </p>
+              <ul className="mt-4 space-y-3 border-t border-[var(--dossier-line)] pt-3 text-xs leading-relaxed text-[var(--dossier-body)]">
+                {techPillars.map((p) => (
+                  <li key={p.title}>
+                    <strong className="text-[var(--dossier-ink)]">{p.title}:</strong> {p.detail}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
@@ -426,7 +690,6 @@ function DeploymentSystem({
 
 export function OpenAIApplicationPage() {
   const reduceMotion = useReducedMotion();
-  const [activeStageIdx, setActiveStageIdx] = useState(0);
 
   return (
     <DossierThemeProvider>
@@ -463,10 +726,10 @@ export function OpenAIApplicationPage() {
 
               <div className="max-w-[760px] md:col-start-1 md:row-start-1">
                 <h1 className="dossier-hero-title max-w-[18ch]" style={{ fontSize: "clamp(30px, 8.2vw, 64px)" }}>
-                  I build AI systems with customers and get them working.
+                  Enterprise AI leader, builder and founder.
                 </h1>
                 <p className="mt-5 max-w-[56ch] text-[15px] leading-relaxed text-[var(--dossier-body)] md:mt-10 md:text-[17px] md:leading-[1.65]">
-                  From customer discovery to working code, evaluations and adoption. AI Lead at Zurich Airport; founder and hands-on builder of 15+ AI applications spanning agents, enterprise knowledge and voice AI. Building with GPT models since 2020.
+                  Enterprise AI Lead at Zurich Airport (32M+ passengers/yr). 20+ functional AI products built, GPT-3 builder since 2020, 8× hackathon winner, and 1 startup exit. Bridging C-suite strategy, rigorous enterprise governance, and rapid full-stack engineering.
                 </p>
                 <div className="mt-6 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 md:mt-10">
                   <a
@@ -504,96 +767,6 @@ export function OpenAIApplicationPage() {
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="dossier-section relative z-[2] pt-9">
-          <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#10a37f]">
-              Why me
-            </p>
-            <h2 className="mt-2 text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
-              What I bring to OpenAI on day one.
-            </h2>
-            <div className="mt-6 grid gap-4 md:grid-cols-3">
-              <article className="flex flex-col rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-6 pb-7">
-                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#10a37f]/[0.08]">
-                  <Workflow className="h-6 w-6 text-[#10a37f]" />
-                </div>
-                <h3 className="text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
-                  Enterprise deployment
-                </h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
-                  Customer discovery, working prototypes, enterprise rollout and governance.
-                </p>
-                <div className="mt-auto flex flex-wrap items-center gap-x-1.5 gap-y-2 pt-6">
-                  {[
-                    { icon: Search, label: "Discover" },
-                    { icon: Building2, label: "Build" },
-                    { icon: ArrowUpRight, label: "Deploy" },
-                    { icon: Users, label: "Adopt" },
-                    { icon: ShieldCheck, label: "Govern" },
-                  ].map((step, i) => (
-                    <React.Fragment key={step.label}>
-                      <div className="flex flex-col items-center gap-1">
-                        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#10a37f]/[0.08]">
-                          <step.icon className="h-3.5 w-3.5 text-[#10a37f]" />
-                        </span>
-                        <span className="text-[8px] font-medium text-[var(--dossier-muted)]">{step.label}</span>
-                      </div>
-                      {i < 4 && <ArrowRight className="mt-[-10px] h-2.5 w-2.5 shrink-0 text-[var(--dossier-subtle)]" />}
-                    </React.Fragment>
-                  ))}
-                </div>
-              </article>
-
-              <article className="flex flex-col rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-6 pb-7">
-                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#10a37f]/[0.08]">
-                  <Cpu className="h-6 w-6 text-[#10a37f]" />
-                </div>
-                <h3 className="text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
-                  AI builder
-                </h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
-                  15+ AI applications. Full-stack interfaces, APIs, agents, RAG and voice AI.
-                </p>
-                <div className="mt-auto flex items-center gap-3 pt-6">
-                  {[Bot, FileText, Mic, Database, MessageSquareText].map((Icon, i) => (
-                    <span
-                      key={i}
-                      className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#10a37f]/[0.08]"
-                    >
-                      <Icon className="h-4 w-4 text-[#10a37f]" />
-                    </span>
-                  ))}
-                </div>
-              </article>
-
-              <article className="flex flex-col rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-6 pb-7">
-                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#10a37f]/[0.08]">
-                  <Users className="h-6 w-6 text-[#10a37f]" />
-                </div>
-                <h3 className="text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
-                  Business x Engineering
-                </h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
-                  Work directly with engineers, business owners and end users to scope, build, evaluate and unblock delivery.
-                </p>
-                <div className="mt-auto pt-6">
-                  <svg viewBox="0 0 220 90" className="w-full max-w-[220px]" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="48" y1="22" x2="172" y2="22" stroke="#10a37f" strokeWidth="1" opacity="0.5" />
-                    <line x1="40" y1="24" x2="110" y2="76" stroke="#10a37f" strokeWidth="1" opacity="0.5" />
-                    <line x1="180" y1="24" x2="110" y2="76" stroke="#10a37f" strokeWidth="1" opacity="0.5" />
-                    <circle cx="40" cy="20" r="4" fill="#10a37f" opacity="0.8" />
-                    <circle cx="180" cy="20" r="4" fill="#10a37f" opacity="0.8" />
-                    <circle cx="110" cy="78" r="4" fill="#10a37f" opacity="0.8" />
-                    <text x="18" y="12" fontSize="9" fontWeight="500" className="fill-[var(--dossier-ink)]">Business</text>
-                    <text x="148" y="12" fontSize="9" fontWeight="500" className="fill-[var(--dossier-ink)]">Engineering</text>
-                    <text x="92" y="89" fontSize="9" fontWeight="500" className="fill-[var(--dossier-ink)]">User</text>
-                  </svg>
-                </div>
-              </article>
             </div>
           </div>
         </section>
@@ -746,13 +919,9 @@ export function OpenAIApplicationPage() {
           </div>
         </section>
 
-        <DeploymentSystem
-          reduceMotion={reduceMotion}
-          activeStageIdx={activeStageIdx}
-          onStageSelect={setActiveStageIdx}
-        />
+        <BusinessTechIntersection reduceMotion={reduceMotion} />
 
-        <section className="dossier-section-tight relative z-[2] !pt-0">
+        <section className="dossier-section-tight dossier-projects-compact-section relative z-[2] !pt-2">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
               Selected AI applications and working prototypes
@@ -764,7 +933,7 @@ export function OpenAIApplicationPage() {
               {selectedProjects.map((project, index) => (
                 <div
                   key={project.name}
-                  className={`project-card accent-${project.accent}`}
+                  className={`project-card dossier-project-card-compact accent-${project.accent}`}
                   style={{ cursor: "default" }}
                 >
                   <div className="card-topline">

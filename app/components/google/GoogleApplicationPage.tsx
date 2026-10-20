@@ -1,13 +1,12 @@
 "use client";
 
-import React, { useEffect, useState, type CSSProperties } from "react";
+import React, { useEffect, type CSSProperties } from "react";
 import Image from "next/image";
 import {
   ArrowRight,
   ArrowUpRight,
   Bot,
   Building2,
-  Clock3,
   Cpu,
   Database,
   FileText,
@@ -15,7 +14,6 @@ import {
   Mic,
   Search,
   ShieldCheck,
-  Sparkles,
   Users,
   Workflow,
 } from "lucide-react";
@@ -170,6 +168,7 @@ const selectedProjects: SelectedProject[] = [
     description: "RAG + OCR pipeline connecting project history, decisions and expertise across offices.",
     remark: "Hybrid BM25 + dense retrieval · Exact PDF citation coordinates",
     evidence: "Vertical system designed",
+    url: "https://leistera.com",
   },
   {
     name: "Vibe Translator",
@@ -180,7 +179,7 @@ const selectedProjects: SelectedProject[] = [
     description: "Context layer decoding tone, personality and culture before generating responses.",
     remark: "Cultural subtext alignment · Multi-turn communication decoding",
     evidence: "Interactive product prototype",
-    url: "https://vibes.terencela.com",
+    url: "https://vibes.terencela.com/v3",
   },
   {
     name: "AirCompanion",
@@ -472,7 +471,7 @@ export function GoogleApplicationPage() {
                   </div>
                   <div className="relative w-[38%] max-w-[240px] min-w-[112px] shrink-0 border-l border-[var(--dossier-line-strong)] bg-[#101116] sm:min-w-[132px] md:min-w-[180px]">
                     <Image
-                      src="/images/terence-la-profile.png"
+                      src="/images/terence-editorial.jpg"
                       alt="Terence La"
                       fill
                       sizes="(max-width: 768px) 38vw, 240px"
@@ -613,7 +612,7 @@ export function GoogleApplicationPage() {
           </div>
         </section>
 
-        <section className="dossier-section-tight relative z-[2] !pt-2 !pb-6">
+        <section className="google-projects-section dossier-section-tight relative z-[2] !pt-2 !pb-6">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
               Selected projects I created from scratch this year
@@ -625,7 +624,7 @@ export function GoogleApplicationPage() {
               {selectedProjects.map((project, index) => (
                 <div
                   key={project.name}
-                  className={`project-card accent-${project.accent}`}
+                  className={`project-card google-project-card accent-${project.accent}`}
                   style={{ cursor: "default" }}
                 >
                   <div className="card-topline">
@@ -637,11 +636,6 @@ export function GoogleApplicationPage() {
                     <small>{project.category}</small>
                     <h3>{project.name}</h3>
                     <p>{project.description}</p>
-                    {project.remark && (
-                      <p className="mt-1.5 text-[11px] leading-snug text-[var(--dossier-subtle)]">
-                        {project.remark}
-                      </p>
-                    )}
                     <div className="evidence">
                       <span>Evidence</span>
                       <b>{project.evidence}</b>
@@ -651,7 +645,7 @@ export function GoogleApplicationPage() {
                         href={project.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-medium text-[var(--accent)] transition-opacity duration-150 hover:opacity-80"
+                        className="mt-2 inline-flex items-center gap-1.5 text-[11px] font-medium text-[var(--accent)] transition-opacity duration-150 hover:opacity-80"
                       >
                         View project
                         <ArrowUpRight className="h-3 w-3" />

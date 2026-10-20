@@ -168,6 +168,7 @@ const selectedProjects: SelectedProject[] = [
     visual: "knowledge",
     description: "RAG + OCR pipeline connecting project history, decisions and expertise across offices.",
     evidence: "Vertical system designed",
+    url: "https://leistera.com",
   },
   {
     name: "Vibe Translator",
@@ -177,7 +178,7 @@ const selectedProjects: SelectedProject[] = [
     visual: "messages",
     description: "Context layer decoding tone, personality and culture before generating responses.",
     evidence: "Interactive product prototype",
-    url: "https://vibes.terencela.com",
+    url: "https://vibes.terencela.com/v3",
   },
   {
     name: "AirCompanion",

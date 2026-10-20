@@ -1,5 +1,23 @@
 # Application Dossiers — Handoff
 
+## 2026-10-20: OpenAI FDE Dossier Overhauled with Animated Business × Tech Venn & Real CV Facts
+
+### Current State
+- The OpenAI Forward Deployed Engineer (Zurich) dossier is live on `https://openai.terencela.com`.
+- **Replaced generic flywheel**: Removed textbook "How I move from zero to deployed" (`DeploymentSystem`) and replaced it with an interactive animated **Two Overlapping Circles (Business × Tech)** visual inspired by high-end keynote architecture slides, adapted for the dark/light editorial dossier design system.
+  - **Left Circle (Business)**: Chairman's Office at UBS/CS, HSG Business Innovation (Grade 5.37), Zurich Airport AI Lead (32M+ passengers/yr), $1M+ client revenue generated, 1 startup exit (`NeverAlone.ch`), Interim CAIO.
+  - **Right Circle (Tech)**: GPT-3 builder since 2020, 20+ functional AI products built, 8× hackathon winner (incl. 3rd overall at HackZurich / 1,600 engineers), full-stack TypeScript/Next.js/Python, agent harnesses, hybrid RAG, low-latency streaming voice AI.
+  - **The Overlap (Forward Deployed Advantage)**: C-suite alignment on Monday to production codebase by Friday; unblocking Swiss enterprise legal, procurement, works councils, and nDSG compliance; native Swiss German / German / English / Cantonese fluency.
+  - Interactive tabs & physics-spring animations on both circles and intersection zone.
+- **Sharpened copy & metrics from CV**:
+  - Hero subhead updated to highlight 20+ functional AI products, GPT-3 since 2020, 8× hackathon winner, 1 exit.
+  - Deployment #2: ZRH Insider rebuild updated to 2 weeks solo execution (CHF 200K external quote saved).
+  - Deployment #3: Updated from obsolete LAJO to Leistera (Swiss AEC Agentic Operations, ~98% benchmark accuracy, 30h to 3h proposal turnaround).
+  - Selected projects: Synchronized with compact card CSS (~170px height, zero visual bleed) so layouts stay crisp and balanced across mobile and desktop.
+- Verified build and Playwright screenshots across 390px, 768px, and 1440px.
+
+---
+
 ## 2026-10-12: Google Applied AI FDE Dossier Aligned to OpenAI Architecture
 
 ### Current State

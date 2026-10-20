@@ -1895,19 +1895,19 @@ html[data-dossier-theme="dark"] .dossier-footer-copy {
 
 @media (max-width: 900px) {
   .dossier-project-grid,
-  .dossier-page .project-grid {
+  .dossier-page .project-grid:not(.dossier-projects-compact-section .project-grid):not(.google-projects-section .project-grid) {
     grid-template-columns: 1fr;
   }
 
   .dossier-project-card,
-  .dossier-page .project-card {
+  .dossier-page .project-card:not(.dossier-project-card-compact):not(.google-project-card) {
     grid-template-columns: 1fr;
     min-height: auto;
     padding: 16px;
   }
 
   .dossier-project-card .project-visual,
-  .dossier-page .project-card .project-visual {
+  .dossier-page .project-card:not(.dossier-project-card-compact):not(.google-project-card) .project-visual {
     min-height: 160px;
     max-height: none;
     margin: -16px -16px 0;
@@ -1917,22 +1917,22 @@ html[data-dossier-theme="dark"] .dossier-footer-copy {
     padding: 24px 16px;
   }
 
-  .dossier-page .project-card .card-copy {
+  .dossier-page .project-card:not(.dossier-project-card-compact):not(.google-project-card) .card-copy {
     padding: 24px 12px 14px;
     min-height: auto;
   }
 
-  .dossier-page .project-card .card-copy h3 {
+  .dossier-page .project-card:not(.dossier-project-card-compact):not(.google-project-card) .card-copy h3 {
     font-size: 20px;
     margin: 6px 0 4px;
   }
 
-  .dossier-page .project-card .card-copy p {
+  .dossier-page .project-card:not(.dossier-project-card-compact):not(.google-project-card) .card-copy p {
     font-size: 12.5px;
     line-height: 1.5;
   }
 
-  .dossier-page .project-card .evidence {
+  .dossier-page .project-card:not(.dossier-project-card-compact):not(.google-project-card) .evidence {
     padding-top: 10px;
     margin-top: 10px;
   }
@@ -1977,3 +1977,229 @@ html[data-dossier-theme="dark"] .dossier-footer-copy {
     opacity: 0.03;
   }
 }
+
+/* Dossier compact project cards (~170px height, zero visual bleed) */
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact,
+.dossier-page .google-projects-section .project-card.google-project-card {
+  min-height: 170px;
+  padding: 10px 12px;
+  grid-template-columns: 38% 1fr;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .project-visual,
+.dossier-page .google-projects-section .project-card.google-project-card .project-visual {
+  position: relative;
+  margin: -10px 0 -10px -12px;
+  width: calc(100% + 12px);
+  padding: 16px 8px 8px;
+  overflow: hidden;
+  min-height: 0;
+  border-right: 1px solid var(--dossier-line-strong);
+  border-bottom: 0;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .project-visual.visual-messages,
+.dossier-page .google-projects-section .project-card.google-project-card .project-visual.visual-messages {
+  padding: 0;
+  overflow: hidden;
+  min-height: 150px;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .project-visual.visual-messages .phone-pair,
+.dossier-page .google-projects-section .project-card.google-project-card .project-visual.visual-messages .phone-pair {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  width: 520px;
+  height: 440px;
+  margin: 0 !important;
+  transform: translate(-50%, -50%) scale(0.27) !important;
+  transform-origin: center center !important;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .card-copy,
+.dossier-page .google-projects-section .project-card.google-project-card .card-copy {
+  padding: 18px 10px 4px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 0;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .card-copy small,
+.dossier-page .google-projects-section .project-card.google-project-card .card-copy small {
+  font-size: 8px;
+  letter-spacing: 0.1em;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .card-copy h3,
+.dossier-page .google-projects-section .project-card.google-project-card .card-copy h3 {
+  margin: 2px 0 3px;
+  font-size: 15.5px;
+  line-height: 1.15;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .card-copy p,
+.dossier-page .google-projects-section .project-card.google-project-card .card-copy p {
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .card-topline,
+.dossier-page .google-projects-section .project-card.google-project-card .card-topline {
+  top: 7px;
+  left: 12px;
+  right: 12px;
+  font-size: 8.5px;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .stage-badge,
+.dossier-page .google-projects-section .project-card.google-project-card .stage-badge {
+  padding: 2px 5px;
+  font-size: 7px;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .evidence,
+.dossier-page .google-projects-section .project-card.google-project-card .evidence {
+  margin-top: 6px;
+  padding-top: 5px;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .evidence span,
+.dossier-page .google-projects-section .project-card.google-project-card .evidence span {
+  font-size: 7px;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .evidence b,
+.dossier-page .google-projects-section .project-card.google-project-card .evidence b {
+  margin-top: 1px;
+  font-size: 10px;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .project-visual .visual-title,
+.dossier-page .google-projects-section .project-card.google-project-card .project-visual .visual-title {
+  font-size: 11px;
+  margin-top: 4px;
+  line-height: 1.2;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .project-visual .visual-copy,
+.dossier-page .google-projects-section .project-card.google-project-card .project-visual .visual-copy {
+  font-size: 8.5px;
+  line-height: 1.25;
+  margin-top: 2px;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .project-visual .node-map,
+.dossier-page .google-projects-section .project-card.google-project-card .project-visual .node-map {
+  height: 44px;
+  margin-top: 2px;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .project-visual .node-map::before,
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .project-visual .node-map::after,
+.dossier-page .google-projects-section .project-card.google-project-card .project-visual .node-map::before,
+.dossier-page .google-projects-section .project-card.google-project-card .project-visual .node-map::after {
+  inset: 5px 4px;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .project-visual .node-map b,
+.dossier-page .google-projects-section .project-card.google-project-card .project-visual .node-map b {
+  padding: 2.5px 5px;
+  font-size: 7px;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .project-visual .ui-answer,
+.dossier-page .google-projects-section .project-card.google-project-card .project-visual .ui-answer {
+  padding: 3px 6px;
+  font-size: 7px;
+  margin-top: 3px;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .project-visual .wave,
+.dossier-page .google-projects-section .project-card.google-project-card .project-visual .wave {
+  height: 26px;
+  gap: 2.5px;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .project-visual .route-line,
+.dossier-page .google-projects-section .project-card.google-project-card .project-visual .route-line {
+  font-size: 9px;
+  gap: 5px;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .project-visual .avatar-ring,
+.dossier-page .google-projects-section .project-card.google-project-card .project-visual .avatar-ring {
+  width: 42px;
+  height: 42px;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .project-visual .avatar-ring span,
+.dossier-page .google-projects-section .project-card.google-project-card .project-visual .avatar-ring span {
+  width: 28px;
+  height: 28px;
+  font-size: 8.5px;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .project-visual .feedback-pills,
+.dossier-page .google-projects-section .project-card.google-project-card .project-visual .feedback-pills {
+  margin-top: 3px;
+  gap: 3px;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .project-visual .feedback-pills span,
+.dossier-page .google-projects-section .project-card.google-project-card .project-visual .feedback-pills span {
+  font-size: 6px;
+  padding: 1.5px 4px;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .project-visual .shield-mark,
+.dossier-page .google-projects-section .project-card.google-project-card .project-visual .shield-mark {
+  width: 32px;
+  height: 36px;
+  font-size: 12px;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .project-visual .privacy-list,
+.dossier-page .google-projects-section .project-card.google-project-card .project-visual .privacy-list {
+  margin-top: 2px;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .project-visual .privacy-list span,
+.dossier-page .google-projects-section .project-card.google-project-card .project-visual .privacy-list span {
+  padding: 1px 0;
+  font-size: 6.5px;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .project-visual .culture-chat,
+.dossier-page .google-projects-section .project-card.google-project-card .project-visual .culture-chat {
+  padding: 3.5px 6px;
+  font-size: 7.5px;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .project-visual .culture-meaning,
+.dossier-page .google-projects-section .project-card.google-project-card .project-visual .culture-meaning {
+  margin-top: 2px;
+  padding: 2px 4px;
+}
+
+.dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact .project-visual .culture-meaning b,
+.dossier-page .google-projects-section .project-card.google-project-card .project-visual .culture-meaning b {
+  font-size: 7px;
+}
+
+@media (min-width: 720px) {
+  .dossier-page .dossier-projects-compact-section .project-grid,
+  .dossier-page .google-projects-section .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .dossier-page .dossier-projects-compact-section .project-card.dossier-project-card-compact,
+  .dossier-page .google-projects-section .project-card.google-project-card {
+    grid-template-columns: 38% 1fr;
+    min-height: 165px;
+  }
+}
+
