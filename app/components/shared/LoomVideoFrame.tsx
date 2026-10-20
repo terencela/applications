@@ -21,6 +21,8 @@ interface LoomVideoFrameProps {
   showChapters?: boolean;
   videoOrientation?: "landscape" | "portrait";
   playInModal?: boolean;
+  showCoverPhoto?: boolean;
+  coverImage?: string;
   chapters?: Array<{
     time: string;
     title: string;
@@ -47,6 +49,8 @@ export function LoomVideoFrame({
   showChapters = true,
   videoOrientation = "landscape",
   playInModal = false,
+  showCoverPhoto = true,
+  coverImage,
   chapters,
 }: LoomVideoFrameProps) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -150,26 +154,28 @@ export function LoomVideoFrame({
                   </div>
                 </div>
               </div>
-              <div className="relative w-[38%] max-w-[240px] min-w-[112px] shrink-0 border-l border-[var(--dossier-line-strong)] bg-[#101116] sm:min-w-[132px] md:min-w-[180px]">
-                <Image
-                  src="/images/terence-la-profile.png"
-                  alt="Terence La"
-                  fill
-                  sizes="(max-width: 768px) 38vw, 240px"
-                  className="dossier-profile-photo object-cover object-top"
-                />
-                <div className="absolute inset-0 bg-black/20" aria-hidden="true" />
-                <div
-                  className="pointer-events-none absolute inset-0 flex items-center justify-center md:hidden"
-                  aria-hidden="true"
-                >
-                  <span
-                    className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-black/45 text-white backdrop-blur-[2px]"
+              {showCoverPhoto && (
+                <div className="relative w-[38%] max-w-[240px] min-w-[112px] shrink-0 border-l border-[var(--dossier-line-strong)] bg-[#101116] sm:min-w-[132px] md:min-w-[180px]">
+                  <Image
+                    src={coverImage || "/images/terence-la-profile.png"}
+                    alt="Terence La"
+                    fill
+                    sizes="(max-width: 768px) 38vw, 240px"
+                    className="dossier-profile-photo object-cover object-top"
+                  />
+                  <div className="absolute inset-0 bg-black/20" aria-hidden="true" />
+                  <div
+                    className="pointer-events-none absolute inset-0 flex items-center justify-center md:hidden"
+                    aria-hidden="true"
                   >
-                    <Play className="h-5 w-5 translate-x-0.5 fill-current" />
-                  </span>
+                    <span
+                      className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-black/45 text-white backdrop-blur-[2px]"
+                    >
+                      <Play className="h-5 w-5 translate-x-0.5 fill-current" />
+                    </span>
+                  </div>
                 </div>
-              </div>
+              )}
             </button>
           )}
         </motion.div>

@@ -220,30 +220,30 @@ const accentStyles = {
 const businessPillars = [
   {
     title: "Executive & Board Alignment",
-    detail: "Management Support at Chairman's Office (UBS/Credit Suisse), WEF delegate briefing, Interim CAIO.",
+    detail: "Management Support at Chairman's Office (UBS/Credit Suisse), WEF delegate briefing in Davos, Interim CAIO.",
   },
   {
-    title: "Governance & Swiss Compliance",
-    detail: "Leading AI deployment at Zurich Airport (32M+ passengers/yr). Navigating nDSG, works councils & enterprise tenders.",
+    title: "Enterprise Governance & Scale",
+    detail: "Leading AI deployment at Zurich Airport (32M+ passengers/yr). Navigating Swiss data constraints (nDSG), works councils & procurement.",
   },
   {
-    title: "Commercial & Founder Track Record",
-    detail: "1 startup exit (NeverAlone.ch), $1M+ client revenue generated, M.A. Business Innovation (HSG), Forbes 30u30.",
+    title: "Commercial & Agency Track Record",
+    detail: "Founded AI agency generating $1M+ in client revenue; completed 1 acquisition exit; M.A. Business Innovation (HSG, Grade 5.37), Forbes 30u30.",
   },
 ];
 
 const techPillars = [
   {
-    title: "Production Agent Harnesses",
-    detail: "Custom agent loops, hybrid RAG, eval pipelines, tool-calling & autonomous execution. GPT-3 since 2020.",
+    title: "Production Agent Harnesses & Architectures",
+    detail: "Built custom agent loops, hybrid vector + BM25 RAG, and eval harnesses across 20+ applications (Leistera, PrivacyLayer, Rehearse). Building with GPT-3 since 2020.",
   },
   {
-    title: "Full-Stack Velocity",
-    detail: "Rebuilt 35K-user app (ZRH Insider) in 2 weeks (saved CHF 200K quote). Built & shipped 20+ functional AI products.",
+    title: "Competitive Rigor & Hackathon Wins (Multiple Solo)",
+    detail: "8× Hackathon Winner, including 3rd prize overall at HackZurich (1,600 engineers). Repeatedly won solo by reverse-engineering judging rubrics and shipping full-stack working prototypes under 48 hours.",
   },
   {
-    title: "Competitive Engineering Rigor",
-    detail: "8× Hackathon Winner, including 3rd prize overall at HackZurich (1,600 engineers). Deep voice AI & low-latency streaming.",
+    title: "Full-Stack Velocity & Voice AI",
+    detail: "Rebuilt 35K-employee app (ZRH Insider) solo in 2 weeks (saving CHF 200K quote). Production low-latency streaming voice AI (Airport dispatch & Treasure).",
   },
 ];
 
@@ -266,18 +266,18 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
   const [activeTab, setActiveTab] = useState<"overlap" | "business" | "tech">("overlap");
 
   return (
-    <section className="dossier-section relative z-[2] !pt-4 !pb-10" id="business-tech-overlap">
+    <section className="dossier-section relative z-[2] !pt-4 !pb-6" id="business-tech-overlap">
       <div className="mx-auto max-w-[1200px] px-4 md:px-8">
         <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#10a37f]">
               The Rare Combination
             </p>
-            <h2 className="mt-2 text-[clamp(28px,3.8vw,44px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
+            <h2 className="mt-1.5 text-[clamp(26px,3.4vw,38px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
               Business leader. Hands-on engineer.
             </h2>
-            <p className="mt-2 max-w-[62ch] text-[14px] leading-relaxed text-[var(--dossier-body)] md:text-[15px]">
-              Most enterprise executives can&apos;t write production code. Most engineers freeze when procurement, works councils, or C-suite sponsors demand governance. Here is what I actually mean by both—and why the overlap unlocks OpenAI&apos;s biggest enterprise accounts.
+            <p className="mt-2 max-w-[62ch] text-[13.5px] leading-relaxed text-[var(--dossier-body)] md:text-[14.5px]">
+              Most enterprise executives can&apos;t write production code. Most engineers freeze when procurement, works councils, or C-suite sponsors demand governance. Here is what I mean by both—and why the overlap unlocks OpenAI&apos;s biggest enterprise accounts.
             </p>
           </div>
 
@@ -319,31 +319,31 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
         </div>
 
         {/* Visual Venn Graphic */}
-        <div className="mt-8 overflow-hidden rounded-2xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-6 md:p-10">
-          <div className="relative mx-auto flex w-full max-w-[880px] flex-col items-center justify-center py-6 md:py-10">
+        <div className="mt-6 overflow-hidden rounded-2xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-4 sm:p-5 md:p-6 lg:p-7">
+          <div className="relative mx-auto flex w-full max-w-[720px] flex-col items-center justify-center py-2 md:py-4">
             {/* SVG Interactive Animated Two-Circle Venn */}
-            <div className="relative aspect-[16/10] w-full max-w-[700px] select-none sm:aspect-[16/9]">
+            <div className="relative aspect-[16/8.8] w-full max-w-[560px] select-none">
               <svg
-                viewBox="0 0 600 360"
+                viewBox="0 0 540 280"
                 className="h-full w-full drop-shadow-sm"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <defs>
                   {/* Left circle gradient (Business / ink / deep slate) */}
-                  <linearGradient id="businessGradient" x1="120" y1="60" x2="300" y2="300" gradientUnits="userSpaceOnUse">
+                  <linearGradient id="businessGradient" x1="100" y1="40" x2="280" y2="240" gradientUnits="userSpaceOnUse">
                     <stop offset="0%" stopColor="#1e222d" stopOpacity="0.95" />
                     <stop offset="100%" stopColor="#0f1117" stopOpacity="0.98" />
                   </linearGradient>
 
                   {/* Right circle gradient (Tech / elevated contrast emerald / light) */}
-                  <linearGradient id="techGradient" x1="300" y1="60" x2="480" y2="300" gradientUnits="userSpaceOnUse">
+                  <linearGradient id="techGradient" x1="260" y1="40" x2="440" y2="240" gradientUnits="userSpaceOnUse">
                     <stop offset="0%" stopColor="#15362a" stopOpacity="0.92" />
                     <stop offset="100%" stopColor="#0b1e17" stopOpacity="0.96" />
                   </linearGradient>
 
                   {/* Center overlap glow */}
-                  <radialGradient id="overlapGlow" cx="300" cy="180" r="110" gradientUnits="userSpaceOnUse">
+                  <radialGradient id="overlapGlow" cx="270" cy="140" r="90" gradientUnits="userSpaceOnUse">
                     <stop offset="0%" stopColor="#10a37f" stopOpacity="0.35" />
                     <stop offset="85%" stopColor="#10a37f" stopOpacity="0.08" />
                     <stop offset="100%" stopColor="#10a37f" stopOpacity="0" />
@@ -356,7 +356,7 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
                     reduceMotion
                       ? undefined
                       : {
-                          x: activeTab === "tech" ? -15 : activeTab === "business" ? 10 : 0,
+                          x: activeTab === "tech" ? -12 : activeTab === "business" ? 8 : 0,
                           scale: activeTab === "business" ? 1.03 : activeTab === "tech" ? 0.97 : 1,
                         }
                   }
@@ -365,9 +365,9 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
                   onClick={() => setActiveTab("business")}
                 >
                   <circle
-                    cx="225"
-                    cy="180"
-                    r="135"
+                    cx="195"
+                    cy="140"
+                    r="108"
                     fill="url(#businessGradient)"
                     stroke={activeTab === "business" ? "#10a37f" : "rgba(255, 255, 255, 0.16)"}
                     strokeWidth={activeTab === "business" ? "2.5" : "1.5"}
@@ -375,9 +375,9 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
                   />
                   {/* Subtle inner ring */}
                   <circle
-                    cx="225"
-                    cy="180"
-                    r="105"
+                    cx="195"
+                    cy="140"
+                    r="82"
                     stroke="rgba(255, 255, 255, 0.05)"
                     strokeDasharray="4 4"
                     strokeWidth="1"
@@ -390,7 +390,7 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
                     reduceMotion
                       ? undefined
                       : {
-                          x: activeTab === "business" ? 15 : activeTab === "tech" ? -10 : 0,
+                          x: activeTab === "business" ? 12 : activeTab === "tech" ? -8 : 0,
                           scale: activeTab === "tech" ? 1.03 : activeTab === "business" ? 0.97 : 1,
                         }
                   }
@@ -399,18 +399,18 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
                   onClick={() => setActiveTab("tech")}
                 >
                   <circle
-                    cx="375"
-                    cy="180"
-                    r="135"
+                    cx="345"
+                    cy="140"
+                    r="108"
                     fill="url(#techGradient)"
                     stroke={activeTab === "tech" ? "#10a37f" : "rgba(16, 163, 127, 0.35)"}
                     strokeWidth={activeTab === "tech" ? "2.5" : "1.5"}
                     className="transition-colors duration-300"
                   />
                   <circle
-                    cx="375"
-                    cy="180"
-                    r="105"
+                    cx="345"
+                    cy="140"
+                    r="82"
                     stroke="rgba(16, 163, 127, 0.12)"
                     strokeDasharray="4 4"
                     strokeWidth="1"
@@ -432,17 +432,17 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
                 >
                   {/* Overlap ellipse glow */}
                   <ellipse
-                    cx="300"
-                    cy="180"
-                    rx="60"
-                    ry="95"
+                    cx="270"
+                    cy="140"
+                    rx="48"
+                    ry="76"
                     fill="url(#overlapGlow)"
                   />
                   <ellipse
-                    cx="300"
-                    cy="180"
-                    rx="58"
-                    ry="90"
+                    cx="270"
+                    cy="140"
+                    rx="46"
+                    ry="72"
                     stroke="#10a37f"
                     strokeWidth={activeTab === "overlap" ? "2" : "1"}
                     strokeDasharray={activeTab === "overlap" ? "none" : "3 3"}
@@ -454,123 +454,123 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
                 {/* Left Label */}
                 <g className="pointer-events-none select-none">
                   <text
-                    x="165"
-                    y="142"
+                    x="145"
+                    y="112"
                     textAnchor="middle"
                     fill="#ffffff"
-                    fontSize="18"
+                    fontSize="16"
                     fontWeight="700"
                     letterSpacing="-0.02em"
                   >
                     BUSINESS
                   </text>
                   <text
-                    x="165"
-                    y="166"
+                    x="145"
+                    y="132"
                     textAnchor="middle"
                     fill="#cbd5e1"
-                    fontSize="11"
+                    fontSize="10.5"
                     fontWeight="500"
                   >
                     Chairman&apos;s Office · HSG
                   </text>
                   <text
-                    x="165"
-                    y="185"
+                    x="145"
+                    y="149"
                     textAnchor="middle"
                     fill="#cbd5e1"
-                    fontSize="11"
+                    fontSize="10.5"
                     fontWeight="500"
                   >
                     Zurich Airport AI Lead
                   </text>
                   <text
-                    x="165"
-                    y="204"
+                    x="145"
+                    y="166"
                     textAnchor="middle"
                     fill="#cbd5e1"
-                    fontSize="11"
+                    fontSize="10.5"
                     fontWeight="500"
                   >
-                    $1M+ Client Rev · 1 Exit
+                    $1M+ Agency Rev · 1 Exit
                   </text>
                 </g>
 
                 {/* Right Label */}
                 <g className="pointer-events-none select-none">
                   <text
-                    x="435"
-                    y="142"
+                    x="395"
+                    y="112"
                     textAnchor="middle"
                     fill="#ffffff"
-                    fontSize="18"
+                    fontSize="16"
                     fontWeight="700"
                     letterSpacing="-0.02em"
                   >
                     TECH
                   </text>
                   <text
-                    x="435"
+                    x="395"
+                    y="132"
+                    textAnchor="middle"
+                    fill="#d1fae5"
+                    fontSize="10.5"
+                    fontWeight="500"
+                  >
+                    GPT-3 Since 2020 · 20+ Apps
+                  </text>
+                  <text
+                    x="395"
+                    y="149"
+                    textAnchor="middle"
+                    fill="#d1fae5"
+                    fontSize="10.5"
+                    fontWeight="500"
+                  >
+                    8× Hackathon Winner (Solo)
+                  </text>
+                  <text
+                    x="395"
                     y="166"
                     textAnchor="middle"
                     fill="#d1fae5"
-                    fontSize="11"
+                    fontSize="10.5"
                     fontWeight="500"
                   >
-                    GPT-3 Since 2020
-                  </text>
-                  <text
-                    x="435"
-                    y="185"
-                    textAnchor="middle"
-                    fill="#d1fae5"
-                    fontSize="11"
-                    fontWeight="500"
-                  >
-                    20+ Shipped AI Apps
-                  </text>
-                  <text
-                    x="435"
-                    y="204"
-                    textAnchor="middle"
-                    fill="#d1fae5"
-                    fontSize="11"
-                    fontWeight="500"
-                  >
-                    8× Hackathon Winner
+                    Leistera · PrivacyLayer
                   </text>
                 </g>
 
                 {/* Overlap Center Label */}
                 <g className="pointer-events-none select-none">
                   <rect
-                    x="245"
-                    y="160"
-                    width="110"
-                    height="40"
-                    rx="8"
+                    x="218"
+                    y="122"
+                    width="104"
+                    height="36"
+                    rx="7"
                     fill="#0a0b0f"
-                    fillOpacity="0.85"
+                    fillOpacity="0.88"
                     stroke="#10a37f"
                     strokeWidth="1.2"
                   />
                   <text
-                    x="300"
-                    y="178"
+                    x="270"
+                    y="136"
                     textAnchor="middle"
                     fill="#10a37f"
-                    fontSize="10"
+                    fontSize="9.5"
                     fontWeight="700"
                     letterSpacing="0.06em"
                   >
                     OPENAI FDE
                   </text>
                   <text
-                    x="300"
-                    y="192"
+                    x="270"
+                    y="149"
                     textAnchor="middle"
                     fill="#ffffff"
-                    fontSize="9.5"
+                    fontSize="9"
                     fontWeight="600"
                   >
                     Ships &amp; Aligns
@@ -579,17 +579,17 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
               </svg>
             </div>
 
-            <p className="mt-4 text-center text-xs text-[var(--dossier-muted)]">
+            <p className="mt-3 text-center text-[11px] text-[var(--dossier-muted)]">
               Click any circle or toggle above to explore the detailed breakdown.
             </p>
           </div>
 
           {/* Cards Breakdown beneath the Circles */}
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <div className="mt-5 grid gap-3.5 md:grid-cols-3">
             {/* Business Column */}
             <div
               onClick={() => setActiveTab("business")}
-              className={`cursor-pointer rounded-xl border p-5 transition-all duration-200 ${
+              className={`cursor-pointer rounded-xl border p-4.5 transition-all duration-200 ${
                 activeTab === "business"
                   ? "border-[#10a37f] bg-[var(--dossier-dark)] ring-1 ring-[#10a37f]"
                   : "border-[var(--dossier-line)] bg-[var(--dossier-panel)] hover:border-[var(--dossier-line-strong)]"
@@ -603,13 +603,13 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
                   Enterprise Reality
                 </span>
               </div>
-              <h3 className="mt-2 text-base font-semibold tracking-tight text-[var(--dossier-ink)]">
+              <h3 className="mt-2 text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
                 What I mean by Business
               </h3>
               <p className="mt-1 text-xs text-[var(--dossier-muted)]">
-                Not slide deck decks or advisory slogans—real operating ownership.
+                Not advisory decks or consultant slogans—real operating ownership.
               </p>
-              <ul className="mt-4 space-y-3 border-t border-[var(--dossier-line)] pt-3 text-xs leading-relaxed text-[var(--dossier-body)]">
+              <ul className="mt-3.5 space-y-2.5 border-t border-[var(--dossier-line)] pt-3 text-xs leading-relaxed text-[var(--dossier-body)]">
                 {businessPillars.map((p) => (
                   <li key={p.title}>
                     <strong className="text-[var(--dossier-ink)]">{p.title}:</strong> {p.detail}
@@ -621,7 +621,7 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
             {/* Overlap Column */}
             <div
               onClick={() => setActiveTab("overlap")}
-              className={`cursor-pointer rounded-xl border p-5 transition-all duration-200 ${
+              className={`cursor-pointer rounded-xl border p-4.5 transition-all duration-200 ${
                 activeTab === "overlap"
                   ? "border-[#10a37f] bg-[var(--dossier-dark)] ring-1 ring-[#10a37f]"
                   : "border-[var(--dossier-line)] bg-[var(--dossier-panel)] hover:border-[var(--dossier-line-strong)]"
@@ -635,13 +635,13 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
                   Why It&apos;s Rare
                 </span>
               </div>
-              <h3 className="mt-2 text-base font-semibold tracking-tight text-[var(--dossier-ink)]">
+              <h3 className="mt-2 text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
                 The Forward Deployed Advantage
               </h3>
               <p className="mt-1 text-xs text-[var(--dossier-muted)]">
                 Why Swiss enterprise pilots stall without this exact combination.
               </p>
-              <ul className="mt-4 space-y-3 border-t border-[var(--dossier-line)] pt-3 text-xs leading-relaxed text-[var(--dossier-body)]">
+              <ul className="mt-3.5 space-y-2.5 border-t border-[var(--dossier-line)] pt-3 text-xs leading-relaxed text-[var(--dossier-body)]">
                 {intersectionPowers.map((p) => (
                   <li key={p.title}>
                     <strong className="text-[var(--dossier-ink)]">{p.title}:</strong> {p.desc}
@@ -653,7 +653,7 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
             {/* Tech Column */}
             <div
               onClick={() => setActiveTab("tech")}
-              className={`cursor-pointer rounded-xl border p-5 transition-all duration-200 ${
+              className={`cursor-pointer rounded-xl border p-4.5 transition-all duration-200 ${
                 activeTab === "tech"
                   ? "border-[#10a37f] bg-[var(--dossier-dark)] ring-1 ring-[#10a37f]"
                   : "border-[var(--dossier-line)] bg-[var(--dossier-panel)] hover:border-[var(--dossier-line-strong)]"
@@ -667,13 +667,13 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
                   Production Depth
                 </span>
               </div>
-              <h3 className="mt-2 text-base font-semibold tracking-tight text-[var(--dossier-ink)]">
+              <h3 className="mt-2 text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
                 What I mean by Tech
               </h3>
               <p className="mt-1 text-xs text-[var(--dossier-muted)]">
                 Not ChatGPT prompt wrappers—hard engineering that runs reliably.
               </p>
-              <ul className="mt-4 space-y-3 border-t border-[var(--dossier-line)] pt-3 text-xs leading-relaxed text-[var(--dossier-body)]">
+              <ul className="mt-3.5 space-y-2.5 border-t border-[var(--dossier-line)] pt-3 text-xs leading-relaxed text-[var(--dossier-body)]">
                 {techPillars.map((p) => (
                   <li key={p.title}>
                     <strong className="text-[var(--dossier-ink)]">{p.title}:</strong> {p.detail}
@@ -726,10 +726,10 @@ export function OpenAIApplicationPage() {
 
               <div className="max-w-[760px] md:col-start-1 md:row-start-1">
                 <h1 className="dossier-hero-title max-w-[18ch]" style={{ fontSize: "clamp(30px, 8.2vw, 64px)" }}>
-                  Enterprise AI leader, builder and founder.
+                  Forward deployed engineer for enterprise AI.
                 </h1>
                 <p className="mt-5 max-w-[56ch] text-[15px] leading-relaxed text-[var(--dossier-body)] md:mt-10 md:text-[17px] md:leading-[1.65]">
-                  Enterprise AI Lead at Zurich Airport (32M+ passengers/yr). 20+ functional AI products built, GPT-3 builder since 2020, 8× hackathon winner, and 1 startup exit. Bridging C-suite strategy, rigorous enterprise governance, and rapid full-stack engineering.
+                  Enterprise AI Lead at Zurich Airport (32M+ passengers/yr). 20+ functional AI products built, GPT-3 builder since 2020, 8× hackathon winner, and 1 exit. Bridging C-suite strategy, rigorous enterprise governance, and rapid full-stack engineering.
                 </p>
                 <div className="mt-6 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 md:mt-10">
                   <a
@@ -771,26 +771,7 @@ export function OpenAIApplicationPage() {
           </div>
         </section>
 
-        <section className="dossier-section relative z-[2] pt-6">
-          <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
-              90-second walkthrough
-            </h2>
-            <div className="mt-4">
-              <LoomVideoFrame
-                companyName="OpenAI"
-                roleTitle="Forward Deployed Engineer (Zurich)"
-                loomUrl="https://www.loom.com/share/054ec870f2c448928570797160ccc6b0"
-                videoTitle="Quick Introduction"
-                videoSubtitle="Who I am in 90 seconds."
-                playInModal
-                accentColor="#10a37f"
-                showChapters={false}
-              />
-              <TerenceAIAskBar />
-            </div>
-          </div>
-        </section>
+        <BusinessTechIntersection reduceMotion={reduceMotion} />
 
         <section className="dossier-section relative z-[2] !pb-5">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
@@ -919,8 +900,6 @@ export function OpenAIApplicationPage() {
           </div>
         </section>
 
-        <BusinessTechIntersection reduceMotion={reduceMotion} />
-
         <section className="dossier-section-tight dossier-projects-compact-section relative z-[2] !pt-2">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
@@ -963,6 +942,28 @@ export function OpenAIApplicationPage() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="dossier-section relative z-[2] pt-4">
+          <div className="mx-auto max-w-[1200px] px-4 md:px-8">
+            <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
+              90-second candidate walkthrough
+            </h2>
+            <div className="mt-4">
+              <LoomVideoFrame
+                companyName="OpenAI"
+                roleTitle="Forward Deployed Engineer (Zurich)"
+                loomUrl="https://www.loom.com/share/054ec870f2c448928570797160ccc6b0"
+                videoTitle="Quick Introduction"
+                videoSubtitle="Who I am in 90 seconds."
+                playInModal
+                showCoverPhoto={false}
+                accentColor="#10a37f"
+                showChapters={false}
+              />
+              <TerenceAIAskBar />
             </div>
           </div>
         </section>
