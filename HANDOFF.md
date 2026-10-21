@@ -1,5 +1,18 @@
 # Application Dossiers — Handoff
 
+## 2026-10-21: Google Outcome Engineer — Surgical Pass (No Revamp)
+
+### Current State
+- Live target: `https://google.terencela.com`. Only `GoogleApplicationPage.tsx` + `app/google/layout.tsx` changed (47 lines). Layout, sections, cards, projects, and Google blue `#8ab4f8` untouched.
+- **Role corrected**: header and meta now say "Outcome Engineer (Zurich)" instead of Forward Deployed Engineer III / Google Applied AI.
+- **Hero (same headline, kept)**: paragraph replaced with the outcome job ("My job is the outcome, not the demo: define what success means, build the AI, and get it through data rules, procurement and daily operations until people use it.") plus a Google-blue stat row: `8×` hackathon winner mostly solo, `35K` staff app rebuilt solo in 2 weeks, `30h to 3h` per proposal with Leistera. The 8× wins previously appeared nowhere on this page.
+- **Facts aligned with the OpenAI dossier**: AI builder card 15+ → 20+ products; ZRH Insider "one month / CHF 350K" → "solo in two weeks / replaced a CHF 200K external quote"; Leistera card stat is now `30h to 3h per proposal`. Business card now carries the proof: $1M+ agency client revenue, 1 exit, St. Gallen as the 6th best business school in Europe. No UBS inflation, no grade.
+- **TerenceAI**: hero button is "Ask TerenceAI anything about me"; ask placeholder is "Ask TerenceAI: why should Google hire me?"
+- Mobile hero photo tightened so photo, headline, paragraph, stats, CTA and logos fit one frame at 390px (the CTA was clipped before this pass). Verified with Playwright at 1440 / 768 / 390, lint + build pass.
+- **Exact next step**: none for Google until real tracker data or recruiter feedback arrives; check `/api/analytics/track` after sharing the link.
+
+---
+
 ## 2026-10-21: Interaction Tracker Installed on All Dossiers
 
 ### Current State

@@ -42,7 +42,7 @@ function TerenceAIAskBar() {
         <input
           type="text"
           name="terenceai-ask"
-          placeholder="Ask TerenceAI anything about my work..."
+          placeholder="Ask TerenceAI: why should Google hire me?"
           autoComplete="off"
           onInput={(event) => {
             if (event.currentTarget.value.trim().length > 0) handleAsk();
@@ -122,19 +122,19 @@ const deployments: DeploymentExample[] = [
       { value: "3 to 1", label: "codebases merged" },
     ],
     role: [
-      "Rebuilt app foundation in one month",
+      "Rebuilt the app foundation solo in two weeks",
       "Consolidated architecture for faster rollout",
       "Designed engagement loops",
     ],
-    outcomeHighlight: "Shipped.",
-    outcome: "Externally quoted at CHF 350K. Scalable base for future features.",
+    outcomeHighlight: "Shipped in 2 weeks.",
+    outcome: "Replaced a CHF 200K external quote. Now the base for future features.",
   },
   {
     title: "Leistera - Swiss AEC Agentic Operations",
     subtitle: "Agentic workspace for Swiss planning firms with cited norm grounding.",
     challenge: "Manual proposals and norm checks across fragmented office archives.",
     stats: [
-      { value: "Agentic RAG", label: "retrieval stack" },
+      { value: "30h to 3h", label: "per proposal" },
       { value: "Exact PDF", label: "citations" },
     ],
     role: [
@@ -243,14 +243,14 @@ export function GoogleApplicationPage() {
         <DossierBackground accentColor={ACCENT} />
         <SubpageHeader
           companyName="Google"
-          roleTitle="Forward Deployed Engineer III (Zurich)"
+          roleTitle="Outcome Engineer (Zurich)"
           accentColor={ACCENT}
         />
 
         <section className="dossier-openai-hero relative z-[2] flex min-h-[calc(100dvh-57px)] flex-col md:min-h-[calc(100dvh-57px)]">
           <div className="dossier-openai-hero__main mx-auto flex w-full max-w-[1200px] flex-1 flex-col justify-start px-4 py-5 md:justify-center md:px-8 md:py-14 lg:py-16">
-            <div className="flex flex-col gap-6 md:grid md:grid-cols-[minmax(0,1fr)_minmax(200px,260px)] md:items-center md:gap-x-14 md:gap-y-0 lg:gap-x-20">
-              <aside className="dossier-openai-hero__photo w-full max-w-[min(11.5rem,42vw)] shrink-0 md:col-start-2 md:row-start-1 md:mx-0 md:max-w-[220px] lg:max-w-[260px]">
+            <div className="flex flex-col gap-4 md:grid md:grid-cols-[minmax(0,1fr)_minmax(200px,260px)] md:items-center md:gap-x-14 md:gap-y-0 lg:gap-x-20">
+              <aside className="dossier-openai-hero__photo w-full max-w-[min(8rem,34vw)] shrink-0 md:col-start-2 md:row-start-1 md:mx-0 md:max-w-[220px] lg:max-w-[260px]">
                 <div className="dossier-profile-frame aspect-[4/5] w-full">
                   <Image
                     src="/images/terence-la-profile.png"
@@ -271,17 +271,34 @@ export function GoogleApplicationPage() {
                 <h1 className="dossier-hero-title max-w-[18ch]" style={{ fontSize: "clamp(30px, 8.2vw, 64px)" }}>
                   I build AI agents and get them working in the real world.
                 </h1>
-                <p className="mt-5 max-w-[56ch] text-[15px] leading-relaxed text-[var(--dossier-body)] md:mt-10 md:text-[17px] md:leading-[1.65]">
-                  Forward Deployed Engineer candidate for Google Applied AI in Zurich. As AI Lead at Zurich Airport, I drove voice AI from concept through formal enterprise tender and consolidated fragmented platforms for ~35k staff. Through KI Unlocked, I architect, code, and ship agentic AI systems like Leistera that solve high-stakes document and workflow operations in regulated Swiss environments.
+                <p className="mt-4 max-w-[52ch] text-[15px] leading-relaxed text-[var(--dossier-body)] md:mt-8 md:text-[17px] md:leading-[1.6]">
+                  AI Lead at Zurich Airport, 32M+ passengers a year. My job is the outcome, not the demo: define what success means, build the AI, and get it through data rules, procurement and daily operations until people use it.
                 </p>
-                <div className="mt-6 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 md:mt-10">
+                <div className="mt-4 grid max-w-[640px] grid-cols-3 gap-3 border-t border-[var(--dossier-line)] pt-3 md:mt-8 md:gap-5 md:pt-5">
+                  <div>
+                    <p className="text-[24px] font-semibold leading-none tracking-[-0.03em] text-[#8ab4f8] md:text-[30px]">8×</p>
+                    <p className="mt-1.5 text-[11px] font-semibold leading-snug text-[var(--dossier-ink)] md:text-[12px]">Hackathon winner, mostly solo</p>
+                    <p className="mt-0.5 text-[10px] leading-snug text-[var(--dossier-muted)] md:text-[11px]">3rd at HackZurich, 1,600 engineers</p>
+                  </div>
+                  <div>
+                    <p className="text-[24px] font-semibold leading-none tracking-[-0.03em] text-[#8ab4f8] md:text-[30px]">35K</p>
+                    <p className="mt-1.5 text-[11px] font-semibold leading-snug text-[var(--dossier-ink)] md:text-[12px]">Staff on one app, rebuilt solo</p>
+                    <p className="mt-0.5 text-[10px] leading-snug text-[var(--dossier-muted)] md:text-[11px]">In 2 weeks, replaced a CHF 200K quote</p>
+                  </div>
+                  <div>
+                    <p className="text-[24px] font-semibold leading-none tracking-[-0.03em] text-[#8ab4f8] md:text-[30px]">30h to 3h</p>
+                    <p className="mt-1.5 text-[11px] font-semibold leading-snug text-[var(--dossier-ink)] md:text-[12px]">Per engineering proposal</p>
+                    <p className="mt-0.5 text-[10px] leading-snug text-[var(--dossier-muted)] md:text-[11px]">With Leistera, live in Swiss offices</p>
+                  </div>
+                </div>
+                <div className="mt-4 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 md:mt-8">
                   <a
                     href="https://about.terencela.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="dossier-button-primary dossier-cta-accent dossier-pressable inline-flex"
                   >
-                    Chat with TerenceAI
+                    Ask TerenceAI anything about me
                     <ArrowRight className="h-4 w-4" />
                   </a>
                   <a
@@ -365,7 +382,7 @@ export function GoogleApplicationPage() {
                   AI builder
                 </h3>
                 <p className="mt-2 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
-                  15+ products. Agents, RAG, voice AI, eval loops.
+                  20+ products built. Agents, RAG, voice AI, eval loops. 8× hackathon winner, mostly solo.
                 </p>
                 <div className="mt-auto flex items-center gap-3 pt-6">
                   {[Bot, FileText, Mic, Database, MessageSquareText].map((Icon, i) => (
@@ -387,7 +404,7 @@ export function GoogleApplicationPage() {
                   Business x Engineering
                 </h3>
                 <p className="mt-2 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
-                  Translate between executives, engineers and end users to keep projects moving.
+                  $1M+ in client revenue through my AI agency, with 1 exit. M.A. in Business Innovation at the University of St. Gallen, the 6th best business school in Europe.
                 </p>
                 <div className="mt-auto pt-6">
                   <svg viewBox="0 0 220 90" className="w-full max-w-[220px]" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -650,7 +667,7 @@ export function GoogleApplicationPage() {
                 I&apos;d rather show you than tell you.
               </h2>
               <p className="mt-3 max-w-[52ch] text-sm leading-relaxed text-[var(--dossier-muted)] md:text-[15px]">
-                30 minutes. I&apos;ll walk you through a live deployment, the decisions behind it, and where I think Google Applied AI should go next with enterprise customers in Switzerland.
+                30 minutes. I&apos;ll walk you through a live deployment, the outcome we defined, how we measured it, and how I would do the same for Google&apos;s enterprise customers in Switzerland.
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-4">
                 <a
