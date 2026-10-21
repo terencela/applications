@@ -240,15 +240,15 @@ const accentStyles = {
 const intersectionPowers = [
   {
     title: "In the room, then in the code",
-    desc: "With the customer at the start of the week. A working pilot by the end of it.",
+    desc: "A working pilot by the end of the week.",
   },
   {
     title: "Gets past legal, security and procurement",
-    desc: "That is where most enterprise pilots die. I handle it instead of handing it off.",
+    desc: "Where most enterprise pilots die.",
   },
   {
     title: "Zurich, in four languages",
-    desc: "German, Swiss German, English and Cantonese. Local with customers, technical with engineers.",
+    desc: "Local with customers, technical with engineers.",
   },
 ];
 
@@ -392,7 +392,6 @@ export function OpenAIApplicationPage() {
           centerTop="OPENAI FDE"
           centerBottom="Ships & Aligns"
           overlapTitle="The forward deployed part"
-          overlapSubtitle="What a customer in Switzerland needs from one person."
           intersectionPowers={intersectionPowers}
         />
 

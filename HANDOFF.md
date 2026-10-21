@@ -1,5 +1,16 @@
 # Application Dossiers — Handoff
 
+## 2026-10-21: Business × Tech Cards Cut Down
+
+### Current State
+- **Terence: "that's way too much." Correct.** The three cards under the Venn were full paragraphs: each side stat carried a title plus a 2–3 line explanation, and the centre carried four blocks with long descriptions. The cards were roughly 730px tall.
+- **Now proof only.** Side columns are stat + one line (`32M+` AI Lead at Zurich Airport, `$1M+` agency founder with 1 exit, St. Gallen M.A.; `8×` hackathon, `20+` products since GPT-3, `2 weeks` app for 35,000 staff). The explanatory details are gone from this section because every one of those facts has a home elsewhere (Forbes in the ticker, St. Gallen in Why-me, CHF 200K and voice AI in the deployments). Centre keeps its four Google lines (three on OpenAI) with one short clause each. Card subtitles deleted. Cards now run about 330px.
+- Applies to both pages; the component is shared (`BusinessTechIntersection.tsx`), `overlapSubtitle` prop removed from both callers.
+- Verified: lint clean, build pass, Playwright Google and OpenAI at 1440 light/dark plus Google 390 dark. Nothing clips, the Venn and tabs are untouched.
+- **Exact next step**: Terence reviews `https://google.terencela.com`. If the centre column still reads long, cut its descriptions next, not the side stats.
+
+---
+
 ## 2026-10-21: Photos Back in Colour — Grayscale Filter Removed
 
 ### Current State

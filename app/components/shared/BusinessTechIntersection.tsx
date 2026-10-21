@@ -4,43 +4,19 @@ import React, { useId, useState } from "react";
 import { motion } from "framer-motion";
 import { useDossierTheme } from "@/app/lib/dossier-theme";
 
-export type StatPillar = { stat: string; title: string; detail: string };
+export type StatPillar = { stat: string; title: string };
 export type IntersectionPower = { title: string; desc: string };
 
 export const businessPillars: StatPillar[] = [
-  {
-    stat: "32M+",
-    title: "AI Lead at Zurich Airport",
-    detail: "Leading AI deployment at the airport. Swiss data rules, works councils and procurement are part of the job.",
-  },
-  {
-    stat: "$1M+",
-    title: "Agency founder, with 1 exit",
-    detail: "Founded and ran an AI agency that generated over $1M for clients. Forbes 30 under 30.",
-  },
-  {
-    stat: "St. Gallen",
-    title: "M.A. in Business Innovation, University of St. Gallen",
-    detail: "The 6th best business school in Europe. Earlier in my career: UBS and Credit Suisse, and Davos with the World Economic Forum.",
-  },
+  { stat: "32M+", title: "AI Lead at Zurich Airport" },
+  { stat: "$1M+", title: "Agency founder, with 1 exit" },
+  { stat: "St. Gallen", title: "M.A. in Business Innovation" },
 ];
 
 export const techPillars: StatPillar[] = [
-  {
-    stat: "8×",
-    title: "Hackathon winner, mostly solo",
-    detail: "Including 3rd overall at HackZurich against 1,600 engineers. I work out how it is judged, then ship a working product in 48 hours.",
-  },
-  {
-    stat: "20+",
-    title: "AI products built. GPT-3 since 2020.",
-    detail: "Agent loops, hybrid RAG and evals, running in Leistera, PrivacyLayer and Rehearse.",
-  },
-  {
-    stat: "2 weeks",
-    title: "Rebuilt the app for 35,000 staff, solo",
-    detail: "ZRH Insider. It replaced a CHF 200K external quote. Plus voice AI in live airport operations.",
-  },
+  { stat: "8×", title: "Hackathon winner, mostly solo" },
+  { stat: "20+", title: "AI products built. GPT-3 since 2020." },
+  { stat: "2 weeks", title: "App rebuilt for 35,000 staff, solo" },
 ];
 
 type BusinessTechIntersectionProps = {
@@ -52,7 +28,6 @@ type BusinessTechIntersectionProps = {
   centerTop: string;
   centerBottom: string;
   overlapTitle: string;
-  overlapSubtitle: string;
   intersectionPowers: IntersectionPower[];
 };
 
@@ -62,7 +37,6 @@ export function BusinessTechIntersection({
   centerTop,
   centerBottom,
   overlapTitle,
-  overlapSubtitle,
   intersectionPowers,
 }: BusinessTechIntersectionProps) {
   const [activeTab, setActiveTab] = useState<"overlap" | "business" | "tech">("overlap");
@@ -252,13 +226,11 @@ export function BusinessTechIntersection({
           <div className="mt-5 grid gap-3.5 md:grid-cols-3">
             <div onClick={() => setActiveTab("business")} className={cardClass("business")}>
               <h3 className="text-[16px] font-semibold tracking-tight text-[var(--dossier-ink)]">What I mean by business</h3>
-              <p className="mt-1 text-xs text-[var(--dossier-muted)]">Running AI inside a real enterprise, and running my own company.</p>
-              <div className="mt-4 space-y-5 border-t border-[var(--dossier-line)] pt-4">
+              <div className="mt-4 space-y-4 border-t border-[var(--dossier-line)] pt-4">
                 {businessPillars.map((p) => (
                   <div key={p.title}>
-                    <p className="text-[26px] font-semibold leading-none tracking-[-0.03em] text-[var(--dossier-ink)]">{p.stat}</p>
+                    <p className="text-[24px] font-semibold leading-none tracking-[-0.03em] text-[var(--dossier-ink)]">{p.stat}</p>
                     <p className="mt-1.5 text-[13px] font-semibold leading-snug text-[var(--dossier-ink)]">{p.title}</p>
-                    <p className="mt-1 text-xs leading-relaxed text-[var(--dossier-body)]">{p.detail}</p>
                   </div>
                 ))}
               </div>
@@ -266,7 +238,6 @@ export function BusinessTechIntersection({
 
             <div onClick={() => setActiveTab("overlap")} className={cardClass("overlap")}>
               <h3 className="text-[16px] font-semibold tracking-tight text-[var(--dossier-ink)]">{overlapTitle}</h3>
-              <p className="mt-1 text-xs text-[var(--dossier-muted)]">{overlapSubtitle}</p>
               <div className="mt-4 space-y-4 border-t border-[var(--dossier-line)] pt-4">
                 {intersectionPowers.map((p) => (
                   <div key={p.title}>
@@ -279,13 +250,11 @@ export function BusinessTechIntersection({
 
             <div onClick={() => setActiveTab("tech")} className={cardClass("tech")}>
               <h3 className="text-[16px] font-semibold tracking-tight text-[var(--dossier-ink)]">What I mean by tech</h3>
-              <p className="mt-1 text-xs text-[var(--dossier-muted)]">Code that runs in production, built fast.</p>
-              <div className="mt-4 space-y-5 border-t border-[var(--dossier-line)] pt-4">
+              <div className="mt-4 space-y-4 border-t border-[var(--dossier-line)] pt-4">
                 {techPillars.map((p) => (
                   <div key={p.title}>
-                    <p className="text-[26px] font-semibold leading-none tracking-[-0.03em] text-[var(--dossier-ink)]">{p.stat}</p>
+                    <p className="text-[24px] font-semibold leading-none tracking-[-0.03em] text-[var(--dossier-ink)]">{p.stat}</p>
                     <p className="mt-1.5 text-[13px] font-semibold leading-snug text-[var(--dossier-ink)]">{p.title}</p>
-                    <p className="mt-1 text-xs leading-relaxed text-[var(--dossier-body)]">{p.detail}</p>
                   </div>
                 ))}
               </div>

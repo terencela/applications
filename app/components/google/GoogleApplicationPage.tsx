@@ -27,19 +27,19 @@ import { DossierThemeProvider } from "@/app/lib/dossier-theme";
 const googleIntersectionPowers = [
   {
     title: "Define the outcome, then build",
-    desc: "Agree what success means with the customer, in plain numbers, before anyone writes code. Then measure against it.",
+    desc: "Success agreed in plain numbers, before code.",
   },
   {
     title: "In the room, then in the code",
-    desc: "With the customer at the start of the week. A working pilot by the end of it.",
+    desc: "A working pilot by the end of the week.",
   },
   {
     title: "Gets past legal, security and procurement",
-    desc: "That is where most enterprise pilots die. I handle it instead of handing it off.",
+    desc: "Where most enterprise pilots die.",
   },
   {
     title: "Zurich, in German and English",
-    desc: "German and Swiss German in the customer's room. English with product and engineering. Nothing gets lost between the two.",
+    desc: "German with customers, English with engineering.",
   },
 ];
 
@@ -363,7 +363,6 @@ export function GoogleApplicationPage() {
           centerTop="GOOGLE"
           centerBottom="Outcome first"
           overlapTitle="The outcome part"
-          overlapSubtitle="What a customer in Switzerland needs from one person."
           intersectionPowers={googleIntersectionPowers}
         />
 
