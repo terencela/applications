@@ -376,6 +376,7 @@ export function OpenAIApplicationPage() {
                 videoTitle="Terence in 90 seconds"
                 videoSubtitle="Who I am, what I shipped, why Zurich."
                 videoOrientation="portrait"
+                playInModal
                 showCoverPhoto
                 accentColor="#73736d"
                 showChapters={false}
