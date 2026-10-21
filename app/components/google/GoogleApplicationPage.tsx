@@ -37,6 +37,10 @@ const googleIntersectionPowers = [
     title: "Gets past legal, security and procurement",
     desc: "That is where most enterprise pilots die. I handle it instead of handing it off.",
   },
+  {
+    title: "Zurich, in German and English",
+    desc: "German and Swiss German in the customer's room. English with product and engineering. Nothing gets lost between the two.",
+  },
 ];
 
 const EASE_OUT_STRONG = [0.23, 1, 0.32, 1] as const;
@@ -259,7 +263,7 @@ export function GoogleApplicationPage() {
         <DossierBackground accentColor="#8ab4f8" />
         <SubpageHeader
           companyName="Google"
-          roleTitle="Outcome Engineer (Zurich)"
+          roleTitle="AI Outcome Customer Engineer (Zurich)"
           accentColor={ACCENT}
         />
 
@@ -285,13 +289,13 @@ export function GoogleApplicationPage() {
 
               <div className="max-w-[760px] md:col-start-1 md:row-start-1">
                 <p className="mb-3 text-[13px] font-medium text-[var(--dossier-muted)] md:mb-4">
-                  I&apos;m applying for the Outcome Engineer role in Zurich.
+                  I&apos;m applying for Google&apos;s AI Outcome Customer Engineer role in Zurich.
                 </p>
                 <h1 className="dossier-hero-title max-w-[18ch]" style={{ fontSize: "clamp(30px, 8.2vw, 64px)" }}>
                   I build AI agents and get them working in the real world.
                 </h1>
                 <p className="mt-5 max-w-[52ch] text-[15px] leading-relaxed text-[var(--dossier-body)] md:mt-8 md:text-[17px] md:leading-[1.6]">
-                  AI Lead at Zurich Airport, 32M+ passengers a year. My job is the outcome, not the demo: define what success means, build the AI, and get it through data rules, procurement and daily operations until people use it.
+                  AI Lead at Zurich Airport, 32M+ passengers a year. I take enterprise AI from agreement to daily use: shape the outcome with the customer, build it in code, and clear data, security and procurement until people actually use it.
                 </p>
                 <div className="mt-5 grid max-w-[640px] grid-cols-3 gap-3 border-t border-[var(--dossier-line)] pt-4 md:mt-8 md:gap-5">
                   <div>
@@ -375,10 +379,10 @@ export function GoogleApplicationPage() {
                   <Workflow className="h-6 w-6 text-[var(--dossier-ink)]" />
                 </div>
                 <h3 className="text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
-                  Enterprise deployment
+                  Shape for adoption
                 </h3>
                 <p className="mt-2 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
-                  Discovery to production to governance. Full path.
+                  Feasibility, success numbers and the delivery path agreed with the customer before anyone builds. At Zurich Airport that took voice AI from discovery to a formal tender, with a working PoC in two weeks.
                 </p>
                 <div className="mt-auto flex flex-wrap items-center gap-x-1.5 gap-y-2 pt-6">
                   {[
@@ -406,10 +410,10 @@ export function GoogleApplicationPage() {
                   <Cpu className="h-6 w-6 text-[var(--dossier-ink)]" />
                 </div>
                 <h3 className="text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
-                  AI builder
+                  In the code when it breaks
                 </h3>
                 <p className="mt-2 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
-                  20+ products built. Agents, RAG, voice AI, eval loops. 8× hackathon winner, mostly solo.
+                  20+ AI products built since GPT-3 in 2020: agent loops, hybrid RAG, evals, voice AI. When an integration blocks delivery, I debug it at code level instead of escalating it. 8× hackathon winner, mostly solo.
                 </p>
                 <div className="mt-auto flex items-center gap-3 pt-6">
                   {[Bot, FileText, Mic, Database, MessageSquareText].map((Icon, i) => (
@@ -428,10 +432,10 @@ export function GoogleApplicationPage() {
                   <Users className="h-6 w-6 text-[var(--dossier-ink)]" />
                 </div>
                 <h3 className="text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
-                  Business x Engineering
+                  Ramp it, then prove it
                 </h3>
                 <p className="mt-2 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
-                  $1M+ in client revenue through my AI agency, with 1 exit. M.A. in Business Innovation at the University of St. Gallen, the 6th best business school in Europe.
+                  A deployment counts when people use it and the number moves. 35,000 staff work on the app I rebuilt. What breaks in the field, I turn into clear asks for product and engineering. $1M+ agency revenue, 1 exit. St. Gallen M.A., the 6th best business school in Europe.
                 </p>
                 <div className="mt-auto pt-6">
                   <svg viewBox="0 0 220 90" className="w-full max-w-[220px]" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -441,72 +445,12 @@ export function GoogleApplicationPage() {
                     <circle cx="40" cy="20" r="4" fill="var(--dossier-ink)" opacity="0.8" />
                     <circle cx="180" cy="20" r="4" fill="var(--dossier-ink)" opacity="0.8" />
                     <circle cx="110" cy="78" r="4" fill="var(--dossier-ink)" opacity="0.8" />
-                    <text x="18" y="12" fontSize="9" fontWeight="500" className="fill-[var(--dossier-ink)]">Business</text>
-                    <text x="148" y="12" fontSize="9" fontWeight="500" className="fill-[var(--dossier-ink)]">Engineering</text>
-                    <text x="92" y="89" fontSize="9" fontWeight="500" className="fill-[var(--dossier-ink)]">User</text>
+                    <text x="10" y="12" fontSize="9" fontWeight="500" className="fill-[var(--dossier-ink)]">Customer</text>
+                    <text x="162" y="12" fontSize="9" fontWeight="500" className="fill-[var(--dossier-ink)]">Product</text>
+                    <text x="90" y="89" fontSize="9" fontWeight="500" className="fill-[var(--dossier-ink)]">Outcome</text>
                   </svg>
                 </div>
               </article>
-            </div>
-          </div>
-        </section>
-
-        <section className="dossier-section-tight relative z-[2] !pb-2 !pt-3">
-          <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
-              Explore my work through AI
-            </h2>
-            <p className="mt-1 text-sm text-[var(--dossier-muted)]">
-              No pre-recorded video pitch. Ask questions directly about my real production deployments, code, and systems.
-            </p>
-            <div className="mt-4">
-              <a
-                href={TERENCE_AI_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="dossier-loom-panel dossier-loom-panel-compact block overflow-hidden dossier-pressable"
-                aria-label="Ask TerenceAI anything about my work"
-              >
-                <div className="relative flex w-full min-h-[210px] items-stretch text-left sm:min-h-[230px] md:min-h-[270px]">
-                  <div className="dossier-loom-pattern absolute inset-0" aria-hidden="true" />
-                  <div className="relative z-10 flex flex-1 flex-col justify-between p-5 md:p-7">
-                    <div className="inline-flex w-fit items-center gap-1.5 text-xs font-medium text-[var(--dossier-muted)]">
-                      <MessageSquareText className="h-4 w-4" />
-                      Interactive Q&amp;A
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-4 md:gap-5">
-                        <span
-                          className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[var(--dossier-line-strong)] bg-[var(--dossier-dark)] text-[#fafaf8]"
-                        >
-                          <MessageSquareText className="h-5 w-5" />
-                        </span>
-                        <div className="min-w-0">
-                          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dossier-muted)]">
-                            Interactive Introduction
-                          </p>
-                          <h4 className="mt-1 text-lg font-semibold tracking-tight text-[var(--dossier-ink)] md:text-2xl">
-                            Ask me anything about my work
-                          </h4>
-                          <p className="mt-1 text-sm text-[var(--dossier-body)] md:text-[15px]">
-                            Questions about my engineering background, voice AI tender, or Swiss deployments? Prompt the AI below.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="relative w-[38%] max-w-[240px] min-w-[112px] shrink-0 border-l border-[var(--dossier-line-strong)] bg-[#101116] sm:min-w-[132px] md:min-w-[180px]">
-                    <Image
-                      src="/images/terence-editorial.jpg"
-                      alt="Terence La"
-                      fill
-                      sizes="(max-width: 768px) 38vw, 240px"
-                      className="dossier-profile-photo object-cover object-top"
-                    />
-                  </div>
-                </div>
-              </a>
-              <TerenceAIAskBar />
             </div>
           </div>
         </section>
@@ -520,8 +464,11 @@ export function GoogleApplicationPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: EASE_OUT_STRONG }}
             >
-              Three recent deployments
+              From pilot to production
             </motion.h2>
+            <p className="mt-2 max-w-[56ch] text-sm leading-relaxed text-[var(--dossier-muted)]">
+              Shaped with the customer, built to be used, and checked against the outcome we agreed.
+            </p>
 
             <motion.article
               initial={reduceMotion ? false : { opacity: 0, y: 24 }}
@@ -638,6 +585,66 @@ export function GoogleApplicationPage() {
           </div>
         </section>
 
+        <section className="dossier-section-tight relative z-[2] !pb-2 !pt-3">
+          <div className="mx-auto max-w-[1200px] px-4 md:px-8">
+            <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
+              Explore my work through AI
+            </h2>
+            <p className="mt-1 text-sm text-[var(--dossier-muted)]">
+              No pre-recorded video pitch. Ask questions directly about my real production deployments, code, and systems.
+            </p>
+            <div className="mt-4">
+              <a
+                href={TERENCE_AI_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="dossier-loom-panel dossier-loom-panel-compact block overflow-hidden dossier-pressable"
+                aria-label="Ask TerenceAI anything about my work"
+              >
+                <div className="relative flex w-full min-h-[210px] items-stretch text-left sm:min-h-[230px] md:min-h-[270px]">
+                  <div className="dossier-loom-pattern absolute inset-0" aria-hidden="true" />
+                  <div className="relative z-10 flex flex-1 flex-col justify-between p-5 md:p-7">
+                    <div className="inline-flex w-fit items-center gap-1.5 text-xs font-medium text-[var(--dossier-muted)]">
+                      <MessageSquareText className="h-4 w-4" />
+                      Interactive Q&amp;A
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-4 md:gap-5">
+                        <span
+                          className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[var(--dossier-line-strong)] bg-[var(--dossier-dark)] text-[#fafaf8]"
+                        >
+                          <MessageSquareText className="h-5 w-5" />
+                        </span>
+                        <div className="min-w-0">
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dossier-muted)]">
+                            Interactive Introduction
+                          </p>
+                          <h4 className="mt-1 text-lg font-semibold tracking-tight text-[var(--dossier-ink)] md:text-2xl">
+                            Ask me anything about my work
+                          </h4>
+                          <p className="mt-1 text-sm text-[var(--dossier-body)] md:text-[15px]">
+                            Questions about my engineering background, voice AI tender, or Swiss deployments? Prompt the AI below.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="relative w-[38%] max-w-[240px] min-w-[112px] shrink-0 border-l border-[var(--dossier-line-strong)] bg-[#101116] sm:min-w-[132px] md:min-w-[180px]">
+                    <Image
+                      src="/images/terence-editorial.jpg"
+                      alt="Terence La"
+                      fill
+                      sizes="(max-width: 768px) 38vw, 240px"
+                      className="dossier-profile-photo object-cover object-top"
+                    />
+                  </div>
+                </div>
+              </a>
+              <TerenceAIAskBar />
+            </div>
+          </div>
+        </section>
+
         <section className="google-projects-section dossier-section-tight relative z-[2] !pt-2 !pb-6">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
@@ -691,7 +698,7 @@ export function GoogleApplicationPage() {
                 I&apos;d rather show you than tell you.
               </h2>
               <p className="mt-3 max-w-[52ch] text-sm leading-relaxed text-[var(--dossier-muted)] md:text-[15px]">
-                30 minutes. I&apos;ll walk you through a live deployment, the outcome we defined, how we measured it, and how I would do the same for Google&apos;s enterprise customers in Switzerland.
+                30 minutes. I&apos;ll walk you through a live deployment, the outcome we defined before we built, how we measured whether people used it, and how I would ramp the same for Google Cloud customers in Switzerland.
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-4">
                 <a

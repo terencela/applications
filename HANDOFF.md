@@ -1,5 +1,17 @@
 # Application Dossiers — Handoff
 
+## 2026-10-21: Google Page Optimised for the Actual Position
+
+### Current State
+- **Researched the real posting first**: the Zurich role is **AI Outcome Customer Engineer, Google Cloud** (GTM AI Tech). Core of the job: bridge pre-sales shaping and post-sales execution, shape for adoption and rapid activation, upfront technical design into customer data/identity/compliance, code-level debugging of blockers, field feedback into product, ramp to measurable business outcomes. German is a stated preferred qualification. Header, applying line and meta now use the official title.
+- **Hero lead rewritten to the job**: "from agreement to daily use: shape the outcome with the customer, build it in code, and clear data, security and procurement until people actually use it."
+- **Why-me cards rewritten from generic to the role's three moves**, each with proof already on the page: "Shape for adoption" (voice AI discovery to formal tender, PoC in two weeks), "In the code when it breaks" (20+ products, agent loops/hybrid RAG/evals, debug instead of escalate), "Ramp it, then prove it" (35,000 staff app, field feedback into product asks, $1M+/1 exit/St. Gallen). The triangle in card three now reads Customer, Product, Outcome. German/Swiss German + English is now a fourth Venn overlap power on Google; it was missing entirely.
+- **Section order fixed**: hero → Venn → What I bring (role fit) → From pilot to production (deployments, renamed with the agreed-outcome line) → Explore my work → projects → close. Proof now lands before the ask panel instead of after it. No Vertex AI or Gemini experience is claimed anywhere; the record is model-neutral deployment, framed as ramp work for Google Cloud customers.
+- Verified: lint clean, build pass, Playwright at 390 / 768 / 1440 in light and dark, hero, Venn, Why-me and deployments inspected. Preview restarted on `http://localhost:3008`.
+- **Exact next step**: Terence reviews `https://google.terencela.com`. If he records a Google-specific intro take later, it gets its own file and section; the OpenAI video stays OpenAI-only.
+
+---
+
 ## 2026-10-21: Nuance Restored — Depth Without Coloured Text
 
 ### Current State
