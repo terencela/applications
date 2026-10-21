@@ -358,6 +358,33 @@ export function OpenAIApplicationPage() {
           </div>
         </section>
 
+        <section className="dossier-section relative z-[2] pt-4">
+          <div className="mx-auto max-w-[1200px] px-4 md:px-8">
+            <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
+              Terence in 90 seconds
+            </h2>
+            <p className="mt-2 max-w-[56ch] text-sm leading-relaxed text-[var(--dossier-muted)]">
+              No deck. Who I am, what I shipped at Zurich Airport, and why I want Forward Deployed Zurich.
+            </p>
+            <div className="mt-4">
+              <LoomVideoFrame
+                companyName="OpenAI"
+                roleTitle="Forward Deployed Engineer (Zurich)"
+                videoSrc="/videos/terence-90s.mp4"
+                videoPoster="/videos/terence-90s-poster.jpg"
+                coverImage="/videos/terence-90s-poster.jpg"
+                videoTitle="Terence in 90 seconds"
+                videoSubtitle="Who I am, what I shipped, why Zurich."
+                videoOrientation="portrait"
+                showCoverPhoto
+                accentColor="#73736d"
+                showChapters={false}
+              />
+              <TerenceAIAskBar />
+            </div>
+          </div>
+        </section>
+
         <BusinessTechIntersection
           reduceMotion={reduceMotion}
           intro="Most executives can't ship code. Most engineers can't get a pilot past procurement. I do both."
@@ -537,31 +564,6 @@ export function OpenAIApplicationPage() {
                   </div>
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="dossier-section relative z-[2] pt-4">
-          <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
-              Terence in 90 seconds
-            </h2>
-            <p className="mt-2 max-w-[56ch] text-sm leading-relaxed text-[var(--dossier-muted)]">
-              No deck. Who I am, what I shipped at Zurich Airport, and why I want Forward Deployed Zurich.
-            </p>
-            <div className="mt-4">
-              <LoomVideoFrame
-                companyName="OpenAI"
-                roleTitle="Forward Deployed Engineer (Zurich)"
-                loomUrl="https://www.loom.com/share/054ec870f2c448928570797160ccc6b0"
-                videoTitle="Terence in 90 seconds"
-                videoSubtitle="Who I am, what I shipped, why Zurich."
-                playInModal
-                showCoverPhoto
-                accentColor="#73736d"
-                showChapters={false}
-              />
-              <TerenceAIAskBar />
             </div>
           </div>
         </section>

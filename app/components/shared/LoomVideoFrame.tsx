@@ -15,6 +15,8 @@ interface LoomVideoFrameProps {
   companyName: string;
   roleTitle: string;
   loomUrl?: string;
+  videoSrc?: string;
+  videoPoster?: string;
   videoTitle?: string;
   videoSubtitle?: string;
   accentColor?: string;
@@ -43,6 +45,8 @@ export function LoomVideoFrame({
   companyName,
   roleTitle,
   loomUrl,
+  videoSrc,
+  videoPoster,
   videoTitle = `Why I am the right fit for ${companyName}`,
   videoSubtitle,
   accentColor = "#10a37f",
@@ -62,7 +66,7 @@ export function LoomVideoFrame({
   const isPortrait = videoOrientation === "portrait";
   const frameAspectRatio = isPortrait ? "9 / 16" : "16 / 9";
   const frameMaxWidth = isPortrait ? "max-w-[420px]" : "max-w-[900px]";
-  const showInlineVideo = Boolean(normalizedLoomUrl && isPlaying && !playInModal);
+  const showInlineVideo = Boolean((normalizedLoomUrl || videoSrc) && isPlaying && !playInModal);
 
   useEffect(() => {
     if (!playInModal || !isPlaying) return;
@@ -104,12 +108,25 @@ export function LoomVideoFrame({
           {showInlineVideo ? (
             <div className={`relative mx-auto w-full ${frameMaxWidth}`}>
               <div className="relative w-full" style={{ aspectRatio: frameAspectRatio }}>
-                <iframe
-                  src={normalizedLoomUrl}
-                  className="absolute inset-0 h-full w-full border-0"
-                  allowFullScreen
-                  title={videoTitle}
-                />
+                {videoSrc ? (
+                  <video
+                    src={videoSrc}
+                    poster={videoPoster}
+                    className="absolute inset-0 h-full w-full bg-black object-contain"
+                    controls
+                    autoPlay
+                    playsInline
+                    preload="metadata"
+                    title={videoTitle}
+                  />
+                ) : (
+                  <iframe
+                    src={normalizedLoomUrl}
+                    className="absolute inset-0 h-full w-full border-0"
+                    allowFullScreen
+                    title={videoTitle}
+                  />
+                )}
               </div>
             </div>
           ) : (
@@ -179,7 +196,7 @@ export function LoomVideoFrame({
             </button>
           )}
         </motion.div>
-        {normalizedLoomUrl && isPlaying && playInModal && (
+        {(normalizedLoomUrl || videoSrc) && isPlaying && playInModal && (
           <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm">
             <button
               type="button"
@@ -200,12 +217,25 @@ export function LoomVideoFrame({
                 className="relative w-full overflow-hidden rounded-xl border border-white/15 bg-black shadow-[0_28px_100px_rgba(0,0,0,0.65)]"
                 style={{ aspectRatio: frameAspectRatio }}
               >
-                <iframe
-                  src={normalizedLoomUrl}
-                  className="absolute inset-0 h-full w-full border-0"
-                  allowFullScreen
-                  title={videoTitle}
-                />
+                {videoSrc ? (
+                  <video
+                    src={videoSrc}
+                    poster={videoPoster}
+                    className="absolute inset-0 h-full w-full bg-black object-contain"
+                    controls
+                    autoPlay
+                    playsInline
+                    preload="metadata"
+                    title={videoTitle}
+                  />
+                ) : (
+                  <iframe
+                    src={normalizedLoomUrl}
+                    className="absolute inset-0 h-full w-full border-0"
+                    allowFullScreen
+                    title={videoTitle}
+                  />
+                )}
               </div>
             </div>
           </div>

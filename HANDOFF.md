@@ -1,5 +1,16 @@
 # Application Dossiers — Handoff
 
+## 2026-10-21: Self-Hosted 90-Second Video, Now Second Section (OpenAI)
+
+### Current State
+- **Raw file was not uploadable as-is**: the MOV from Downloads is 111 MB, HEVC, portrait 1080×1920, 82 seconds. GitHub rejects files over 100 MB and HEVC MOV does not play in Chrome or Firefox. Terence's re-shot take is the content, the format was the blocker.
+- **Transcoded for the web**: `public/videos/terence-90s.mp4` is H.264 + AAC, 720×1280, faststart, 23 MB. Poster still at 8s in `public/videos/terence-90s-poster.jpg` (waving frame, shown grayscale by the panel filter, colour once playing). Range requests work (`Accept-Ranges: bytes`), and the file only downloads after the play click.
+- **Video is the second section** on `/openai`: hero → "Terence in 90 seconds" → Business × Tech → deployments → projects → Davos close. It replaces the Loom embed. `LoomVideoFrame` gained `videoSrc`/`videoPoster` props (local `<video>` inline and in modal), so Salesforce and ElevenLabs Loom usage is untouched. Plays inline in portrait, max 420px wide, with native controls.
+- Verified: lint clean, build pass, Playwright at 390 / 768 / 1440 in light and dark. Play click tested programmatically in both themes (video unpaused, currentTime advancing, readyState 4, duration 82.3s). Preview restarted on `http://localhost:3008`.
+- **Exact next step**: Terence watches the take once on `https://openai.terencela.com`. If he re-shoots, drop the new MOV on the same transcode settings and keep the filename, no code change.
+
+---
+
 ## 2026-10-21: Colour Discipline — Brand Colour Out of Text (OpenAI + Google)
 
 ### Current State
