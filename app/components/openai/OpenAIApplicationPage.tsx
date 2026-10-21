@@ -55,7 +55,7 @@ function TerenceAIAskBar() {
             href={TERENCE_AI_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-xs font-medium text-[var(--dossier-ink)] underline decoration-[var(--dossier-line-strong)] underline-offset-4 transition-colors hover:decoration-[#10a37f]"
+            className="inline-flex items-center gap-1 text-xs font-medium text-[var(--dossier-ink)] underline decoration-[var(--dossier-line-strong)] underline-offset-4 transition-colors hover:decoration-[var(--dossier-ink)]"
           >
             {question}
             <ArrowUpRight className="h-3 w-3" />
@@ -234,7 +234,7 @@ const selectedProjects: SelectedProject[] = [
 ];
 
 const accentStyles = {
-  "--hero-accent": "#10a37f",
+  "--hero-accent": "#73736d",
 } as CSSProperties;
 
 const intersectionPowers = [
@@ -261,11 +261,11 @@ export function OpenAIApplicationPage() {
         className="dossier-page relative min-h-[100dvh] overflow-x-hidden"
         style={accentStyles}
       >
-        <DossierBackground accentColor="#10a37f" />
+        <DossierBackground accentColor="#1a1a1a" />
         <SubpageHeader
           companyName="OpenAI"
           roleTitle="Forward Deployed Engineer (Zurich)"
-          accentColor="#10a37f"
+          accentColor="#1a1a1a"
         />
 
         <section className="dossier-openai-hero relative z-[2] flex min-h-[calc(100dvh-57px)] flex-col md:min-h-[calc(100dvh-57px)]">
@@ -289,7 +289,7 @@ export function OpenAIApplicationPage() {
               </aside>
 
               <div className="max-w-[760px] md:col-start-1 md:row-start-1">
-                <p className="mb-3 text-[13px] font-medium text-[#10a37f] md:mb-4">
+                <p className="mb-3 text-[13px] font-medium text-[var(--dossier-muted)] md:mb-4">
                   I&apos;m applying for the Forward Deployed Engineer role in Zurich.
                 </p>
                 <h1 className="dossier-hero-title max-w-[18ch]" style={{ fontSize: "clamp(30px, 8.2vw, 64px)" }}>
@@ -360,9 +360,6 @@ export function OpenAIApplicationPage() {
 
         <BusinessTechIntersection
           reduceMotion={reduceMotion}
-          accent="#10a37f"
-          accentSoft="#a7f3d0"
-          techGradient={["#15362a", "#0b1e17"]}
           intro="Most executives can't ship code. Most engineers can't get a pilot past procurement. I do both."
           centerTop="OPENAI FDE"
           centerBottom="Ships & Aligns"
@@ -561,7 +558,7 @@ export function OpenAIApplicationPage() {
                 videoSubtitle="Who I am, what I shipped, why Zurich."
                 playInModal
                 showCoverPhoto
-                accentColor="#10a37f"
+                accentColor="#73736d"
                 showChapters={false}
               />
               <TerenceAIAskBar />
@@ -589,7 +586,7 @@ export function OpenAIApplicationPage() {
                         <span className="text-[12px] font-semibold text-[var(--dossier-ink)]">
                           World Economic Forum · Davos
                         </span>
-                        <span className="rounded-full bg-[#10a37f]/10 px-2 py-0.5 text-[10px] font-medium text-[#10a37f]">
+                        <span className="rounded-full border border-[var(--dossier-line)] px-2 py-0.5 text-[10px] font-medium text-[var(--dossier-muted)]">
                           WEF
                         </span>
                       </div>
@@ -601,8 +598,8 @@ export function OpenAIApplicationPage() {
                 </div>
 
                 <div className="flex flex-col md:col-span-7">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#10a37f]">
-                    Full circle · 2020 to 2026
+                  <p className="text-[13px] font-medium text-[var(--dossier-muted)]">
+                    Full circle, 2020 to 2026
                   </p>
                   <h2 className="mt-2 text-[clamp(28px,3.6vw,44px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)] leading-[1.12]">
                     From Davos to Zurich. Ready to deploy.

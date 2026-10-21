@@ -305,10 +305,9 @@ html:not([data-dossier-theme="dark"]) .dossier-page .project-card .project-visua
 }
 
 .dossier-page .project-card .card-copy small {
-  font-size: 8.5px;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--accent);
+  font-size: 10px;
+  letter-spacing: 0.01em;
+  color: var(--dossier-muted);
 }
 
 .dossier-page .project-card .card-copy h3 {
@@ -632,7 +631,7 @@ html[data-dossier-theme="dark"] .dossier-dot-grid {
 }
 
 html[data-dossier-theme="dark"] .dossier-mesh-gradient {
-  opacity: 0.5;
+  opacity: 0.12;
 }
 
 html[data-dossier-theme="dark"] .card-copy h3 {
@@ -806,11 +805,10 @@ html[data-dossier-theme="dark"] .dossier-bg-base {
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.35;
+  opacity: 0.08;
   background:
-    radial-gradient(ellipse 50% 40% at 20% 10%, color-mix(in srgb, var(--mesh-accent, #10a37f) 12%, transparent), transparent),
-    radial-gradient(ellipse 40% 35% at 75% 5%, color-mix(in srgb, var(--mesh-accent, #10a37f) 8%, transparent), transparent),
-    radial-gradient(ellipse 55% 30% at 50% 25%, rgba(99, 118, 255, 0.06), transparent);
+    radial-gradient(ellipse 50% 40% at 20% 10%, rgba(26, 26, 26, 0.04), transparent),
+    radial-gradient(ellipse 40% 35% at 75% 5%, rgba(26, 26, 26, 0.03), transparent);
   mask-image: linear-gradient(to bottom, black 0%, transparent 55%);
 }
 
@@ -838,7 +836,7 @@ html[data-dossier-theme="dark"] .dossier-bg-base {
   top: -300px;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.55;
+  opacity: 0.12;
 }
 
 .dossier-accent-orb-secondary {
@@ -1193,8 +1191,14 @@ html[data-dossier-theme="dark"] .dossier-bg-base {
   border-radius: 0;
   overflow: hidden;
   border: 1px solid var(--dossier-line-strong);
-  background: #e9e5dc;
-  box-shadow: 16px 16px 0 color-mix(in srgb, var(--hero-accent, #5a67ff) 12%, #d8d4cb);
+  background: #ebe9e2;
+  box-shadow: 0 10px 28px rgba(26, 26, 26, 0.07);
+}
+
+html[data-dossier-theme="dark"] .dossier-profile-frame {
+  background: #14151b;
+  border-color: var(--dossier-line-strong);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
 }
 
 .dossier-profile-frame img,
@@ -1217,7 +1221,7 @@ html[data-dossier-theme="dark"] .dossier-bg-base {
 
 @media (max-width: 639px) {
   .dossier-profile-frame {
-    box-shadow: 9px 9px 0 color-mix(in srgb, var(--hero-accent, #5a67ff) 10%, #d8d4cb);
+    box-shadow: 0 8px 20px rgba(26, 26, 26, 0.06);
   }
 }
 
@@ -1665,8 +1669,8 @@ html[data-dossier-theme="dark"] .dossier-loom-pattern {
 }
 
 .dossier-terenceai-ask__field:focus-within {
-  border-color: #8ab4f8;
-  box-shadow: 0 0 0 3px rgba(138, 180, 248, 0.12);
+  border-color: var(--dossier-ink);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--dossier-ink) 10%, transparent);
 }
 
 .dossier-terenceai-ask__icon {
@@ -1704,11 +1708,11 @@ html[data-dossier-theme="dark"] .dossier-terenceai-ask__field:hover {
 }
 
 html[data-dossier-theme="dark"] .dossier-terenceai-ask__field:focus-within {
-  border-color: #8ab4f8;
+  border-color: var(--dossier-ink);
 }
 
 html[data-dossier-theme="dark"] .dossier-terenceai-ask__icon {
-  color: #8ab4f8;
+  color: var(--dossier-muted);
 }
 
 html[data-dossier-theme="dark"] .dossier-terenceai-ask__input {

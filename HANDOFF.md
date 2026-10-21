@@ -1,5 +1,18 @@
 # Application Dossiers — Handoff
 
+## 2026-10-21: Colour Discipline — Brand Colour Out of Text (OpenAI + Google)
+
+### Current State
+- **Terence's call, correct**: pastel Google blue (`#8ab4f8`) and OpenAI teal (`#10a37f`) were painted as text, numbers and icons on paper in light mode and on black in dark mode. Optical clash with the grayscale portrait. Fixed on `/openai` and `/google` only. Salesforce/ElevenLabs untouched.
+- **System is now paper + ink in both themes** (`#fafaf8`/`#1a1a1a` light, `#0a0b0f`/`#f4f2ec` dark): applying lines are muted, hero stat numbers are ink (stat row kept, per the 10-second-scroll rule), Why-me icons/diagram are ink on paper tiles, `--hero-accent` is neutral grey `#73736d`, background orbs/mesh no longer tint green/blue.
+- **Profile frame fixed**: the hardcoded beige `16px 16px 0` offset slab (`#d8d4cb` mixed with accent) is gone in both themes. Now a soft neutral shadow; dark mode uses `#14151b` ground.
+- **Ask bar fixed at the source**: `globals.css` hardcoded `#8ab4f8` for the search icon in dark mode and the focus ring on every dossier. Now muted/ink via theme vars.
+- **Venn rebuilt theme-aware** (`BusinessTechIntersection.tsx`): light = cream paper circles with ink text; dark = charcoal circles with paper text. No more dark circles on a white card. Stat numbers in all three cards are ink (Tech was accent-coloured). Active tab/cards use ink, not brand colour. Bug found in QA: Tailwind `text-[var(--dossier-bg)]` generated no colour rule, leaving the active tab label invisible (same colour as pill). Active tab now uses inline style with the theme vars; verified computed contrast in both themes.
+- Verified: lint 0 errors, build pass, Playwright screenshots at 390 / 768 / 1440 in **both light and dark** on `/openai` and `/google`, including scrolled Venn + Why-me views. Preview restarted on `http://localhost:3008`.
+- **Exact next step**: Terence reviews `https://openai.terencela.com` and `https://google.terencela.com`; then re-shoot the OpenAI 90-second Loom (script in the entry below).
+
+---
+
 ## 2026-10-21: Applying Lines, Light Default, Google Venn, Relevant Stats
 
 ### Current State

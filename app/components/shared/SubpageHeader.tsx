@@ -19,11 +19,7 @@ interface SubpageHeaderProps {
   accentColor: string;
 }
 
-export function SubpageHeader({
-  companyName,
-  roleTitle,
-  accentColor,
-}: SubpageHeaderProps) {
+export function SubpageHeader({ companyName, roleTitle }: SubpageHeaderProps) {
   const external = isExternalDossier();
   const reduceMotion = useReducedMotion();
   const { theme } = useDossierTheme();
@@ -54,7 +50,7 @@ export function SubpageHeader({
           <DossierThemeToggle />
 
           <div className="dossier-glass-pill hidden sm:inline-flex">
-            <MapPin className="h-3.5 w-3.5" style={{ color: accentColor }} />
+            <MapPin className="h-3.5 w-3.5 text-[var(--dossier-muted)]" />
             Zurich
           </div>
 

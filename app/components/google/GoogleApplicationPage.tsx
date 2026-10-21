@@ -40,7 +40,7 @@ const googleIntersectionPowers = [
 ];
 
 const EASE_OUT_STRONG = [0.23, 1, 0.32, 1] as const;
-const ACCENT = "#8ab4f8";
+const ACCENT = "#73736d";
 
 const TERENCE_AI_URL = "https://about.terencela.com";
 
@@ -284,7 +284,7 @@ export function GoogleApplicationPage() {
               </aside>
 
               <div className="max-w-[760px] md:col-start-1 md:row-start-1">
-                <p className="mb-3 text-[13px] font-medium text-[#8ab4f8] md:mb-4">
+                <p className="mb-3 text-[13px] font-medium text-[var(--dossier-muted)] md:mb-4">
                   I&apos;m applying for the Outcome Engineer role in Zurich.
                 </p>
                 <h1 className="dossier-hero-title max-w-[18ch]" style={{ fontSize: "clamp(30px, 8.2vw, 64px)" }}>
@@ -295,17 +295,17 @@ export function GoogleApplicationPage() {
                 </p>
                 <div className="mt-5 grid max-w-[640px] grid-cols-3 gap-3 border-t border-[var(--dossier-line)] pt-4 md:mt-8 md:gap-5">
                   <div>
-                    <p className="text-[20px] font-semibold leading-none tracking-[-0.03em] text-[#8ab4f8] md:text-[24px]">8×</p>
+                    <p className="text-[20px] font-semibold leading-none tracking-[-0.03em] text-[var(--dossier-ink)] md:text-[24px]">8×</p>
                     <p className="mt-1.5 text-[11px] font-semibold leading-snug text-[var(--dossier-ink)] md:text-[12px]">Hackathon winner, mostly solo</p>
                     <p className="mt-0.5 text-[10px] leading-snug text-[var(--dossier-muted)] md:text-[11px]">3rd at HackZurich, 1,600 engineers</p>
                   </div>
                   <div>
-                    <p className="text-[20px] font-semibold leading-none tracking-[-0.03em] text-[#8ab4f8] md:text-[24px]">20+</p>
+                    <p className="text-[20px] font-semibold leading-none tracking-[-0.03em] text-[var(--dossier-ink)] md:text-[24px]">20+</p>
                     <p className="mt-1.5 text-[11px] font-semibold leading-snug text-[var(--dossier-ink)] md:text-[12px]">AI products built</p>
                     <p className="mt-0.5 text-[10px] leading-snug text-[var(--dossier-muted)] md:text-[11px]">GPT-3 since 2020</p>
                   </div>
                   <div>
-                    <p className="text-[20px] font-semibold leading-none tracking-[-0.03em] text-[#8ab4f8] md:text-[24px]">32M+</p>
+                    <p className="text-[20px] font-semibold leading-none tracking-[-0.03em] text-[var(--dossier-ink)] md:text-[24px]">32M+</p>
                     <p className="mt-1.5 text-[11px] font-semibold leading-snug text-[var(--dossier-ink)] md:text-[12px]">Passengers a year at Zurich Airport</p>
                     <p className="mt-0.5 text-[10px] leading-snug text-[var(--dossier-muted)] md:text-[11px]">Where I lead AI today</p>
                   </div>
@@ -355,9 +355,6 @@ export function GoogleApplicationPage() {
 
         <BusinessTechIntersection
           reduceMotion={reduceMotion}
-          accent="#8ab4f8"
-          accentSoft="#bfdbfe"
-          techGradient={["#1e3a5f", "#0d1b2e"]}
           intro="Most builders stop at the demo. Most advisors never build. I define the outcome, build it, and stay until people use it."
           centerTop="GOOGLE"
           centerBottom="Outcome first"
@@ -368,16 +365,14 @@ export function GoogleApplicationPage() {
 
         <section className="dossier-section relative z-[2] pt-9">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#8ab4f8]">
-              Why me
-            </p>
+            <p className="text-[13px] font-medium text-[var(--dossier-muted)]">Why me</p>
             <h2 className="mt-2 text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
               What I bring to Google on day one.
             </h2>
             <div className="mt-6 grid gap-4 md:grid-cols-3">
               <article className="flex flex-col rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-6 pb-7">
-                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#8ab4f8]/[0.08]">
-                  <Workflow className="h-6 w-6 text-[#8ab4f8]" />
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-[var(--dossier-line)] bg-[var(--dossier-bg)]">
+                  <Workflow className="h-6 w-6 text-[var(--dossier-ink)]" />
                 </div>
                 <h3 className="text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
                   Enterprise deployment
@@ -395,8 +390,8 @@ export function GoogleApplicationPage() {
                   ].map((step, i) => (
                     <React.Fragment key={step.label}>
                       <div className="flex flex-col items-center gap-1">
-                        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#8ab4f8]/[0.08]">
-                          <step.icon className="h-3.5 w-3.5 text-[#8ab4f8]" />
+                        <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-[var(--dossier-line)] bg-[var(--dossier-bg)]">
+                          <step.icon className="h-3.5 w-3.5 text-[var(--dossier-ink)]" />
                         </span>
                         <span className="text-[8px] font-medium text-[var(--dossier-muted)]">{step.label}</span>
                       </div>
@@ -407,8 +402,8 @@ export function GoogleApplicationPage() {
               </article>
 
               <article className="flex flex-col rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-6 pb-7">
-                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#8ab4f8]/[0.08]">
-                  <Cpu className="h-6 w-6 text-[#8ab4f8]" />
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-[var(--dossier-line)] bg-[var(--dossier-bg)]">
+                  <Cpu className="h-6 w-6 text-[var(--dossier-ink)]" />
                 </div>
                 <h3 className="text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
                   AI builder
@@ -420,17 +415,17 @@ export function GoogleApplicationPage() {
                   {[Bot, FileText, Mic, Database, MessageSquareText].map((Icon, i) => (
                     <span
                       key={i}
-                      className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#8ab4f8]/[0.08]"
+                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--dossier-line)] bg-[var(--dossier-bg)]"
                     >
-                      <Icon className="h-4 w-4 text-[#8ab4f8]" />
+                      <Icon className="h-4 w-4 text-[var(--dossier-ink)]" />
                     </span>
                   ))}
                 </div>
               </article>
 
               <article className="flex flex-col rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-panel)] p-6 pb-7">
-                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#8ab4f8]/[0.08]">
-                  <Users className="h-6 w-6 text-[#8ab4f8]" />
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-[var(--dossier-line)] bg-[var(--dossier-bg)]">
+                  <Users className="h-6 w-6 text-[var(--dossier-ink)]" />
                 </div>
                 <h3 className="text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
                   Business x Engineering
@@ -440,12 +435,12 @@ export function GoogleApplicationPage() {
                 </p>
                 <div className="mt-auto pt-6">
                   <svg viewBox="0 0 220 90" className="w-full max-w-[220px]" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="48" y1="22" x2="172" y2="22" stroke="#8ab4f8" strokeWidth="1" opacity="0.4" />
-                    <line x1="40" y1="24" x2="110" y2="76" stroke="#8ab4f8" strokeWidth="1" opacity="0.4" />
-                    <line x1="180" y1="24" x2="110" y2="76" stroke="#8ab4f8" strokeWidth="1" opacity="0.4" />
-                    <circle cx="40" cy="20" r="4" fill="#8ab4f8" opacity="0.8" />
-                    <circle cx="180" cy="20" r="4" fill="#8ab4f8" opacity="0.8" />
-                    <circle cx="110" cy="78" r="4" fill="#8ab4f8" opacity="0.8" />
+                    <line x1="48" y1="22" x2="172" y2="22" stroke="var(--dossier-ink)" strokeWidth="1" opacity="0.4" />
+                    <line x1="40" y1="24" x2="110" y2="76" stroke="var(--dossier-ink)" strokeWidth="1" opacity="0.4" />
+                    <line x1="180" y1="24" x2="110" y2="76" stroke="var(--dossier-ink)" strokeWidth="1" opacity="0.4" />
+                    <circle cx="40" cy="20" r="4" fill="var(--dossier-ink)" opacity="0.8" />
+                    <circle cx="180" cy="20" r="4" fill="var(--dossier-ink)" opacity="0.8" />
+                    <circle cx="110" cy="78" r="4" fill="var(--dossier-ink)" opacity="0.8" />
                     <text x="18" y="12" fontSize="9" fontWeight="500" className="fill-[var(--dossier-ink)]">Business</text>
                     <text x="148" y="12" fontSize="9" fontWeight="500" className="fill-[var(--dossier-ink)]">Engineering</text>
                     <text x="92" y="89" fontSize="9" fontWeight="500" className="fill-[var(--dossier-ink)]">User</text>
@@ -475,17 +470,14 @@ export function GoogleApplicationPage() {
                 <div className="relative flex w-full min-h-[210px] items-stretch text-left sm:min-h-[230px] md:min-h-[270px]">
                   <div className="dossier-loom-pattern absolute inset-0" aria-hidden="true" />
                   <div className="relative z-10 flex flex-1 flex-col justify-between p-5 md:p-7">
-                    <div
-                      className="inline-flex w-fit items-center gap-1.5 text-xs font-medium"
-                      style={{ color: ACCENT }}
-                    >
+                    <div className="inline-flex w-fit items-center gap-1.5 text-xs font-medium text-[var(--dossier-muted)]">
                       <MessageSquareText className="h-4 w-4" />
                       Interactive Q&amp;A
                     </div>
                     <div>
                       <div className="flex items-center gap-4 md:gap-5">
                         <span
-                          className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[var(--dossier-line-strong)] bg-[var(--dossier-dark)] text-[#8ab4f8]"
+                          className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[var(--dossier-line-strong)] bg-[var(--dossier-dark)] text-[#fafaf8]"
                         >
                           <MessageSquareText className="h-5 w-5" />
                         </span>
