@@ -1,5 +1,16 @@
 # Application Dossiers — Handoff
 
+## 2026-10-21: Photos Back in Colour — Grayscale Filter Removed
+
+### Current State
+- **Terence asked why everything is black and white. He was right about the imagery**: two CSS rules in `globals.css` forced `filter: grayscale(100%)` on every dossier profile photo (`.dossier-profile-frame img` and `.dossier-loom-panel .dossier-profile-photo`). That greyscaled colour material that was never meant to be monochrome: the 90-second video poster (cream sweater, warm room) and the Google Explore editorial photo. Both rules are deleted.
+- **What stays black and white on purpose**: the typography system (paper/ink, per his colour-discipline call) and the hero headshot, because `/images/terence-la-profile.png` is itself a black-and-white photo file. No CSS can colour it. If Terence wants a colour hero portrait, he sends a colour headshot and it is a one-line swap.
+- **Scope**: the rules were shared, so Salesforce/ElevenLabs covers also render in natural colour now. No text, number or icon colour changed anywhere.
+- Verified: computed filter on the video cover is `none` in light and dark; build pass; Playwright at 1440 light/dark (OpenAI hero + video panel, Google Explore panel) and 390 dark (OpenAI video, colour still, nothing clipped). Preview restarted on `http://localhost:3008`.
+- **Exact next step**: Terence reviews `https://openai.terencela.com`. Only open colour question left is the hero headshot, which needs a colour source file from him.
+
+---
+
 ## 2026-10-21: Google Page Optimised for the Actual Position
 
 ### Current State
@@ -27,7 +38,7 @@
 
 ### Current State
 - **Raw file was not uploadable as-is**: the MOV from Downloads is 111 MB, HEVC, portrait 1080×1920, 82 seconds. GitHub rejects files over 100 MB and HEVC MOV does not play in Chrome or Firefox. Terence's re-shot take is the content, the format was the blocker.
-- **Transcoded for the web**: `public/videos/terence-90s.mp4` is H.264 + AAC, 720×1280, faststart, 23 MB. Poster still at 8s in `public/videos/terence-90s-poster.jpg` (waving frame, shown grayscale by the panel filter, colour once playing). Range requests work (`Accept-Ranges: bytes`), and the file only downloads after the play click.
+- **Transcoded for the web**: `public/videos/terence-90s.mp4` is H.264 + AAC, 720×1280, faststart, 23 MB. Poster still at 8s in `public/videos/terence-90s-poster.jpg` (waving frame; in colour since the grayscale pass was removed). Range requests work (`Accept-Ranges: bytes`), and the file only downloads after the play click.
 - **Video is the second section** on `/openai` only (Google has no video): hero → "Terence in 90 seconds" → Business × Tech → deployments → projects → Davos close. It replaces the Loom embed. `LoomVideoFrame` gained `videoSrc`/`videoPoster` props (local `<video>` inline and in modal), so Salesforce and ElevenLabs Loom usage is untouched.
 - **Preview is the panel, playback is the modal** (Terence, 21 Oct): the preview must be the panel with the waving poster frame from 8s, in both themes. An earlier inline build replaced the panel with a full-width portrait video after the click and read as a giant face in the page flow. Now the click opens the portrait video in a modal (max 420px, native controls, Close), and the page behind keeps the panel preview. Do not switch this back to inline.
 - Verified: lint clean, build pass, Playwright at 390 / 768 / 1440 in light and dark. Play click tested programmatically in both themes (video unpaused, currentTime advancing, readyState 4, duration 82.3s). Preview restarted on `http://localhost:3008`.

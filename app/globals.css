@@ -1214,11 +1214,6 @@ html[data-dossier-theme="dark"] .dossier-profile-frame {
   box-shadow: 14px 14px 0 #1b1c24, 0 18px 40px rgba(0, 0, 0, 0.5);
 }
 
-.dossier-profile-frame img,
-.dossier-profile-frame .dossier-profile-photo {
-  filter: grayscale(100%);
-}
-
 .dossier-profile-frame::before {
   content: "";
   position: absolute;
@@ -1738,10 +1733,6 @@ html[data-dossier-theme="dark"] .dossier-terenceai-ask__input {
 
 html[data-dossier-theme="dark"] .dossier-terenceai-ask__input::placeholder {
   color: #7f818d;
-}
-
-.dossier-loom-panel .dossier-profile-photo {
-  filter: grayscale(100%);
 }
 
 .dossier-footer-cta {
