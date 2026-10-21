@@ -1227,13 +1227,11 @@ html[data-dossier-theme="dark"] .dossier-bg-base {
 
 @media (max-width: 767px) {
   .dossier-openai-hero {
-    height: calc(100dvh - 57px);
-    max-height: calc(100dvh - 57px);
+    min-height: 0;
   }
 
   .dossier-openai-hero__main {
     min-height: 0;
-    overflow: hidden;
   }
 
   .dossier-openai-hero__logos {

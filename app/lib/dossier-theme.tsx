@@ -21,16 +21,16 @@ type DossierThemeContextValue = {
 };
 
 const DossierThemeContext = createContext<DossierThemeContextValue>({
-  theme: "dark",
+  theme: "light",
   setTheme: () => undefined,
   toggleTheme: () => undefined,
 });
 
 function getInitialTheme(): DossierTheme {
-  if (typeof window === "undefined") return "dark";
+  if (typeof window === "undefined") return "light";
   const stored = window.localStorage.getItem(STORAGE_KEY);
-  if (stored === "light") return "light";
-  return "dark";
+  if (stored === "dark") return "dark";
+  return "light";
 }
 
 export function applyDossierThemeToDocument(theme: DossierTheme) {
@@ -48,7 +48,7 @@ const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffec
 
 export function DossierThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<DossierTheme>(() => {
-    if (typeof window === "undefined") return "dark";
+    if (typeof window === "undefined") return "light";
     return getInitialTheme();
   });
 

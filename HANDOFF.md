@@ -1,5 +1,18 @@
 # Application Dossiers — Handoff
 
+## 2026-10-21: Applying Lines, Light Default, Google Venn, Relevant Stats
+
+### Current State
+- **Both heroes now say he is applying**: OpenAI — "I'm applying for the Forward Deployed Engineer role in Zurich." Google — "I'm applying for the Outcome Engineer role in Zurich." One plain line above the H1, in the company accent. No longer reads as a personal branding page.
+- **Light mode is the default** for new visitors on all dossiers (layout init script + `dossier-theme.tsx`). A saved choice still wins, the toggle still works, dark was spot-checked after the change.
+- **Google stats replaced**: the contextless `35K staff app` and `30h to 3h` are out of the hero (both still live in their deployment cards, where they have context). Hero now: `8×` hackathon winner mostly solo, `20+` AI products built / GPT-3 since 2020, `32M+` passengers a year at Zurich Airport. OpenAI stat numbers shrunk (24px desktop / 20px mobile) at Terence's request.
+- **Business × Tech is now a shared component** (`app/components/shared/BusinessTechIntersection.tsx`), used by OpenAI (green, "OPENAI FDE / Ships & Aligns", forward-deployed wording) and Google (blue `#8ab4f8`, "GOOGLE / Outcome first", centre column "Define the outcome, then build"). The hackathon now sits inside the Tech argument on Google instead of floating alone. Extracting it also fixed two light-mode bugs: the active overlap card was dark-on-dark, and the Business circle label ran outside the circle.
+- **Mobile is no longer cramped or clipped**: the forced fixed-height mobile hero (`height/max-height: 100dvh` + overflow hidden in `globals.css`) is removed for the shared hero class. The hero now grows naturally; at 390px the applying line, headline, paragraph, stats, CTA and AskBar all show with breathing room on both pages.
+- Verified: lint + build pass, Playwright at 1440 / 768 / 390 in light (fresh visitor) on both pages, Google Venn also checked at 390 and in dark.
+- **Exact next step**: Terence reviews both live pages; then re-shoot the OpenAI 90-second Loom (script in the entry below).
+
+---
+
 ## 2026-10-21: Google Outcome Engineer — Surgical Pass (No Revamp)
 
 ### Current State

@@ -39,7 +39,7 @@ export default function RootLayout({
           id="dossier-theme-init"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem("dossier-theme");var theme=t==="light"?"light":"dark";var r=document.documentElement;r.setAttribute("data-dossier-theme",theme);r.dataset.dossier="true";r.classList.toggle("dark",theme==="dark");}catch(e){}})();`,
+            __html: `(function(){try{var t=localStorage.getItem("dossier-theme");var theme=t==="dark"?"dark":"light";var r=document.documentElement;r.setAttribute("data-dossier-theme",theme);r.dataset.dossier="true";r.classList.toggle("dark",theme==="dark");}catch(e){}})();`,
           }}
         />
       </head>

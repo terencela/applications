@@ -21,7 +21,23 @@ import { motion, useReducedMotion } from "framer-motion";
 import { DossierBackground } from "@/app/components/shared/DossierBackground";
 import { SubpageHeader } from "@/app/components/shared/SubpageHeader";
 import { ProductVisual } from "@/app/components/shared/ProductVisual";
+import { BusinessTechIntersection } from "@/app/components/shared/BusinessTechIntersection";
 import { DossierThemeProvider } from "@/app/lib/dossier-theme";
+
+const googleIntersectionPowers = [
+  {
+    title: "Define the outcome, then build",
+    desc: "Agree what success means with the customer, in plain numbers, before anyone writes code. Then measure against it.",
+  },
+  {
+    title: "In the room, then in the code",
+    desc: "With the customer at the start of the week. A working pilot by the end of it.",
+  },
+  {
+    title: "Gets past legal, security and procurement",
+    desc: "That is where most enterprise pilots die. I handle it instead of handing it off.",
+  },
+];
 
 const EASE_OUT_STRONG = [0.23, 1, 0.32, 1] as const;
 const ACCENT = "#8ab4f8";
@@ -250,7 +266,7 @@ export function GoogleApplicationPage() {
         <section className="dossier-openai-hero relative z-[2] flex min-h-[calc(100dvh-57px)] flex-col md:min-h-[calc(100dvh-57px)]">
           <div className="dossier-openai-hero__main mx-auto flex w-full max-w-[1200px] flex-1 flex-col justify-start px-4 py-5 md:justify-center md:px-8 md:py-14 lg:py-16">
             <div className="flex flex-col gap-4 md:grid md:grid-cols-[minmax(0,1fr)_minmax(200px,260px)] md:items-center md:gap-x-14 md:gap-y-0 lg:gap-x-20">
-              <aside className="dossier-openai-hero__photo w-full max-w-[min(8rem,34vw)] shrink-0 md:col-start-2 md:row-start-1 md:mx-0 md:max-w-[220px] lg:max-w-[260px]">
+              <aside className="dossier-openai-hero__photo w-full max-w-[min(8.5rem,36vw)] shrink-0 md:col-start-2 md:row-start-1 md:mx-0 md:max-w-[220px] lg:max-w-[260px]">
                 <div className="dossier-profile-frame aspect-[4/5] w-full">
                   <Image
                     src="/images/terence-la-profile.png"
@@ -268,30 +284,33 @@ export function GoogleApplicationPage() {
               </aside>
 
               <div className="max-w-[760px] md:col-start-1 md:row-start-1">
+                <p className="mb-3 text-[13px] font-medium text-[#8ab4f8] md:mb-4">
+                  I&apos;m applying for the Outcome Engineer role in Zurich.
+                </p>
                 <h1 className="dossier-hero-title max-w-[18ch]" style={{ fontSize: "clamp(30px, 8.2vw, 64px)" }}>
                   I build AI agents and get them working in the real world.
                 </h1>
-                <p className="mt-4 max-w-[52ch] text-[15px] leading-relaxed text-[var(--dossier-body)] md:mt-8 md:text-[17px] md:leading-[1.6]">
+                <p className="mt-5 max-w-[52ch] text-[15px] leading-relaxed text-[var(--dossier-body)] md:mt-8 md:text-[17px] md:leading-[1.6]">
                   AI Lead at Zurich Airport, 32M+ passengers a year. My job is the outcome, not the demo: define what success means, build the AI, and get it through data rules, procurement and daily operations until people use it.
                 </p>
-                <div className="mt-4 grid max-w-[640px] grid-cols-3 gap-3 border-t border-[var(--dossier-line)] pt-3 md:mt-8 md:gap-5 md:pt-5">
+                <div className="mt-5 grid max-w-[640px] grid-cols-3 gap-3 border-t border-[var(--dossier-line)] pt-4 md:mt-8 md:gap-5">
                   <div>
-                    <p className="text-[24px] font-semibold leading-none tracking-[-0.03em] text-[#8ab4f8] md:text-[30px]">8×</p>
+                    <p className="text-[20px] font-semibold leading-none tracking-[-0.03em] text-[#8ab4f8] md:text-[24px]">8×</p>
                     <p className="mt-1.5 text-[11px] font-semibold leading-snug text-[var(--dossier-ink)] md:text-[12px]">Hackathon winner, mostly solo</p>
                     <p className="mt-0.5 text-[10px] leading-snug text-[var(--dossier-muted)] md:text-[11px]">3rd at HackZurich, 1,600 engineers</p>
                   </div>
                   <div>
-                    <p className="text-[24px] font-semibold leading-none tracking-[-0.03em] text-[#8ab4f8] md:text-[30px]">35K</p>
-                    <p className="mt-1.5 text-[11px] font-semibold leading-snug text-[var(--dossier-ink)] md:text-[12px]">Staff on one app, rebuilt solo</p>
-                    <p className="mt-0.5 text-[10px] leading-snug text-[var(--dossier-muted)] md:text-[11px]">In 2 weeks, replaced a CHF 200K quote</p>
+                    <p className="text-[20px] font-semibold leading-none tracking-[-0.03em] text-[#8ab4f8] md:text-[24px]">20+</p>
+                    <p className="mt-1.5 text-[11px] font-semibold leading-snug text-[var(--dossier-ink)] md:text-[12px]">AI products built</p>
+                    <p className="mt-0.5 text-[10px] leading-snug text-[var(--dossier-muted)] md:text-[11px]">GPT-3 since 2020</p>
                   </div>
                   <div>
-                    <p className="text-[24px] font-semibold leading-none tracking-[-0.03em] text-[#8ab4f8] md:text-[30px]">30h to 3h</p>
-                    <p className="mt-1.5 text-[11px] font-semibold leading-snug text-[var(--dossier-ink)] md:text-[12px]">Per engineering proposal</p>
-                    <p className="mt-0.5 text-[10px] leading-snug text-[var(--dossier-muted)] md:text-[11px]">With Leistera, live in Swiss offices</p>
+                    <p className="text-[20px] font-semibold leading-none tracking-[-0.03em] text-[#8ab4f8] md:text-[24px]">32M+</p>
+                    <p className="mt-1.5 text-[11px] font-semibold leading-snug text-[var(--dossier-ink)] md:text-[12px]">Passengers a year at Zurich Airport</p>
+                    <p className="mt-0.5 text-[10px] leading-snug text-[var(--dossier-muted)] md:text-[11px]">Where I lead AI today</p>
                   </div>
                 </div>
-                <div className="mt-4 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 md:mt-8">
+                <div className="mt-5 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 md:mt-8">
                   <a
                     href="https://about.terencela.com"
                     target="_blank"
@@ -333,6 +352,19 @@ export function GoogleApplicationPage() {
             </div>
           </div>
         </section>
+
+        <BusinessTechIntersection
+          reduceMotion={reduceMotion}
+          accent="#8ab4f8"
+          accentSoft="#bfdbfe"
+          techGradient={["#1e3a5f", "#0d1b2e"]}
+          intro="Most builders stop at the demo. Most advisors never build. I define the outcome, build it, and stay until people use it."
+          centerTop="GOOGLE"
+          centerBottom="Outcome first"
+          overlapTitle="The outcome part"
+          overlapSubtitle="What a customer in Switzerland needs from one person."
+          intersectionPowers={googleIntersectionPowers}
+        />
 
         <section className="dossier-section relative z-[2] pt-9">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
