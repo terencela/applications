@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
+import { PageTracker } from "@/app/components/shared/PageTracker";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -47,6 +48,11 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         {children}
+        <PageTracker
+          posthogKey={process.env.NEXT_PUBLIC_POSTHOG_KEY}
+          posthogHost={process.env.NEXT_PUBLIC_POSTHOG_HOST}
+          gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
+        />
       </body>
     </html>
   );

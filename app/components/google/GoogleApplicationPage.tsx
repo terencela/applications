@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, type CSSProperties } from "react";
+import React, { type CSSProperties } from "react";
 import Image from "next/image";
 import {
   ArrowRight,
@@ -233,21 +233,6 @@ const accentStyles = {
 
 export function GoogleApplicationPage() {
   const reduceMotion = useReducedMotion();
-
-  useEffect(() => {
-    // Track internal Google visitor
-    try {
-      fetch("/api/analytics/track", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          page: "/google",
-          referrer: document.referrer,
-          screen: `${window.innerWidth}x${window.innerHeight}`,
-        }),
-      }).catch(() => {});
-    } catch {}
-  }, []);
 
   return (
     <DossierThemeProvider>

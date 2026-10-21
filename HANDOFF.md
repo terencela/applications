@@ -1,5 +1,18 @@
 # Application Dossiers — Handoff
 
+## 2026-10-21: Interaction Tracker Installed on All Dossiers
+
+### Current State
+- **Tracker live on every dossier page** via root layout: shared `PageTracker` (`app/components/shared/PageTracker.tsx`) + `app/lib/tracker.ts`, posting to the fixed `/api/analytics/track` endpoint.
+- **What fires**: `pageview`, `section_view` (named by each section's heading, 30% visible), `scroll_depth` (25/50/75/90/100), `click` on every link/button with its visible label and section, `video_play` for the Loom play button, `page_exit` with seconds on page. Session id in sessionStorage, no raw IP stored or returned.
+- **See whether the pixel fired**: open any dossier with `?tracker_debug=1` for a live bottom-left event panel, or check `GET /api/analytics/track` for totals (pageviews, sessions, sections seen, scroll depth, top clicks, countries, last 30 events). In DevTools, filter Network by "track".
+- **Endpoint hardened**: event whitelist, length caps, page must start with `/`, 120 req/min per IP, malformed or empty posts return clean 400. The old Google-only `/tmp` logger and its public IP exposure are removed, and the Google page's duplicate pageview fetch is deleted.
+- **Durable dashboards**: the same events forward to PostHog and GA4 automatically when keys exist. Env contract is in `.env.example`: `NEXT_PUBLIC_POSTHOG_KEY`, `NEXT_PUBLIC_POSTHOG_HOST`, `NEXT_PUBLIC_GA_MEASUREMENT_ID`. No keys are set yet, so PostHog/GA4 show "not configured" — that is the one missing credential. The first-party log itself is ephemeral on Vercel and is for recent-visit verification.
+- **Verified**: Playwright captured 18 pixel POSTs on `/openai` for one visit (pageview, all five section views, scroll 25→100, TerenceAI CTA click, page_exit), aggregates returned correctly, empty/malformed POSTs return 400, lint + build pass.
+- **Exact next step**: Terence provides a PostHog project key (and a GA4 measurement ID if wanted), then set the three env vars in Vercel and redeploy. No code change needed.
+
+---
+
 ## 2026-10-21: OpenAI FDE Dossier — No Inflated Claims, Hackathon Front and Centre
 
 ### Current State
