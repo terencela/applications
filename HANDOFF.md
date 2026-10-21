@@ -1,5 +1,19 @@
 # Application Dossiers — Handoff
 
+## 2026-10-21: OpenAI FDE Dossier — No Inflated Claims, Hackathon Front and Centre
+
+### Current State
+- Live target: `https://openai.terencela.com` (deploy pending this entry's push).
+- **Removed weak/inflated business copy**: "Executive & Board Alignment", Chairman's Office framing, Interim CAIO, and `Grade 5.37` are gone from the page. UBS/Credit Suisse are now named plainly as early career, under the St. Gallen pillar.
+- **St. Gallen restated as OpenAI cares**: "M.A. in Business Innovation, University of St. Gallen — the 6th best business school in Europe."
+- **10-second scroll design**: Hero now carries a stat row (`8×` hackathon winner mostly solo / `20+` AI products, GPT-3 since 2020 / `2 weeks` 35K staff app solo). Business × Tech cards rebuilt as big stat + one bold line + one sentence. Venn SVG puts `8× hackathon` first and largest on the Tech side, clear of the centre label. Davos paragraph no longer claims executive communications for delegations.
+- **Video**: Heading "Terence in 90 seconds", cover photo restored (video now sits far below the hero, so it reads as a video thumbnail, not a duplicate portrait), sharper subtitle. Terence to re-shoot the 90s video; page copy already assumes the new script (who I am / shipped at Zurich Airport / why FDE Zurich).
+- **TerenceAI made clickable**: Primary CTA is now "Ask TerenceAI anything about me", ask bar placeholder is "Ask TerenceAI: why should OpenAI hire me?", with three suggested questions underneath (FDE Zurich / airport work / solo hackathons).
+- Verified: build + lint pass, Playwright screenshots at 1440 / 768 / 390 (hero, Venn, video). Mobile hero fits photo, title, stats, CTA and logos in one frame. Preview on `http://localhost:3008/openai`.
+- **Exact next step**: Terence re-shoots the 90-second Loom on the script above, then swap the Loom URL if it changes.
+
+---
+
 ## 2026-10-20: OpenAI FDE Dossier Refinement — Single Portrait, Reordered Sections & Tailored Copy
 
 ### Current State

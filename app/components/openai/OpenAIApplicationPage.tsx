@@ -34,7 +34,7 @@ function TerenceAIAskBar() {
         <input
           type="text"
           name="terenceai-ask"
-          placeholder="Ask TerenceAI anything"
+          placeholder="Ask TerenceAI: why should OpenAI hire me?"
           autoComplete="off"
           onInput={(event) => {
             if (event.currentTarget.value.trim().length > 0) handleAsk();
@@ -42,6 +42,25 @@ function TerenceAIAskBar() {
           className="dossier-terenceai-ask__input"
         />
       </label>
+      <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 px-1">
+        <span className="text-xs text-[var(--dossier-muted)]">Try:</span>
+        {[
+          "Why Forward Deployed Zurich?",
+          "What did you ship at the airport?",
+          "How did you win 8 hackathons solo?",
+        ].map((question) => (
+          <a
+            key={question}
+            href={TERENCE_AI_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-xs font-medium text-[var(--dossier-ink)] underline decoration-[var(--dossier-line-strong)] underline-offset-4 transition-colors hover:decoration-[#10a37f]"
+          >
+            {question}
+            <ArrowUpRight className="h-3 w-3" />
+          </a>
+        ))}
+      </div>
     </div>
   );
 }
@@ -219,46 +238,52 @@ const accentStyles = {
 
 const businessPillars = [
   {
-    title: "Executive & Board Alignment",
-    detail: "Management Support at Chairman's Office (UBS/Credit Suisse), WEF delegate briefing in Davos, Interim CAIO.",
+    stat: "32M+",
+    title: "AI Lead at Zurich Airport",
+    detail: "Leading AI deployment at the airport. Swiss data rules, works councils and procurement are part of the job.",
   },
   {
-    title: "Enterprise Governance & Scale",
-    detail: "Leading AI deployment at Zurich Airport (32M+ passengers/yr). Navigating Swiss data constraints (nDSG), works councils & procurement.",
+    stat: "$1M+",
+    title: "Agency founder, with 1 exit",
+    detail: "Founded and ran an AI agency that generated over $1M for clients. Forbes 30 under 30.",
   },
   {
-    title: "Commercial & Agency Track Record",
-    detail: "Founded AI agency generating $1M+ in client revenue; completed 1 acquisition exit; M.A. Business Innovation (HSG, Grade 5.37), Forbes 30u30.",
+    stat: "St. Gallen",
+    title: "M.A. in Business Innovation, University of St. Gallen",
+    detail: "The 6th best business school in Europe. Earlier in my career: UBS and Credit Suisse, and Davos with the World Economic Forum.",
   },
 ];
 
 const techPillars = [
   {
-    title: "Production Agent Harnesses & Architectures",
-    detail: "Built custom agent loops, hybrid vector + BM25 RAG, and eval harnesses across 20+ applications (Leistera, PrivacyLayer, Rehearse). Building with GPT-3 since 2020.",
+    stat: "8×",
+    title: "Hackathon winner, mostly solo",
+    detail: "Including 3rd overall at HackZurich against 1,600 engineers. I work out how it is judged, then ship a working product in 48 hours.",
   },
   {
-    title: "Competitive Rigor & Hackathon Wins (Multiple Solo)",
-    detail: "8× Hackathon Winner, including 3rd prize overall at HackZurich (1,600 engineers). Repeatedly won solo by reverse-engineering judging rubrics and shipping full-stack working prototypes under 48 hours.",
+    stat: "20+",
+    title: "AI products built. GPT-3 since 2020.",
+    detail: "Agent loops, hybrid RAG and evals, running in Leistera, PrivacyLayer and Rehearse.",
   },
   {
-    title: "Full-Stack Velocity & Voice AI",
-    detail: "Rebuilt 35K-employee app (ZRH Insider) solo in 2 weeks (saving CHF 200K quote). Production low-latency streaming voice AI (Airport dispatch & Treasure).",
+    stat: "2 weeks",
+    title: "Rebuilt the app for 35,000 staff, solo",
+    detail: "ZRH Insider. It replaced a CHF 200K external quote. Plus voice AI in live airport operations.",
   },
 ];
 
 const intersectionPowers = [
   {
-    title: "C-Suite to Codebase in 1 Step",
-    desc: "Sit in the steering committee meeting on Monday, architect and ship the production pilot by Friday.",
+    title: "In the room, then in the code",
+    desc: "With the customer at the start of the week. A working pilot by the end of it.",
   },
   {
-    title: "Tenders That Actually Go Live",
-    desc: "Unblock enterprise legal, security, and procurement instead of watching frontier models stall in review.",
+    title: "Gets past legal, security and procurement",
+    desc: "That is where most enterprise pilots die. I handle it instead of handing it off.",
   },
   {
-    title: "Native Swiss/DACH Authority",
-    desc: "Native in German, Swiss German, English & Cantonese. Local cultural fluency with global technical standards.",
+    title: "Zurich, in four languages",
+    desc: "German, Swiss German, English and Cantonese. Local with customers, technical with engineers.",
   },
 ];
 
@@ -270,14 +295,11 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
       <div className="mx-auto max-w-[1200px] px-4 md:px-8">
         <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#10a37f]">
-              The Rare Combination
-            </p>
-            <h2 className="mt-1.5 text-[clamp(26px,3.4vw,38px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
+            <h2 className="text-[clamp(26px,3.4vw,38px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
               Business leader. Hands-on engineer.
             </h2>
-            <p className="mt-2 max-w-[62ch] text-[13.5px] leading-relaxed text-[var(--dossier-body)] md:text-[14.5px]">
-              Most enterprise executives can&apos;t write production code. Most engineers freeze when procurement, works councils, or C-suite sponsors demand governance. Here is what I mean by both—and why the overlap unlocks OpenAI&apos;s biggest enterprise accounts.
+            <p className="mt-2 max-w-[52ch] text-[14px] leading-relaxed text-[var(--dossier-body)] md:text-[15px]">
+              Most executives can&apos;t ship code. Most engineers can&apos;t get a pilot past procurement. I do both.
             </p>
           </div>
 
@@ -455,7 +477,7 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
                 <g className="pointer-events-none select-none">
                   <text
                     x="145"
-                    y="112"
+                    y="104"
                     textAnchor="middle"
                     fill="#ffffff"
                     fontSize="16"
@@ -466,33 +488,33 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
                   </text>
                   <text
                     x="145"
-                    y="132"
+                    y="130"
                     textAnchor="middle"
-                    fill="#cbd5e1"
-                    fontSize="10.5"
-                    fontWeight="500"
+                    fill="#ffffff"
+                    fontSize="12.5"
+                    fontWeight="600"
                   >
-                    Chairman&apos;s Office · HSG
+                    Zurich Airport · AI Lead
                   </text>
                   <text
                     x="145"
-                    y="149"
+                    y="150"
                     textAnchor="middle"
                     fill="#cbd5e1"
-                    fontSize="10.5"
+                    fontSize="11.5"
                     fontWeight="500"
                   >
-                    Zurich Airport AI Lead
+                    $1M+ agency · 1 exit
                   </text>
                   <text
                     x="145"
-                    y="166"
+                    y="169"
                     textAnchor="middle"
                     fill="#cbd5e1"
-                    fontSize="10.5"
+                    fontSize="11.5"
                     fontWeight="500"
                   >
-                    $1M+ Agency Rev · 1 Exit
+                    St. Gallen · UBS
                   </text>
                 </g>
 
@@ -500,7 +522,7 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
                 <g className="pointer-events-none select-none">
                   <text
                     x="395"
-                    y="112"
+                    y="100"
                     textAnchor="middle"
                     fill="#ffffff"
                     fontSize="16"
@@ -510,34 +532,32 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
                     TECH
                   </text>
                   <text
-                    x="395"
-                    y="132"
-                    textAnchor="middle"
-                    fill="#d1fae5"
-                    fontSize="10.5"
-                    fontWeight="500"
+                    x="334"
+                    y="124"
+                    fill="#ffffff"
+                    fontSize="13.5"
+                    fontWeight="800"
+                    letterSpacing="-0.02em"
                   >
-                    GPT-3 Since 2020 · 20+ Apps
+                    8× hackathon
                   </text>
                   <text
-                    x="395"
-                    y="149"
-                    textAnchor="middle"
-                    fill="#d1fae5"
+                    x="334"
+                    y="143"
+                    fill="#a7f3d0"
                     fontSize="10.5"
-                    fontWeight="500"
+                    fontWeight="600"
                   >
-                    8× Hackathon Winner (Solo)
+                    winner, mostly solo
                   </text>
                   <text
-                    x="395"
-                    y="166"
-                    textAnchor="middle"
+                    x="334"
+                    y="162"
                     fill="#d1fae5"
                     fontSize="10.5"
                     fontWeight="500"
                   >
-                    Leistera · PrivacyLayer
+                    HackZurich 3rd overall
                   </text>
                 </g>
 
@@ -578,10 +598,6 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
                 </g>
               </svg>
             </div>
-
-            <p className="mt-3 text-center text-[11px] text-[var(--dossier-muted)]">
-              Click any circle or toggle above to explore the detailed breakdown.
-            </p>
           </div>
 
           {/* Cards Breakdown beneath the Circles */}
@@ -595,27 +611,27 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
                   : "border-[var(--dossier-line)] bg-[var(--dossier-panel)] hover:border-[var(--dossier-line-strong)]"
               }`}
             >
-              <div className="flex items-center justify-between">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dossier-subtle)]">
-                  Circle 1
-                </span>
-                <span className="rounded-full bg-white/5 px-2 py-0.5 text-[10px] font-medium text-[var(--dossier-muted)]">
-                  Enterprise Reality
-                </span>
-              </div>
-              <h3 className="mt-2 text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
-                What I mean by Business
+              <h3 className="text-[16px] font-semibold tracking-tight text-[var(--dossier-ink)]">
+                What I mean by business
               </h3>
               <p className="mt-1 text-xs text-[var(--dossier-muted)]">
-                Not advisory decks or consultant slogans—real operating ownership.
+                Running AI inside a real enterprise, and running my own company.
               </p>
-              <ul className="mt-3.5 space-y-2.5 border-t border-[var(--dossier-line)] pt-3 text-xs leading-relaxed text-[var(--dossier-body)]">
+              <div className="mt-4 space-y-5 border-t border-[var(--dossier-line)] pt-4">
                 {businessPillars.map((p) => (
-                  <li key={p.title}>
-                    <strong className="text-[var(--dossier-ink)]">{p.title}:</strong> {p.detail}
-                  </li>
+                  <div key={p.title}>
+                    <p className="text-[26px] font-semibold leading-none tracking-[-0.03em] text-[var(--dossier-ink)]">
+                      {p.stat}
+                    </p>
+                    <p className="mt-1.5 text-[13px] font-semibold leading-snug text-[var(--dossier-ink)]">
+                      {p.title}
+                    </p>
+                    <p className="mt-1 text-xs leading-relaxed text-[var(--dossier-body)]">
+                      {p.detail}
+                    </p>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
 
             {/* Overlap Column */}
@@ -627,27 +643,24 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
                   : "border-[var(--dossier-line)] bg-[var(--dossier-panel)] hover:border-[var(--dossier-line-strong)]"
               }`}
             >
-              <div className="flex items-center justify-between">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#10a37f]">
-                  Intersection
-                </span>
-                <span className="rounded-full bg-[#10a37f]/10 px-2 py-0.5 text-[10px] font-semibold text-[#10a37f]">
-                  Why It&apos;s Rare
-                </span>
-              </div>
-              <h3 className="mt-2 text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
-                The Forward Deployed Advantage
+              <h3 className="text-[16px] font-semibold tracking-tight text-[var(--dossier-ink)]">
+                The forward deployed part
               </h3>
               <p className="mt-1 text-xs text-[var(--dossier-muted)]">
-                Why Swiss enterprise pilots stall without this exact combination.
+                What a customer in Switzerland needs from one person.
               </p>
-              <ul className="mt-3.5 space-y-2.5 border-t border-[var(--dossier-line)] pt-3 text-xs leading-relaxed text-[var(--dossier-body)]">
+              <div className="mt-4 space-y-4 border-t border-[var(--dossier-line)] pt-4">
                 {intersectionPowers.map((p) => (
-                  <li key={p.title}>
-                    <strong className="text-[var(--dossier-ink)]">{p.title}:</strong> {p.desc}
-                  </li>
+                  <div key={p.title}>
+                    <p className="text-[14px] font-semibold leading-snug text-[var(--dossier-ink)]">
+                      {p.title}
+                    </p>
+                    <p className="mt-1 text-xs leading-relaxed text-[var(--dossier-body)]">
+                      {p.desc}
+                    </p>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
 
             {/* Tech Column */}
@@ -659,27 +672,27 @@ function BusinessTechIntersection({ reduceMotion }: { reduceMotion: boolean | nu
                   : "border-[var(--dossier-line)] bg-[var(--dossier-panel)] hover:border-[var(--dossier-line-strong)]"
               }`}
             >
-              <div className="flex items-center justify-between">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dossier-subtle)]">
-                  Circle 2
-                </span>
-                <span className="rounded-full bg-white/5 px-2 py-0.5 text-[10px] font-medium text-[var(--dossier-muted)]">
-                  Production Depth
-                </span>
-              </div>
-              <h3 className="mt-2 text-[15px] font-semibold tracking-tight text-[var(--dossier-ink)]">
-                What I mean by Tech
+              <h3 className="text-[16px] font-semibold tracking-tight text-[var(--dossier-ink)]">
+                What I mean by tech
               </h3>
               <p className="mt-1 text-xs text-[var(--dossier-muted)]">
-                Not ChatGPT prompt wrappers—hard engineering that runs reliably.
+                Code that runs in production, built fast.
               </p>
-              <ul className="mt-3.5 space-y-2.5 border-t border-[var(--dossier-line)] pt-3 text-xs leading-relaxed text-[var(--dossier-body)]">
+              <div className="mt-4 space-y-5 border-t border-[var(--dossier-line)] pt-4">
                 {techPillars.map((p) => (
-                  <li key={p.title}>
-                    <strong className="text-[var(--dossier-ink)]">{p.title}:</strong> {p.detail}
-                  </li>
+                  <div key={p.title}>
+                    <p className="text-[26px] font-semibold leading-none tracking-[-0.03em] text-[#10a37f]">
+                      {p.stat}
+                    </p>
+                    <p className="mt-1.5 text-[13px] font-semibold leading-snug text-[var(--dossier-ink)]">
+                      {p.title}
+                    </p>
+                    <p className="mt-1 text-xs leading-relaxed text-[var(--dossier-body)]">
+                      {p.detail}
+                    </p>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -706,8 +719,8 @@ export function OpenAIApplicationPage() {
 
         <section className="dossier-openai-hero relative z-[2] flex min-h-[calc(100dvh-57px)] flex-col md:min-h-[calc(100dvh-57px)]">
           <div className="dossier-openai-hero__main mx-auto flex w-full max-w-[1200px] flex-1 flex-col justify-start px-4 py-5 md:justify-center md:px-8 md:py-14 lg:py-16">
-            <div className="flex flex-col gap-6 md:grid md:grid-cols-[minmax(0,1fr)_minmax(200px,260px)] md:items-center md:gap-x-14 md:gap-y-0 lg:gap-x-20">
-              <aside className="dossier-openai-hero__photo w-full max-w-[min(11.5rem,42vw)] shrink-0 md:col-start-2 md:row-start-1 md:mx-0 md:max-w-[220px] lg:max-w-[260px]">
+            <div className="flex flex-col gap-4 md:grid md:grid-cols-[minmax(0,1fr)_minmax(200px,260px)] md:items-center md:gap-x-14 md:gap-y-0 lg:gap-x-20">
+              <aside className="dossier-openai-hero__photo w-full max-w-[min(9rem,38vw)] shrink-0 md:col-start-2 md:row-start-1 md:mx-0 md:max-w-[220px] lg:max-w-[260px]">
                 <div className="dossier-profile-frame aspect-[4/5] w-full">
                   <Image
                     src="/images/terence-la-profile.png"
@@ -728,17 +741,34 @@ export function OpenAIApplicationPage() {
                 <h1 className="dossier-hero-title max-w-[18ch]" style={{ fontSize: "clamp(30px, 8.2vw, 64px)" }}>
                   Forward deployed engineer for enterprise AI.
                 </h1>
-                <p className="mt-5 max-w-[56ch] text-[15px] leading-relaxed text-[var(--dossier-body)] md:mt-10 md:text-[17px] md:leading-[1.65]">
-                  Enterprise AI Lead at Zurich Airport (32M+ passengers/yr). 20+ functional AI products built, GPT-3 builder since 2020, 8× hackathon winner, and 1 exit. Bridging C-suite strategy, rigorous enterprise governance, and rapid full-stack engineering.
+                <p className="mt-5 max-w-[52ch] text-[15px] leading-relaxed text-[var(--dossier-body)] md:mt-8 md:text-[17px] md:leading-[1.6]">
+                  AI Lead at Zurich Airport, 32M+ passengers a year. I find the problem inside the company, build the AI, and get it through data rules, procurement and real operations.
                 </p>
-                <div className="mt-6 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 md:mt-10">
+                <div className="mt-5 grid max-w-[640px] grid-cols-3 gap-3 border-t border-[var(--dossier-line)] pt-4 md:mt-8 md:gap-5 md:pt-5">
+                  <div>
+                    <p className="text-[24px] font-semibold leading-none tracking-[-0.03em] text-[var(--dossier-ink)] md:text-[30px]">8×</p>
+                    <p className="mt-1.5 text-[11px] font-semibold leading-snug text-[var(--dossier-ink)] md:text-[12px]">Hackathon winner, mostly solo</p>
+                    <p className="mt-0.5 text-[10px] leading-snug text-[var(--dossier-muted)] md:text-[11px]">3rd at HackZurich, 1,600 engineers</p>
+                  </div>
+                  <div>
+                    <p className="text-[24px] font-semibold leading-none tracking-[-0.03em] text-[var(--dossier-ink)] md:text-[30px]">20+</p>
+                    <p className="mt-1.5 text-[11px] font-semibold leading-snug text-[var(--dossier-ink)] md:text-[12px]">AI products built</p>
+                    <p className="mt-0.5 text-[10px] leading-snug text-[var(--dossier-muted)] md:text-[11px]">GPT-3 since 2020</p>
+                  </div>
+                  <div>
+                    <p className="text-[24px] font-semibold leading-none tracking-[-0.03em] text-[var(--dossier-ink)] md:text-[30px]">2 weeks</p>
+                    <p className="mt-1.5 text-[11px] font-semibold leading-snug text-[var(--dossier-ink)] md:text-[12px]">App for 35,000 staff, rebuilt solo</p>
+                    <p className="mt-0.5 text-[10px] leading-snug text-[var(--dossier-muted)] md:text-[11px]">Replaced a CHF 200K quote</p>
+                  </div>
+                </div>
+                <div className="mt-5 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 md:mt-8">
                   <a
                     href="https://about.terencela.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="dossier-button-primary dossier-cta-accent dossier-pressable inline-flex"
                   >
-                    Chat with TerenceAI
+                    Ask TerenceAI anything about me
                     <ArrowRight className="h-4 w-4" />
                   </a>
                   <a
@@ -751,6 +781,9 @@ export function OpenAIApplicationPage() {
                     <ArrowUpRight className="h-3 w-3" />
                   </a>
                 </div>
+                <p className="mt-3 text-xs text-[var(--dossier-muted)]">
+                  TerenceAI answers from my work in seconds. The work itself is below.
+                </p>
               </div>
             </div>
           </div>
@@ -949,17 +982,20 @@ export function OpenAIApplicationPage() {
         <section className="dossier-section relative z-[2] pt-4">
           <div className="mx-auto max-w-[1200px] px-4 md:px-8">
             <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-0.04em] text-[var(--dossier-ink)]">
-              90-second candidate walkthrough
+              Terence in 90 seconds
             </h2>
+            <p className="mt-2 max-w-[56ch] text-sm leading-relaxed text-[var(--dossier-muted)]">
+              No deck. Who I am, what I shipped at Zurich Airport, and why I want Forward Deployed Zurich.
+            </p>
             <div className="mt-4">
               <LoomVideoFrame
                 companyName="OpenAI"
                 roleTitle="Forward Deployed Engineer (Zurich)"
                 loomUrl="https://www.loom.com/share/054ec870f2c448928570797160ccc6b0"
-                videoTitle="Quick Introduction"
-                videoSubtitle="Who I am in 90 seconds."
+                videoTitle="Terence in 90 seconds"
+                videoSubtitle="Who I am, what I shipped, why Zurich."
                 playInModal
-                showCoverPhoto={false}
+                showCoverPhoto
                 accentColor="#10a37f"
                 showChapters={false}
               />
@@ -1007,10 +1043,10 @@ export function OpenAIApplicationPage() {
                     From Davos to Zurich. Ready to deploy.
                   </h2>
                   <p className="mt-4 text-[14px] leading-relaxed text-[var(--dossier-body)] md:text-[15px]">
-                    I started building on the OpenAI API with GPT-3 in 2020 while supporting executive communications for high-level delegations at the World Economic Forum in Davos. Speaking directly with Sam Altman about enterprise deployment cemented what I wanted to dedicate the next decade to.
+                    I started building with GPT-3 in 2020. At the World Economic Forum in Davos I spoke with Sam Altman about getting frontier models into real companies. That is what I have done since, inside Swiss enterprise.
                   </p>
                   <p className="mt-3 text-[14px] leading-relaxed text-[var(--dossier-body)] md:text-[15px]">
-                    As OpenAI expands its Forward Deployed Engineering presence in Zurich, I want to bring that full circle: turning frontier research into production reality across Switzerland&apos;s most critical enterprises.
+                    As OpenAI builds its Forward Deployed team in Zurich, I want to bring that full circle: frontier models in production at Switzerland&apos;s biggest companies.
                   </p>
 
                   <div className="mt-6 rounded-xl border border-[var(--dossier-line)] bg-[var(--dossier-surface)] p-4 md:p-5">
@@ -1036,7 +1072,7 @@ export function OpenAIApplicationPage() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1.5 text-[13px] text-[var(--dossier-muted)] transition-colors duration-200 hover:text-[var(--dossier-ink)]"
                       >
-                        Chat with TerenceAI
+                        Ask TerenceAI anything about me
                         <ArrowUpRight className="h-3 w-3" />
                       </a>
                       <a
