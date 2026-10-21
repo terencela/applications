@@ -256,7 +256,7 @@ export function GoogleApplicationPage() {
         className="dossier-page relative min-h-[100dvh] overflow-x-hidden"
         style={accentStyles}
       >
-        <DossierBackground accentColor={ACCENT} />
+        <DossierBackground accentColor="#8ab4f8" />
         <SubpageHeader
           companyName="Google"
           roleTitle="Outcome Engineer (Zurich)"

@@ -599,12 +599,17 @@ html[data-dossier-theme="dark"] .dossier-page {
   --dossier-line: rgba(255, 255, 255, 0.08);
   --dossier-line-strong: #2a2b34;
   --dossier-panel: #121318;
-  background: #0a0b0f !important;
+  background:
+    radial-gradient(ellipse 85% 34% at 18% 0%, rgba(244, 242, 236, 0.06), transparent 62%),
+    linear-gradient(180deg, #0e0f14 0%, #0a0b0f 34rem, #090a0e 100%) !important;
   color: #f4f2ec !important;
 }
 
 html[data-dossier-theme="dark"] .dossier-bg-base {
-  background: #0a0b0f !important;
+  background:
+    radial-gradient(ellipse 85% 52% at 18% -12%, rgba(244, 242, 236, 0.075), transparent 62%),
+    radial-gradient(ellipse 60% 42% at 88% -6%, rgba(244, 242, 236, 0.045), transparent 60%),
+    linear-gradient(180deg, #0e0f14 0%, #0a0b0f 46%, #090a0e 100%) !important;
 }
 
 html[data-dossier-theme="dark"] .dossier-glass-pill {
@@ -631,7 +636,7 @@ html[data-dossier-theme="dark"] .dossier-dot-grid {
 }
 
 html[data-dossier-theme="dark"] .dossier-mesh-gradient {
-  opacity: 0.12;
+  opacity: 0.55;
 }
 
 html[data-dossier-theme="dark"] .card-copy h3 {
@@ -732,7 +737,9 @@ html:not([data-dossier-theme="dark"]) .dossier-page {
 }
 
 html[data-dossier-theme="dark"] .dossier-page {
-  background: #0a0b0f !important;
+  background:
+    radial-gradient(ellipse 85% 34% at 18% 0%, rgba(244, 242, 236, 0.06), transparent 62%),
+    linear-gradient(180deg, #0e0f14 0%, #0a0b0f 34rem, #090a0e 100%) !important;
   color: #f4f2ec !important;
 }
 
@@ -744,11 +751,16 @@ html[data-dossier-theme="dark"] .dossier-page {
 }
 
 html:not([data-dossier-theme="dark"]) .dossier-bg-base {
-  background: #fafaf8 !important;
+  background:
+    radial-gradient(ellipse 85% 52% at 18% -12%, rgba(26, 26, 26, 0.035), transparent 62%),
+    linear-gradient(180deg, #fcfcfa 0%, #fafaf8 46%, #f7f7f4 100%) !important;
 }
 
 html[data-dossier-theme="dark"] .dossier-bg-base {
-  background: #0a0b0f !important;
+  background:
+    radial-gradient(ellipse 85% 52% at 18% -12%, rgba(244, 242, 236, 0.075), transparent 62%),
+    radial-gradient(ellipse 60% 42% at 88% -6%, rgba(244, 242, 236, 0.045), transparent 60%),
+    linear-gradient(180deg, #0e0f14 0%, #0a0b0f 46%, #090a0e 100%) !important;
 }
 
 .dossier-grain {
@@ -805,10 +817,11 @@ html[data-dossier-theme="dark"] .dossier-bg-base {
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.08;
+  opacity: 0.5;
   background:
-    radial-gradient(ellipse 50% 40% at 20% 10%, rgba(26, 26, 26, 0.04), transparent),
-    radial-gradient(ellipse 40% 35% at 75% 5%, rgba(26, 26, 26, 0.03), transparent);
+    radial-gradient(ellipse 50% 40% at 20% 10%, color-mix(in srgb, var(--mesh-accent, #73736d) 7%, transparent), transparent),
+    radial-gradient(ellipse 40% 35% at 75% 5%, color-mix(in srgb, var(--mesh-accent, #73736d) 5%, transparent), transparent),
+    radial-gradient(ellipse 55% 30% at 50% 25%, rgba(26, 26, 26, 0.025), transparent);
   mask-image: linear-gradient(to bottom, black 0%, transparent 55%);
 }
 
@@ -836,7 +849,7 @@ html[data-dossier-theme="dark"] .dossier-bg-base {
   top: -300px;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.12;
+  opacity: 0.32;
 }
 
 .dossier-accent-orb-secondary {
@@ -1192,13 +1205,13 @@ html[data-dossier-theme="dark"] .dossier-bg-base {
   overflow: hidden;
   border: 1px solid var(--dossier-line-strong);
   background: #ebe9e2;
-  box-shadow: 0 10px 28px rgba(26, 26, 26, 0.07);
+  box-shadow: 14px 14px 0 #eae7de, 0 18px 36px rgba(26, 26, 26, 0.08);
 }
 
 html[data-dossier-theme="dark"] .dossier-profile-frame {
   background: #14151b;
-  border-color: var(--dossier-line-strong);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  border-color: #33343e;
+  box-shadow: 14px 14px 0 #1b1c24, 0 18px 40px rgba(0, 0, 0, 0.5);
 }
 
 .dossier-profile-frame img,
@@ -1221,7 +1234,11 @@ html[data-dossier-theme="dark"] .dossier-profile-frame {
 
 @media (max-width: 639px) {
   .dossier-profile-frame {
-    box-shadow: 0 8px 20px rgba(26, 26, 26, 0.06);
+    box-shadow: 9px 9px 0 #eae7de, 0 10px 24px rgba(26, 26, 26, 0.06);
+  }
+
+  html[data-dossier-theme="dark"] .dossier-profile-frame {
+    box-shadow: 9px 9px 0 #1b1c24, 0 12px 28px rgba(0, 0, 0, 0.5);
   }
 }
 

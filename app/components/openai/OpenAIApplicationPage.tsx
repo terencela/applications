@@ -261,7 +261,7 @@ export function OpenAIApplicationPage() {
         className="dossier-page relative min-h-[100dvh] overflow-x-hidden"
         style={accentStyles}
       >
-        <DossierBackground accentColor="#1a1a1a" />
+        <DossierBackground accentColor="#10a37f" />
         <SubpageHeader
           companyName="OpenAI"
           roleTitle="Forward Deployed Engineer (Zurich)"

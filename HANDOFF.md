@@ -1,5 +1,16 @@
 # Application Dossiers — Handoff
 
+## 2026-10-21: Nuance Restored — Depth Without Coloured Text
+
+### Current State
+- **Terence's follow-up, also correct**: the colour pass had flattened dark mode to pure black. Binary over-correction. Nuance is back, colour stays out of text.
+- **What carries depth now**: page background is a layered top glow (`#0e0f14` to `#090a0e` with a warm paper radial at the top, never flat `#0a0b0f`), the mesh and floating orbs use the company colour at single-digit effective opacity in the background only, and the profile frame has its offset back in tonal values (cream `#eae7de` in light, charcoal `#1b1c24` in dark, not the old bright beige slab).
+- **Unchanged from the colour fix**: every word, number and icon on `/openai` and `/google` is ink or muted in both themes. The atmosphere is the only place colour lives.
+- Verified: build pass, Playwright at 390 / 768 / 1440 in light and dark on both pages. Dark hero now reads as layered charcoal with a faint company glow at the top, light hero as warm paper with the cream photo offset.
+- **Exact next step**: Terence reviews `https://openai.terencela.com`. If the glow is still too much or too little, tune the orb/mesh opacity in `globals.css`, do not reintroduce coloured text.
+
+---
+
 ## 2026-10-21: Self-Hosted 90-Second Video, Now Second Section (OpenAI)
 
 ### Current State
