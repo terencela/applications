@@ -434,7 +434,7 @@ export function GoogleApplicationPage() {
                   Ramp it, then prove it
                 </h3>
                 <p className="mt-2 text-[13px] leading-relaxed text-[var(--dossier-muted)]">
-                  A deployment counts when people use it and the number moves. 35,000 staff work on the app I rebuilt. What breaks in the field, I turn into clear asks for product and engineering. $1M+ agency revenue, 1 exit. St. Gallen M.A., the 6th best business school in Europe.
+                  A deployment counts when people use it and the number moves. 35,000 staff work on the app I rebuilt. What breaks in the field, I turn into clear asks for product and engineering. $1M+ in revenue generated for clients. Forbes 30 Under 30 in DACH.
                 </p>
                 <div className="mt-auto pt-6">
                   <svg viewBox="0 0 220 90" className="w-full max-w-[220px]" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,5 +1,16 @@
 # Application Dossiers — Handoff
 
+## 2026-10-23: False Business Claims Corrected — $1M Attribution and Exit Deleted
+
+### Current State
+- **Terence corrected the record, and the old copy was wrong**: the $1M is revenue he generated **for clients**, not agency revenue and not his income. His personal take was a few thousand. The "exit" was a few hundred dollars and is worthless as proof. Both are fixed at the source.
+- **Shared Venn component** (`BusinessTechIntersection.tsx`, used by Google and OpenAI): Venn now reads `$1M+ client revenue` and `Forbes 30 Under 30`; the card below reads stat `$1M+` / "Revenue generated for clients" and `Forbes` / "30 Under 30 · DACH, 2022". `St. Gallen · UBS` is out of the Venn (HSG still lives in the career timeline where it belongs). Tech side: `8× hackathon winner` is one full-weight line, `mostly solo` stays at primary weight, and HackZurich is `HackZurich top 3 / 1,600` — never "3rd overall" without the denominator.
+- **Google card text** (`GoogleApplicationPage.tsx`, "Ramp it, then prove it"): now ends "$1M+ in revenue generated for clients. Forbes 30 Under 30 in DACH." The `$1M+ agency revenue, 1 exit. St. Gallen M.A...` sentence is gone. Same fix in `SideProjectsGrid.tsx`: NeverAlone.ch stage is no longer "Exit".
+- Grep confirms zero remaining `1 exit`, `agency revenue`, `Agency founder`, `St. Gallen · UBS`, or `HackZurich 3rd` in `app/`. Lint 0 errors, build pass. Venn screenshotted at 1440 in dark and light on `/google` (`public/screenshots/google-venn-fixed.png`, `google-venn-fixed-light.png`); all lines fit inside the circles, nothing under the centre badge.
+- **Exact next step**: Terence reviews `https://google.terencela.com`. Standing rule for every future claim: strong fact + correct attribution + denominator, or the line does not ship.
+
+---
+
 ## 2026-10-21: Business × Tech Cards Cut Down
 
 ### Current State

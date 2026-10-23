@@ -9,8 +9,8 @@ export type IntersectionPower = { title: string; desc: string };
 
 export const businessPillars: StatPillar[] = [
   { stat: "32M+", title: "AI Lead at Zurich Airport" },
-  { stat: "$1M+", title: "Agency founder, with 1 exit" },
-  { stat: "St. Gallen", title: "M.A. in Business Innovation" },
+  { stat: "$1M+", title: "Revenue generated for clients" },
+  { stat: "Forbes", title: "30 Under 30 · DACH, 2022" },
 ];
 
 export const techPillars: StatPillar[] = [
@@ -203,15 +203,15 @@ export function BusinessTechIntersection({
                 <g className="pointer-events-none select-none">
                   <text x="145" y="104" textAnchor="middle" fill={circleFillStops.textPrimary} fontSize="15" fontWeight="700" letterSpacing="-0.02em">Business</text>
                   <text x="92" y="130" fill={circleFillStops.textPrimary} fontSize="11" fontWeight="600">AI Lead · Zurich Airport</text>
-                  <text x="92" y="150" fill={circleFillStops.textSecondary} fontSize="11" fontWeight="500">$1M+ agency · 1 exit</text>
-                  <text x="92" y="169" fill={circleFillStops.textSecondary} fontSize="11" fontWeight="500">St. Gallen · UBS</text>
+                  <text x="92" y="150" fill={circleFillStops.textSecondary} fontSize="11" fontWeight="500">$1M+ client revenue</text>
+                  <text x="92" y="169" fill={circleFillStops.textSecondary} fontSize="11" fontWeight="500">Forbes 30 Under 30</text>
                 </g>
 
                 <g className="pointer-events-none select-none">
                   <text x="395" y="100" textAnchor="middle" fill={circleFillStops.textPrimary} fontSize="15" fontWeight="700" letterSpacing="-0.02em">Tech</text>
-                  <text x="334" y="124" fill={circleFillStops.textPrimary} fontSize="13.5" fontWeight="700" letterSpacing="-0.02em">8× hackathon</text>
-                  <text x="334" y="143" fill={circleFillStops.textPrimary} fontSize="10.5" fontWeight="600">winner, mostly solo</text>
-                  <text x="334" y="162" fill={circleFillStops.textSecondary} fontSize="10.5" fontWeight="500">HackZurich 3rd overall</text>
+                  <text x="326" y="124" fill={circleFillStops.textPrimary} fontSize="12" fontWeight="700" letterSpacing="-0.02em">8× hackathon winner</text>
+                  <text x="326" y="143" fill={circleFillStops.textPrimary} fontSize="10.5" fontWeight="600">mostly solo</text>
+                  <text x="326" y="162" fill={circleFillStops.textSecondary} fontSize="10" fontWeight="500">HackZurich top 3 / 1,600</text>
                 </g>
 
                 <g className="pointer-events-none select-none">
