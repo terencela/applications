@@ -1,5 +1,15 @@
 # Application Dossiers — Handoff
 
+## 2026-10-23 (later): Exit Mentioned Calibrated, St. Gallen Written Complete, Production Deploy Was Stalled
+
+### Current State
+- **Terence: do not swing binary on the exit.** It is not deleted and not dressed up. Google card now reads: "$1M+ in revenue generated for clients. M.A. in Business Innovation, University of St. Gallen. First venture NeverAlone.ch: built in weeks during COVID, then sold." Named venture, build speed as the brag, no sale price implied. Same treatment in `SideProjectsGrid.tsx` (stage "Built & sold"). `St. Gallen · UBS` as a random pair is gone; St. Gallen is written out complete, UBS stays a ticker name only.
+- **Both pages**: the Business × Tech graph is the shared `BusinessTechIntersection.tsx`, confirmed rendering on `/openai` (centre "OPENAI FDE / Ships & Aligns") and `/google` (centre "GOOGLE / Outcome first") with identical corrected Business/Tech proof. Screenshot: `public/screenshots/openai-venn-fixed.png`.
+- **Production was stale**: `vercel ls` showed the last production deployment was 2 days old despite pushes to `main`. Git-triggered deploys have stalled. This round ships via `vercel --prod` from the repo. If the next push also does not deploy, check the Git integration on project `terencela-dossier` before assuming a push went live.
+- **Exact next step**: Terence reviews `https://google.terencela.com` and `https://openai.terencela.com` (hard refresh). Claim rule stands: strong fact, correct attribution, denominator, named or not at all.
+
+---
+
 ## 2026-10-23: False Business Claims Corrected — $1M Attribution and Exit Deleted
 
 ### Current State

@@ -52,9 +52,9 @@ const projects = [
   {
     name: "NeverAlone.ch",
     category: "E-commerce",
-    stage: "2020",
+    stage: "Built & sold",
     description:
-      "Emergency marketplace for small businesses during COVID. Built in weeks.",
+      "Emergency marketplace for small businesses during COVID. Built in weeks, then sold.",
     evidence: "50 vendors onboarded in 4 weeks",
     visual: "messages",
     accent: "coral",
